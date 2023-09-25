@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../../service/serviceConfig";
 import FilterLabel from "../FilterLabel";
+import CustomRadioButton from "../radio-button/CustomRadioButton";
+import { useState } from "react";
 
 export default function ColorFilter({
   data,
@@ -34,6 +36,7 @@ export default function ColorFilter({
   const router = useRouter();
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.filter);
+
   // =============== methods ================
   const handleColor = (e) => {
     setColor(e.target.value);
@@ -48,7 +51,20 @@ export default function ColorFilter({
         <>
           {type === "mobile" ? (
             <AccordionLayout title="color" id="color-id">
-              <FormControl>
+              
+              {data.color &&
+                data.color.map((item, index) => {
+                  return (
+                    <CustomRadioButton
+                      key={index}
+                      colors={item}
+                      color={color}
+                      handleColor={handleColor}
+                    />
+                  );
+                })}
+
+              {/* <FormControl>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
@@ -67,7 +83,7 @@ export default function ColorFilter({
                       );
                     })}
                 </RadioGroup>
-              </FormControl>
+              </FormControl> */}
             </AccordionLayout>
           ) : (
             <Grid item xs={2}>
@@ -90,7 +106,18 @@ export default function ColorFilter({
                     overflowY: "auto",
                   }}
                 >
-                  <FormControl>
+                  {data.color &&
+                    data.color.map((item, index) => {
+                      return (
+                        <CustomRadioButton
+                          key={index}
+                          colors={item}
+                          color={color}
+                          handleColor={handleColor}
+                        />
+                      );
+                    })}
+                  {/* <FormControl>
                     <RadioGroup
                       aria-labelledby="demo-radio-buttons-group-label"
                       name="radio-buttons-group"
@@ -114,7 +141,7 @@ export default function ColorFilter({
                           );
                         })}
                     </RadioGroup>
-                  </FormControl>
+                  </FormControl> */}
                 </div>
               </div>
             </Grid>
