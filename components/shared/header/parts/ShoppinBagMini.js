@@ -42,6 +42,7 @@ export default function ShoppinBagMini() {
   };
   // -------------------test-------------------
   const[cart,setCart] = useState([]);
+  
   const changeCart = () => {
     commonService
       .postAuthData("cartLog", { cart: shoppingBag }, userInfo.token)
@@ -49,7 +50,7 @@ export default function ShoppinBagMini() {
         // --------------------------------------------
         setCart(JSON.parse(res.config.data))
         combineCart =[...cart.cart, shoppingBag];
-        const uniq = Object.values(combinedCart.reduce((result, obj) => {
+        const uniq = Object.values(combineCart.reduce((result, obj) => {
           if (!result[obj.id] ) {
             result[obj.id] = { ...obj };
           } else {

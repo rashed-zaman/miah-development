@@ -1,12 +1,16 @@
 import Link from "next/link";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { mobileBagDialog } from "../../../redux/shoppingBag/shoppingBagActions";
 import { IMAGE_URL } from "../../../service/serviceConfig";
+import commonService from "../../../service/menu/commonService";
+import { useEffect } from "react";
+
 
 export default function MobileBag({ shoppingBag, removeItem, changeQty }) {
   // hooks
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.auth.userInfo);
   // methods
   const removeBagItem = (item) => {
     removeItem(item);
@@ -19,6 +23,38 @@ export default function MobileBag({ shoppingBag, removeItem, changeQty }) {
   const changeItemQty = (item, changeType) => {
     changeQty(item, changeType);
   };
+
+  const changeCart = () => {
+    commonService
+      .postAuthData("cartLog", { cart: shoppingBag }, userInfo.token)
+      .then((res) => {
+        // --------------------------------------------
+        setCart(JSON.parse(res.config.data))
+        combineCart =[...cart.cart, shoppingBag];
+        const uniq = Object.values(combinedCart.reduce((result, obj) => {
+          if (!result[obj.id] ) {
+            result[obj.id] = { ...obj };
+          } else {
+            result[obj.id].qty += parseInt(obj.qty);
+          }
+          return result;
+        }, {}));   
+        if(res.data.status == 1) {
+          dispatch(repleaceBag(uniq))
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    if (userInfo.token) {
+      changeCart()
+    }
+  }, [shoppingBag]);
+
+  
 
   return (
     <ul className="ps-shopping__list">
