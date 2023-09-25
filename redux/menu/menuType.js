@@ -1,0 +1,10 @@
+export const SET_SITE_OPTIONS = 'GET_SITE_OPTIONS'
+export const GET_MENU = 'GET_MENU'
+export const SET_COUNT = 'SET_COUNT'
+export const SET_SEARCH_PANEL = 'SEARCH_PANEL'
+
+export const DRAWER = 'DRAWER'
+export const CAT_DRAWER = 'CAT_DRAWER'
+export const SUB_DRAWER = 'SUB_DRAWER'
+export const LOAD_CATEGORY = 'LOAD_CATEGORY'
+export const LOAD_SUB_CATEGORY = 'LOAD_SUB_CATEGORY'

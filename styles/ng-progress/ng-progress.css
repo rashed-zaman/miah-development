@@ -1,0 +1,14 @@
+#nprogress {
+  z-index: 1200 !important;
+  height: 3px !important;
+}
+#nprogress .bar {
+  background: #f6d809 !important;
+  z-index: 1200 !important;
+  height: 3px !important;
+}
+#nprogress .bar .peg {
+  background: #f6d809 !important;
+  height: 3px !important;
+  display: none !important;
+}

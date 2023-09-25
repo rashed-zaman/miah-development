@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import IconButton from "@mui/material/IconButton";
+import HeadComponent from "../formUI/head/HeadComponent";
+import DesktopFilter from "../filter/DesktopFilter";
+import { Box } from "@mui/material";
+import { productListDatalayer } from "../../../service/data-layer-creator/dataLayerCreator";
+
+// import Breadcrumb from "../bread-crumbs/Breadcrumb";
+// import Filter from "../filter/Filter";
+// import FilterOptions from "../filter/FilterOptions";
+
+// import Product from "../../core/product/Product";
+// import ProductBanner from "../banner/ProductBanner";
+// import MobileFilter from "../filter/MobileFilter";
+// import ProductPagination from "../pagination/ProductPagination";
+// import MiahBreadCrumbs from "../breadcrumbs/MiahBreadCrumbs";
+
+const Product = dynamic(() => import("../../core/product/Product"));
+const ProductBanner = dynamic(() => import("../banner/ProductBanner"));
+const MobileFilter = dynamic(() => import("../filter/MobileFilter"));
+const ProductPagination = dynamic(() =>
+  import("../pagination/ProductPagination")
+);
+const MiahBreadCrumbs = dynamic(() => import("../breadcrumbs/MiahBreadCrumbs"));
+
+export default function LayoutProductList({ data, type }) {
+  // ================= hooks ===============
+  const router = useRouter();
+
+  // ================= local state ============
+  
+  const [filter, setFilter] = useState(false);
+  const [mobileFilter, setMobileFilter] = useState(false);
+  
+  // ================= side effects ============
+  useEffect(() => {
+    productListDatalayer(data, type)
+  }, [data, type])
+  
+  return (
+    <>
+      <HeadComponent data={data} />
+      <div className="ps-shop ps-shop--grid">
+        <ProductBanner data={data} />
+        <div className="container product-container">
+          {data.product && (
+            <MiahBreadCrumbs
+              data={data}
+              type={type}
+              setMobileFilter={setMobileFilter}
+              setFilter={setFilter}
+            />
+          )}
+          <DesktopFilter data={data} setMobileFilter={setMobileFilter} />
+          <div
+            className="ps-shop__product"
+            style={{ width: filter ? "80%" : "100%" }}
+          >
+            <Box sx={{ padding: { xs: "0px 10px" } }}>
+              <div className="row">
+                {data.product ? (
+                  data.product.map((product, index) => {
+                    return (
+                      <div key={index} className="col-6 col-md-4 col-lg-3 px-1">
+                        <Product product={product} />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="col-12">
+                    <p>No Product Found</p>
+                  </div>
+                )}
+              </div>
+            </Box>
+          </div>
+          <div
+            className="product-filter-container"
+            style={{ width: filter ? "20%" : "0" }}
+          >
+            <div className="row">
+              <div className="col-8">
+                <p className="text-center" onClick={() => setFilter(false)}>
+                  FILTER BY
+                </p>
+              </div>
+              <div className="col-4">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => setFilter(false)}
+                >
+                  <CloseRoundedIcon />
+                </IconButton>
+              </div>
+            </div>
+            {/* <FilterOptions /> */}
+          </div>
+          {data.product && <ProductPagination products={data} />}
+        </div>
+      </div>
+      <MobileFilter
+        drawer={mobileFilter}
+        setMobileFilter={setMobileFilter}
+        setFilter={setFilter}
+        data={data}
+      />
+    </>
+  );
+}

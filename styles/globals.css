@@ -1,0 +1,144 @@
+@import url("./home/banner.css");
+@import url("./home/eidbanner.css");
+@import url("./home/feature.css");
+@import url("./home/vedio.css");
+@import url("./product/product.css");
+@import url("./ng-progress//ng-progress.css");
+@import url("./drawer/drawer.css");
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* a {
+  color: inherit;
+  text-decoration: none;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+.mega-menu__column h4 a:hover {
+  color: #000 !important;
+}
+.custom-1-border {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.parentMarginZero p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.logo-sticky {
+  width: 200px !important;
+}
+
+.slider-zoom {
+  display: none;
+}
+
+.popup-container {
+  position: relative;
+}
+
+.close-icon-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.MuiPagination-ul {
+  justify-content: center;
+}
+
+.MuiCardHeader-content span {
+  color: #fff;
+}
+
+.MuiInputLabel-root {
+  font-family: Jost !important;
+}
+
+.background-trasparent {
+  box-shadow: none !important;
+  background: transparent !important;
+  transition: all 1s;
+}
+
+.background-white {
+  transition: all 1s;
+  background: white !important;
+}
+
+.filter-container .MuiAccordion-root {
+  width: 100%;
+}
+
+.player .vp-controls {
+  display: none !important;
+}
+
+.filter-position {
+  position: fixed;
+  top: 90px;
+  left: 0%;
+  width: 100%;
+  background: #fafafa;
+  z-index: 12;
+  padding: 20px 15px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.swiper-pagination-bullet-active {
+  background: rgba(0, 0, 0, 1) !important;
+}
+
+.ps-form--newsletter .ps-input {
+  height: 35px !important;
+}
+
+.ps-form--newsletter .ps-btn {
+  font-size: 15px;
+  line-height: 15px;
+  width: 100% !important;
+}
+
+.css-w6ajo6-MuiButtonBase-root-MuiTab-root {
+  font-size: 1rem;
+}
+.bag-remove {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.cashback-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.cashback-container img {
+  width: 60%;
+}
+
+.cashback-container span {
+  position: absolute;
+  left: 82px;
+  top: 50%;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* fb messenger */
+.fb_dialog_content iframe:first-child {
+  bottom: 66px !important;
+}
+
+a:hover{
+  color: #000;
+}

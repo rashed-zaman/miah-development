@@ -1,0 +1,222 @@
+#desktop-video{
+  width: 100%;
+  display: block;
+  object-fit: fill !important;
+}
+
+.home-banner-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-banner-section .swiper-button-next,
+.home-banner-section .swiper-button-prev {
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s linear 0.5s;
+}
+.home-banner-section .swiper-button-next:after,
+.home-banner-section .swiper-button-prev:after {
+  font-size: 1rem;
+  color: #000;
+  font-weight: bold;
+}
+
+.home-banner-section:hover .swiper-button-next,
+.home-banner-section:hover .swiper-button-prev {
+  opacity: 1;
+}
+
+.home-banner-item {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  height: 100vh;
+  width: 100%;
+}
+.home-banner-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.home-banner-item-content {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+.home-banner-item-content h2 {
+  font-size: 60px;
+  line-height: 65px;
+  color: #d5d5d5;
+}
+.home-banner-item-content .banner-desc {
+  margin: 30px 0;
+  color: #d5d5d5;
+  font-size: 22px;
+}
+.pin-rounded {
+  width: 25px;
+  height: 25px;
+  background-color: #d9121f;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  transition: transform 1.5s ease-in-out;
+  -webkit-animation: animationScale 2s linear infinite;
+  animation: animationScale 2s linear infinite;
+  cursor: pointer;
+}
+.pin-rounded::before {
+  content: "";
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 50%;
+  z-index: 0;
+  background-color: rgba(217, 18, 31, 0.3);
+  top: -5px;
+  left: -5px;
+  position: absolute;
+}
+
+.pin-one {
+  position: absolute;
+  top: 5%;
+  right: 30%;
+  z-index: 1;
+}
+.pin-two {
+  position: absolute;
+  bottom: 5%;
+  right: 40%;
+}
+
+/* .pin-item-container{
+  visibility: hidden;
+  position: absolute;
+  top: 6%;
+  right: 31%;
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pin-one:hover .pin-item-container{
+  visibility: show;
+} */
+
+.ps-header .ps-logo img {
+  width: 300px;
+}
+
+.video-btn-container {
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
+  text-align: right;
+}
+.home-btn-area {
+  position: absolute;
+  left: 0;
+  top: 78vh;
+  width: 100%;
+  /* transform: translateY(-50%); */
+}
+.home-btn-area a {
+  color: #000 !important;
+}
+.home-btn-area button {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.home-btn-area button:hover {
+  box-shadow: 0px 6px 41px 6px rgb(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+/* .video-react-big-play-button-left {
+  display: none !important;
+} */
+
+.player .vp-controls {
+  opacity: 0 !important;
+  display: none !important;
+}
+.player .vp-controls-wrapper,
+.player .vp-video-wrapper {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+.mobile-service-row{
+  background-color: rgba(0, 0, 0, 0.04);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+/* media query */
+@media screen and (max-width: 768px) {
+  
+  .slide-thumb {
+    display: block;
+  }
+
+  .home-btn-area {
+    position: absolute;
+    left: 0;
+    top: 65%;
+    width: 100%;
+    padding: 30px;
+    /* transform: translateY(-50%); */
+  }
+
+  .home-btn-area button {
+    width: 80%;
+    padding: 6px;
+    font-size: 1rem;
+  }
+
+  .ps-promo .ps-promo__link a {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .slide-thumb {
+    display: block;
+  }
+
+  .home-btn-area {
+    position: absolute;
+    left: 0;
+    top: 60%;
+    width: 100%;
+    padding: 30px;
+    /* transform: translateY(-50%); */
+  }
+
+  .home-btn-area button {
+    width: 100%;
+    padding: 6px;
+    font-size: 1rem;
+  }
+
+  .ps-promo .ps-promo__link a {
+    transform: translateX(0);
+  }
+}

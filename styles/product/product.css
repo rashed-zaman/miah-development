@@ -1,0 +1,197 @@
+
+
+.no-products-found{
+  text-align: center;
+  padding: 200px 0px;
+  font-weight: bold;
+}
+
+.product-slide .swiper-button-next,
+.product-slide .swiper-button-prev {
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+
+.product-slide .swiper-button-next:after,
+.product-slide .swiper-button-prev:after {
+  font-size: 0.8rem;
+  color: #000;
+  font-weight: bold;
+}
+
+.product-slide:hover .swiper-button-next,
+.product-slide:hover .swiper-button-prev {
+  opacity: 1;
+}
+
+.slide-thumb {
+  display: none;
+  margin-top: 5px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.thumbslide .swiper-slide-thumb-active .slide-thumb {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+/* ==================== product detials =============== */
+
+.active-size {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.diabled-size {
+  color: rgba(0, 0, 0, 0.15) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  cursor: no-drop !important;
+}
+
+.qty-btn {
+  outline: none;
+  display: inline-block;
+  border: none;
+  min-width: 30px;
+  padding: 0px 25px;
+  text-align: center;
+  margin: 1px 5px;
+}
+
+.qty-value {
+  min-width: 30px;
+  padding: 0px 5px;
+  text-align: center;
+  margin: 1px 5px;
+}
+
+.zoomSlider {
+  position: relative;
+}
+
+.clickToZoom {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  color: #ffffff;
+  text-align: center;
+}
+
+.clickFadeout {
+  transition: all 1000ms ease-in;
+  opacity: 0;
+  z-index: 0;
+}
+
+.clickFadein {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.my-prismazoom {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eff0f4;
+}
+
+.css-m9glnp-MuiPaper-root-MuiDialog-paper::-webkit-scrollbar {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+  background-color: blue;
+}
+
+.css-m9glnp-MuiPaper-root-MuiDialog-paper::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.prismazoom-inner {
+  /* height: 100vh; */
+  width: 100vh;
+}
+
+.my-prismazoom img {
+  width: 100%;
+}
+
+.closeButton {
+  position: absolute !important;
+  right: 15px;
+  top: 15px;
+  z-index: 2;
+  border-color: black;
+  color: #000;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.closeButton:hover {
+  border-color: black;
+}
+
+.description-table{
+  width: 100%;
+}
+.description-table tr td {
+  border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 5px 15px !important;
+}
+
+.product-container {
+  position: relative;
+}
+
+.product-filter-container {
+  position: absolute;
+  right: 0;
+  top: 144px;
+  overflow: hidden;
+}
+
+.filter-button {
+  border: none !important;
+  outline: none !important;
+  border-bottom: 1px solid #000 !important;
+  background: none;
+  font-size: 0.9rem !important;
+  font-weight: bold;
+}
+
+.shop-banner-text-container {
+  display: flex;
+  min-height: 300px;
+}
+
+.shop-banner-text-content{
+  align-self: center;
+}
+
+
+.ps-product__info .ps-product__title_bangla{
+  font-family:  'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+
+/* media query */
+@media screen and (max-width: 768px) {
+  .shop-banner-text-container {
+    min-height: 0px;
+  }
+  .slide-thumb {
+    display: block;
+  }
+  #desktop-filter{
+    display: none;
+  }
+}
