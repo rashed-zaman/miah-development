@@ -1,11 +1,11 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useSelector } from "react-redux";
 import { useField, useFormikContext } from "formik";
 import shippingCalculation from "../../../../../service/shippingCalculation/shippingCalculation";
 
-export default function Area({ defaultValue, handleShippingCharge }) {
+export default function Area({ defaultValue, handleShippingCharge, hasShipping }) {
   // hooks
   const BagWight = useSelector((state) => state.shoppingBag.shoppingCart.reduce((a, b) => a + ((b.weight) || 0), 0))
   const area = useSelector((state) => state.checkout.billingAreas);
@@ -38,20 +38,22 @@ export default function Area({ defaultValue, handleShippingCharge }) {
 
 
   // side effescts
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(defaultValue);
     setFieldValue("billingArea", defaultValue);
     setFieldValue("billigInfo.areaId", defaultValue.id);
     handleShippingCharge(shippingCalculation.calculateShipping(defaultValue, BagWight))
   }, [defaultValue]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (area !== undefined) {
       setOptions(area);
     } else {
       setOptions([]);
     }
   }, [area]);
+
+  
 
 
   // select configarations
@@ -60,7 +62,7 @@ export default function Area({ defaultValue, handleShippingCharge }) {
     inputValue: inputValue || "",
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (meta && meta.touched && meta.error) {
       params.error = true;
       params.helperText = meta.error;
@@ -71,6 +73,7 @@ export default function Area({ defaultValue, handleShippingCharge }) {
       seterrTxt("");
     }
   }, [meta]);
+  
 
   return (
     <Autocomplete

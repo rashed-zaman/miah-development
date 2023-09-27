@@ -12,7 +12,7 @@ import City from "../../shared/formUI/shipping/city/City";
 import AreaUser from "../../shared/formUI/shipping/area/AreaUser";
 import Area from "../../shared/formUI/shipping/area/Area";
 
-export default function Shipping({ handleShippingCharge }) {
+export default function Shipping({ handleShippingCharge, hasShipping }) {
   // redux state
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth.userInfo);
@@ -121,12 +121,14 @@ export default function Shipping({ handleShippingCharge }) {
                 <Area
                   options={area}
                   handleShippingCharge={handleShippingCharge}
-                />
-              ) : (
-                <AreaUser
-                  options={area}
-                  defaultValue={defaultArea}
-                  handleShippingCharge={handleShippingCharge}
+                  hasShipping={hasShipping}
+                  />
+                  ) : (
+                    <AreaUser
+                    options={area}
+                    defaultValue={defaultArea}
+                    handleShippingCharge={handleShippingCharge}
+                    hasShipping={hasShipping}
                 />
               )}
             </>
