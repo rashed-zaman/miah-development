@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getSession } from 'next-auth/react';
 import {
   Box,
@@ -43,7 +43,6 @@ import UserSummary from "../components/route/check-out/UserSummary";
 import CouponCard from "../components/route/check-out/CouponCard";
 import AddressForm from "../components/route/check-out/signin/AddressForm";
 import { fetchDefaultAddress } from "../redux/checkout/checkoutActions";
-import { useEffect } from "react";
 import axios from "axios";
 
 export default function Checkout() {
@@ -153,20 +152,20 @@ export default function Checkout() {
   // ==================== side effects ==============
   // dispatch(fetchLocations());
 
-  React.useEffect(() => {
+  useEffect(() => {
     setFormState(INITIAL_FORM_STATE);
   }, [INITIAL_FORM_STATE]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(fetchLocations());
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log("create data layer");
     checkOutDataLayer(shoppingBag);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (persist._persist.rehydrated) {
       if (shoppingBag.length < 1) {
         route.push("/");
@@ -233,7 +232,7 @@ export default function Checkout() {
                   ) : value === 'new' ? (<Card chekout="true" sx={{ marginBottom: '15px' }}>
                     <CardContaier titleTypographyProps={{ fontSize: 122 }} title="Billing Details">
                       <Billing handleShippingCharge={handleShippingCharge} />
-                      {/* <Box px={2}>
+                      <Box px={2}>
                           <Grid container spacing={2}>
                             <Grid item sm={7} md={6} xs={12}>
                               <FormGroup>
@@ -252,7 +251,7 @@ export default function Checkout() {
                         </Box>
                         {hasShipping ? (
                             <Shipping handleShippingCharge={handleShippingCharge} />
-                        ) : null} */}
+                        ) : null}
                     </CardContaier>
                   </Card>) : null}
                   <Box sx={{ display: { xs: 'block', sm: 'none' }, mt: { xs: '15px', sm: 0 } }}>

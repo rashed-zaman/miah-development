@@ -57,7 +57,7 @@ export default function Area({ options, handleShippingCharge }) {
         <TextField
           {...params}
           name="billingArea"
-          label="Area(Optional)"
+          label="Area"
           error={err ? true : false}
           helperText={err ? errTxt : ""}  
         />
