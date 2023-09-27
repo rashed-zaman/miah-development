@@ -7,9 +7,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import { wrapper } from "../redux/store";
 import Layout from "../components/shared/layout/Layout";
 import Script from "next/script";
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import * as fbq from '../lib/fpixel';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import * as fbq from "../lib/fpixel";
+import Head from "next/head";
 
 NProgress.configure({
   minimum: 0.7,
@@ -24,23 +25,30 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state);
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    fbq.pageview()
+    fbq.pageview();
 
     const handleRouteChange = () => {
-      fbq.pageview()
-    }
+      fbq.pageview();
+    };
 
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <>
-    <Script id="fb-pixel"
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+      </Head>
+      <Script
+        id="fb-pixel"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -55,7 +63,8 @@ function MyApp({ Component, pageProps }) {
             fbq('init', ${fbq.FB_PIXEL_ID});
             fbq('track', 'PageView');
             `,
-          }}/>
+        }}
+      />
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-J4TDD249F0"
         strategy="afterInteractive"

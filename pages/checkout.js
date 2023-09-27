@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react';
 import {
   Box,
   Checkbox,
@@ -45,7 +45,6 @@ import AddressForm from "../components/route/check-out/signin/AddressForm";
 import { fetchDefaultAddress } from "../redux/checkout/checkoutActions";
 import { useEffect } from "react";
 import axios from "axios";
-import { Head } from "next/document";
 
 export default function Checkout() {
   //=================== hooks =================
@@ -125,7 +124,7 @@ export default function Checkout() {
   };
 
   const handleOrderSubmit = (values) => {
-    values?.paymentType === "cash" && setBtnLoading(true);
+    values?.paymentType === 'cash' && setBtnLoading(true);
     if (userInfo.token) {
       submitOrder(values, userInfo.token, shippingCharge);
     } else {
@@ -184,15 +183,11 @@ export default function Checkout() {
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="viewport-fit=cover" />
-        <meta name="robots" content="max-image-preview:large" />
-      </Head>
       <div className="ps-checkout">
         <div className="container">
           <h6 className="ps-checkout__title"> Checkout</h6>
           <Grid container spacing={2}>
-            <Grid item sm={8} xs={12}>
+            <Grid item sm={8} xs={12} >
               <CheckOutSignin value={value} setValue={setValue} />
             </Grid>
           </Grid>
@@ -207,14 +202,11 @@ export default function Checkout() {
             }}
           >
             <Form>
-              <Grid container spacing={2} sx={{ mb: 12 }}>
+              <Grid container spacing={2}  sx={{mb:12}}>
                 <Grid item sm={8} xs={12}>
                   {userInfo.token ? (
                     <Card>
-                      <CardContaier
-                        titleTypographyProps={{ fontSize: 122 }}
-                        title="Billing Details"
-                      >
+                      <CardContaier titleTypographyProps={{ fontSize: 122 }} title="Billing Details">
                         <Box px={1}>
                           <UserSummary />
                         </Box>
@@ -234,20 +226,14 @@ export default function Checkout() {
                           </Grid>
                         </Grid>
                         {hasShipping ? (
-                          <Shipping
-                            handleShippingCharge={handleShippingCharge}
-                          />
+                          <Shipping handleShippingCharge={handleShippingCharge} />
                         ) : null}
                       </CardContaier>
                     </Card>
-                  ) : value === "new" ? (
-                    <Card chekout="true" sx={{ marginBottom: "15px" }}>
-                      <CardContaier
-                        titleTypographyProps={{ fontSize: 122 }}
-                        title="Billing Details"
-                      >
-                        <Billing handleShippingCharge={handleShippingCharge} />
-                        {/* <Box px={2}>
+                  ) : value === 'new' ? (<Card chekout="true" sx={{ marginBottom: '15px' }}>
+                    <CardContaier titleTypographyProps={{ fontSize: 122 }} title="Billing Details">
+                      <Billing handleShippingCharge={handleShippingCharge} />
+                      {/* <Box px={2}>
                           <Grid container spacing={2}>
                             <Grid item sm={7} md={6} xs={12}>
                               <FormGroup>
@@ -267,25 +253,12 @@ export default function Checkout() {
                         {hasShipping ? (
                             <Shipping handleShippingCharge={handleShippingCharge} />
                         ) : null} */}
-                      </CardContaier>
-                    </Card>
-                  ) : null}
-                  <Box
-                    sx={{
-                      display: { xs: "block", sm: "none" },
-                      mt: { xs: "15px", sm: 0 },
-                    }}
-                  >
+                    </CardContaier>
+                  </Card>) : null}
+                  <Box sx={{ display: { xs: 'block', sm: 'none' }, mt: { xs: '15px', sm: 0 } }}>
                     <CouponCard />
                   </Box>
-                  <Card
-                    sx={{
-                      textAlign: "center",
-                      borderRadius: "4px",
-                      mt: { xs: "15px", sm: 0 },
-                      py: 2,
-                    }}
-                  >
+                  <Card sx={{ textAlign: "center", borderRadius: '4px', mt: { xs: '15px', sm: 0 }, py:2 }}>
                     <CardContaier title="Select Payment Method">
                       <Box px={2} ml={3}>
                         <PaymentMathod
@@ -304,40 +277,33 @@ export default function Checkout() {
                     </div>
                   </div>
                   {/* <CheckboxWraper/> */}
-                  <Typography
-                    variant="p"
-                    sx={{
-                      marginTop: "7px",
-                      marginBottom: { xs: "45px" },
-                      fontSize: "1rem",
-                      color: "rgba(0, 0, 0, 0.6)",
-                      fontFamily: "Jost",
-                      fontWeight: "400",
-                    }}
-                  >
-                    By clicking &apos;place order&apos;, i agree to Miah&apos;s
+                  <Typography variant="p" sx={{ marginTop: '7px', marginBottom: { xs: '45px' }, fontSize: '1rem', color: 'rgba(0, 0, 0, 0.6)', fontFamily: 'Jost', fontWeight: '400' }}>
+                    By clicking &apos;place order&apos;, i agree to
+                    Miah&apos;s
                     <a target="_blank" href="/page/termCondition">
                       <u> terms & conditions </u>
                     </a>
                   </Typography>
+
                 </Grid>
-                {value === "new" || hasLoggedIn ? (
-                  <Grid item sm={4} xs={12}>
-                    <Order
-                      digitalDiscount={digitalDiscount}
-                      shippingCharge={shippingCharge}
-                      couponDiscount={couponDiscount}
-                    />
-                  </Grid>
-                ) : (
-                  <Grid item sm={4} xs={12} mt={{ xs: 0, sm: -14 }}>
-                    <Order
-                      digitalDiscount={digitalDiscount}
-                      shippingCharge={shippingCharge}
-                      couponDiscount={couponDiscount}
-                    />
-                  </Grid>
-                )}
+                {
+                  value === 'new' || hasLoggedIn ?
+                    <Grid item sm={4} xs={12}>
+                      <Order
+                        digitalDiscount={digitalDiscount}
+                        shippingCharge={shippingCharge}
+                        couponDiscount={couponDiscount}
+                      />
+                    </Grid> :
+                    <Grid item sm={4} xs={12} mt={{ xs: 0, sm: -14 }} >
+                      <Order
+                        digitalDiscount={digitalDiscount}
+                        shippingCharge={shippingCharge}
+                        couponDiscount={couponDiscount}
+                      />
+                    </Grid>
+                }
+
               </Grid>
             </Form>
           </Formik>
