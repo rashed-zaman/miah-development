@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { FB_PIXEL_ID } from '../lib/fpixel'
+import { FB_PIXEL_ID } from "../lib/fpixel";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -24,11 +24,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="robots" content="max-image-preview:large"/>
-          <meta name="viewport" content="height=device-height, 
-                      width=device-width, initial-scale=1.0, 
-                      minimum-scale=1.0, maximum-scale=1.0, 
-                      user-scalable=no, target-densitydpi=device-dpi"/>
           <link
             rel="stylesheet"
             href="/plugins/font-awesome/css/font-awesome.min.css"
@@ -72,7 +67,7 @@ class MyDocument extends Document {
             <img
               height="1"
               width="1"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
             />
           </noscript>
