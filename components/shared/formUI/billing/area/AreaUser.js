@@ -53,6 +53,12 @@ export default function Area({ defaultValue, handleShippingCharge, hasShipping }
     }
   }, [area]);
 
+    useEffect(() => {
+      if (!hasShipping && defaultValue) {
+          handleShippingCharge(shippingCalculation.calculateShipping(defaultValue, BagWight))
+      }
+  }, [hasShipping]);
+
   
 
 

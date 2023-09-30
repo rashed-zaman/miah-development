@@ -12,8 +12,10 @@ import CityUser from "../../shared/formUI/billing/city/CityUser";
 import City from "../../shared/formUI/billing/city/City";
 import AreaUser from "../../shared/formUI/billing/area/AreaUser";
 import Area from "../../shared/formUI/billing/area/Area";
+// import UserSummary from "../../components/route/check-out/UserSummary";
+import UserSummary from "./UserSummary";
 
-export default function Billing({ handleShippingCharge }) {
+export default function Billing({ hasShipping, handleShippingCharge }) {
   // hooks
   const dispatch = useDispatch();
   // redux state
@@ -45,138 +47,422 @@ export default function Billing({ handleShippingCharge }) {
     setDefaultCity(formInitialValue.billingCity);
     setDefaultArea(formInitialValue.billingArea);
   }, [formInitialValue]);
-  console.log(formInitialValue);
+
   return (
-    < >
-      <Grid container spacing={1} rowSpacing={2} mb={1} p={2}>
-        {/* <Grid item sm={6} xs={12}>
-          {hasLoggedIn && defaultAddress.billingAllData.defaultBilling ? (
-            <AddressTypeUser
-              name="addressType"
-              optionLabel="billing_address"
-              label="Address Type"
-              defaultAddress={defaultAddress.defaultBilling}
-              options={defaultAddress.billing}
-            />
-          ) : (
-            <AddressType
-              name="addressType"
-              optionLabel="billing_address"
-              label="Address Type"
-            />
-          )}
-        </Grid> */}
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <TextFieldWrapper
-              readOnly={true}
-              name="billigInfo.fName"
-              label="Frist Name"
-            />
-          ) : (
-            <TextFieldWrapper name="billigInfo.fName" label="Frist Name" />
-            )} */}
-            <TextFieldWrapper name="billigInfo.fName" label="Frist Name" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <TextFieldWrapper
-              readOnly={true}
-              name="billigInfo.lName"
-              label="Last Name"
-            />
-          ) : (
-            <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
-            )} */}
-            <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <TextFieldWrapper
-              readOnly={true}
-              name="billigInfo.phone"
-              label="Mobile Number"
-            />
-          ) : (
-            <TextFieldWrapper name="billigInfo.phone" label="Mobile Number" />
-            )} */}
-            <TextFieldWrapper name="billigInfo.phone" label="Mobile Number" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <TextFieldWrapper
-              readOnly={true}
-              name="billigInfo.email"
-              label="Email"
-            />
-          ) : (
-            <TextFieldWrapper name="billigInfo.email" label="Email(Optional)" />
-            )} */}
-            <TextFieldWrapper name="billigInfo.email" label="Email(Optional)" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          <TextFieldWrapper name="billigInfo.address" label="Address" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code(Optional)" />
-        </Grid>
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <>
-              {formInitialValue?.billigInfo?.address !== "Add New" ? (
-                <DivisionUser
-                  defaultValue={defaultDivision}
-                  options={locations}
+    <>
+      {hasLoggedIn && defaultAddress.defaultBilling !== "" && <UserSummary />}
+
+      {hasLoggedIn && defaultAddress.defaultBilling !== "" && (
+        <Box
+          sx={{
+            height: "0px",
+            overflow: "hidden",
+          }}
+        >
+          <Box p={2}>
+            <Grid container spacing={1} rowSpacing={2} mb={1}>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn && defaultAddress.billingAllData.defaultBilling ? (
+                  <AddressTypeUser
+                    name="addressType"
+                    optionLabel="billing_address"
+                    label="Address Type"
+                    defaultAddress={defaultAddress.defaultBilling}
+                    options={defaultAddress.billing}
+                  />
+                ) : (
+                  <AddressType
+                    name="addressType"
+                    optionLabel="billing_address"
+                    label="Address Type"
+                  />
+                )}
+              </Grid>
+            </Grid>
+            <Grid container spacing={1}>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <TextFieldWrapper
+                    readOnly={true}
+                    name="billigInfo.fName"
+                    label="Frist Name"
+                  />
+                ) : (
+                  <TextFieldWrapper
+                    name="billigInfo.fName"
+                    label="Frist Name"
+                  />
+                )}
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <TextFieldWrapper
+                    readOnly={true}
+                    name="billigInfo.lName"
+                    label="Last Name"
+                  />
+                ) : (
+                  <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
+                )}
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <TextFieldWrapper
+                    readOnly={true}
+                    name="billigInfo.phone"
+                    label="Mobile Number"
+                  />
+                ) : (
+                  <TextFieldWrapper
+                    name="billigInfo.phone"
+                    label="Mobile Number"
+                  />
+                )}
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <TextFieldWrapper
+                    readOnly={true}
+                    name="billigInfo.email"
+                    label="Email"
+                  />
+                ) : (
+                  <TextFieldWrapper name="billigInfo.email" label="Email" />
+                )}
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <TextFieldWrapper name="billigInfo.address" label="Address" />
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <>
+                    {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                      <DivisionUser
+                        defaultValue={defaultDivision}
+                        options={locations}
+                      />
+                    ) : (
+                      <Division options={locations} />
+                    )}
+                  </>
+                ) : (
+                  <Division options={locations} />
+                )}
+              </Grid>
+
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <>
+                    {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                      <CityUser defaultValue={defaultCity} options={city} />
+                    ) : (
+                      <City options={city} />
+                    )}
+                  </>
+                ) : (
+                  <City options={city} />
+                )}
+              </Grid>
+
+              <Grid item sm={6} xs={12}>
+                {hasLoggedIn ? (
+                  <>
+                    {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                      <AreaUser
+                        options={area}
+                        defaultValue={defaultArea}
+                        handleShippingCharge={handleShippingCharge}
+                        hasShipping={hasShipping}
+                      />
+                    ) : (
+                      <Area
+                        options={area}
+                        handleShippingCharge={handleShippingCharge}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <Area
+                    options={area}
+                    handleShippingCharge={handleShippingCharge}
+                  />
+                )}
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      )}
+
+      {hasLoggedIn && defaultAddress.defaultBilling === "" && (
+        <Box p={2}>
+          <Grid container spacing={1} rowSpacing={2} mb={1}>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn && defaultAddress.billingAllData.defaultBilling ? (
+                <AddressTypeUser
+                  name="addressType"
+                  optionLabel="billing_address"
+                  label="Address Type"
+                  defaultAddress={defaultAddress.defaultBilling}
+                  options={defaultAddress.billing}
                 />
+              ) : (
+                <AddressType
+                  name="addressType"
+                  optionLabel="billing_address"
+                  label="Address Type"
+                />
+              )}
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.fName"
+                  label="Frist Name"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.fName" label="Frist Name" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.lName"
+                  label="Last Name"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.phone"
+                  label="Mobile Number"
+                />
+              ) : (
+                <TextFieldWrapper
+                  name="billigInfo.phone"
+                  label="Mobile Number"
+                />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.email"
+                  label="Email"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.email" label="Email" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.address" label="Address" />
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <DivisionUser
+                      defaultValue={defaultDivision}
+                      options={locations}
+                    />
+                  ) : (
+                    <Division options={locations} />
+                  )}
+                </>
               ) : (
                 <Division options={locations} />
               )}
-            </>
-          ) : (
-            <Division options={locations} />
-            )} */}
-            <Division options={locations} />
-        </Grid>
+            </Grid>
 
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <>
-              {formInitialValue?.billigInfo?.address !== "Add New" ? (
-                <CityUser defaultValue={defaultCity} options={city} />
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <CityUser defaultValue={defaultCity} options={city} />
+                  ) : (
+                    <City options={city} />
+                  )}
+                </>
               ) : (
                 <City options={city} />
               )}
-            </>
-          ) : (
-            <City options={city} />
-            )} */}
-            <City options={city} />
-        </Grid>
+            </Grid>
 
-        <Grid item sm={6} xs={12}>
-          {/* {hasLoggedIn ? (
-            <>
-              {formInitialValue?.billigInfo?.address !== "Add New" ? (
-                <AreaUser
-                  options={area}
-                  defaultValue={defaultArea}
-                  handleShippingCharge={handleShippingCharge}
-                />
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <AreaUser
+                      options={area}
+                      defaultValue={defaultArea}
+                      handleShippingCharge={handleShippingCharge}
+                      hasShipping={hasShipping}
+                    />
+                  ) : (
+                    <Area
+                      options={area}
+                      handleShippingCharge={handleShippingCharge}
+                    />
+                  )}
+                </>
               ) : (
                 <Area
                   options={area}
                   handleShippingCharge={handleShippingCharge}
                 />
               )}
-            </>
-          ) : (
-            <Area options={area} handleShippingCharge={handleShippingCharge} />
-            )} */}
-            <Area options={area} handleShippingCharge={handleShippingCharge} />
-        </Grid>
-        {/* </Grid>
-        <Grid container spacing={1}> */}
-      </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      )}
+
+      {!hasLoggedIn && (
+        <Box p={2}>
+          <Grid container spacing={1} rowSpacing={2} mb={1}>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn && defaultAddress.billingAllData.defaultBilling ? (
+                <AddressTypeUser
+                  name="addressType"
+                  optionLabel="billing_address"
+                  label="Address Type"
+                  defaultAddress={defaultAddress.defaultBilling}
+                  options={defaultAddress.billing}
+                />
+              ) : (
+                <AddressType
+                  name="addressType"
+                  optionLabel="billing_address"
+                  label="Address Type"
+                />
+              )}
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.fName"
+                  label="Frist Name"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.fName" label="Frist Name" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.lName"
+                  label="Last Name"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.phone"
+                  label="Mobile Number"
+                />
+              ) : (
+                <TextFieldWrapper
+                  name="billigInfo.phone"
+                  label="Mobile Number"
+                />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <TextFieldWrapper
+                  readOnly={true}
+                  name="billigInfo.email"
+                  label="Email"
+                />
+              ) : (
+                <TextFieldWrapper name="billigInfo.email" label="Email" />
+              )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.address" label="Address" />
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <DivisionUser
+                      defaultValue={defaultDivision}
+                      options={locations}
+                    />
+                  ) : (
+                    <Division options={locations} />
+                  )}
+                </>
+              ) : (
+                <Division options={locations} />
+              )}
+            </Grid>
+
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <CityUser defaultValue={defaultCity} options={city} />
+                  ) : (
+                    <City options={city} />
+                  )}
+                </>
+              ) : (
+                <City options={city} />
+              )}
+            </Grid>
+
+            <Grid item sm={6} xs={12}>
+              {hasLoggedIn ? (
+                <>
+                  {formInitialValue?.billigInfo?.address !== "Add New" ? (
+                    <AreaUser
+                      options={area}
+                      defaultValue={defaultArea}
+                      handleShippingCharge={handleShippingCharge}
+                      hasShipping={hasShipping}
+                    />
+                  ) : (
+                    <Area
+                      options={area}
+                      handleShippingCharge={handleShippingCharge}
+                    />
+                  )}
+                </>
+              ) : (
+                <Area
+                  options={area}
+                  handleShippingCharge={handleShippingCharge}
+                />
+              )}
+            </Grid>
+          </Grid>
+        </Box>
+      )}
     </>
   );
 }

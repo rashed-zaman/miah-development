@@ -38,8 +38,8 @@ import Order from "../components/route/check-out/Order";
 import { checkOutDataLayer } from "../service/data-layer-creator/dataLayerCreator";
 import { axiosCredential } from "../service/serviceConfig";
 // import CheckboxWraper from "../components/shared/formUI/checkbox/CheckboxWraper";
-import { FormControl, FormLabel } from "@mui/material";
-import UserSummary from "../components/route/check-out/UserSummary";
+import { FormControl, FormLabel, Button } from "@mui/material";
+// import UserSummary from "../components/route/check-out/UserSummary";
 import CouponCard from "../components/route/check-out/CouponCard";
 import AddressForm from "../components/route/check-out/signin/AddressForm";
 import { fetchDefaultAddress } from "../redux/checkout/checkoutActions";
@@ -210,7 +210,11 @@ export default function Checkout() {
                         title="Billing Details"
                       >
                         <Box px={1}>
-                          <UserSummary />
+                            <Billing
+                              handleShippingCharge={handleShippingCharge}
+                              hasShipping={hasShipping}
+                            />
+                          {/* <UserSummary /> */}
                         </Box>
                         <Grid container spacing={2} px={2}>
                           <Grid item sm={7} md={6} xs={12}>

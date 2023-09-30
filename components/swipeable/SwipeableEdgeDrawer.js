@@ -80,19 +80,18 @@ export default function SwipeableEdgeDrawer({
     }
   };
 
-  // site effects
-  useEffect(() => {
-    calculateTex();
-  }, [totalamount]);
-
-
-
   // side effects
   useEffect(() => {
     setCartLeng(shoppingCart.reduce((a, b) => a + (b.qty || 0), 0));
     setTotalAmount(shoppingCart.reduce((a, b) => a + (b.amount || 0), 0))
+    calculateTex();
     
   }, [shoppingCart])
+
+    // site effects
+    useEffect(() => {
+      calculateTex();
+    }, [totalamount]);
   
   return (
     <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
@@ -187,7 +186,7 @@ export default function SwipeableEdgeDrawer({
                       </Grid>
                       <Grid item md={3} xs={5}>
                         <div className="ps-product__price">
-                          Tk {item.amount}
+                          Tk {item.qty * item.unitPrice}
                         </div>
                       </Grid>
                     </Grid>

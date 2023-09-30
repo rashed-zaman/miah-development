@@ -74,10 +74,8 @@ export default function Area({ defaultValue, handleShippingCharge, hasShipping }
 
 
   useEffect(() => {
-    if(hasShipping){
-      setValue(defaultValue);
-      setFieldValue("shippingCity", defaultValue);
-      setFieldValue("shippingInfo.areaId", defaultValue.id);
+    if(hasShipping && defaultValue){
+      handleShippingCharge(shippingCalculation.calculateShipping(defaultValue, BagWight))
     }
   }, [hasShipping, defaultValue])
   
