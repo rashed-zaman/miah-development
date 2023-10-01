@@ -134,7 +134,6 @@ export default function Product({ responseData, product, variants }) {
       <div className="ps-product--layout-2">
         <div className="container">
           {/* <Breadcrumb /> */}
-          {selectedSizeId}
           <MiahBreadCrumbs data={responseData} type="product" />
           <div className="ps-product--detail">
             <div className="row">

@@ -29,19 +29,20 @@ export default function MobileBag({ shoppingBag, removeItem, changeQty }) {
       .postAuthData("cartLog", { cart: shoppingBag }, userInfo.token)
       .then((res) => {
         // --------------------------------------------
-        setCart(JSON.parse(res.config.data))
-        combineCart =[...cart.cart, shoppingBag];
-        const uniq = Object.values(combinedCart.reduce((result, obj) => {
-          if (!result[obj.id] ) {
-            result[obj.id] = { ...obj };
-          } else {
-            result[obj.id].qty += parseInt(obj.qty);
-          }
-          return result;
-        }, {}));   
-        if(res.data.status == 1) {
-          dispatch(repleaceBag(uniq))
-        }
+        // setCart(JSON.parse(res.config.data))
+        // const combineCart =[...cart.cart, shoppingBag];
+        // const uniq = Object.values(combinedCart.reduce((result, obj) => {
+        //   if (!result[obj.id] ) {
+        //     result[obj.id] = { ...obj };
+        //   } else {
+        //     result[obj.id].qty += parseInt(obj.qty);
+        //   }
+        //   return result;
+        // }, {}));   
+        // if(res.data.status == 1) {
+        //   dispatch(repleaceBag(uniq))
+        // }
+
       })
       .catch((error) => {
         console.log(error);

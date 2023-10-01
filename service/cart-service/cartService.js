@@ -4,7 +4,6 @@ import commonService from "../menu/commonService";
 export const sendtCartToSave = (cart, userToken) => {
     if (userToken) {
         commonService.postAuthData("cartLog", cart, userToken).then((res) => {
-            console.log(res);
         }).catch((err) => {
             console.log(err);
         })
