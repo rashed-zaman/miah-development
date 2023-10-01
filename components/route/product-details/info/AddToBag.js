@@ -79,7 +79,7 @@ export default function AddToBag({ product, selectedVariation, sku, size }) {
         setDialog(true);
         setBntloading(false);
         // commonService.sendtCartToSave(shoppingBag, userInfo.token)
-        sendtCartToSave(shoppingBag, userInfo.token)
+        // sendtCartToSave(shoppingBag, userInfo.token)
 
       } else {
         setOutofStock(true);
