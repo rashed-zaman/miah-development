@@ -6,6 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Signin from '../../route/check-out/signin/Signin'
 import { useSelector } from "react-redux";
+import CheckoutTopArea from "./CheckoutTopArea";
 
 
 export default function CheckOutSignin({value, setValue}) {
@@ -49,7 +50,10 @@ export default function CheckOutSignin({value, setValue}) {
               {
                 value === 'old' ?
                 (
-                  <Signin chekout="true"/>                  
+                  <>
+                    <Signin chekout="true"/>
+                    <CheckoutTopArea />              
+                  </>
                 )
                 :
                 null

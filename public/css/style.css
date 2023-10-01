@@ -13955,7 +13955,7 @@ html .bg--parallax {
 .discountPurchase{
     background: #ebedf3;
     border: 1px dashed black;
-    padding: 25px;
+    padding: 20px 10px;
     border-radius: 5px;
     text-align: center;
     margin-top: 20px;

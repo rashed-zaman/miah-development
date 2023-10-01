@@ -24,7 +24,7 @@ export default function Notify() {
     <div className="ps-notify" style={{display: notify ? '' : 'none'}}>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-4">
+          <div className="col-md-6">
             <Swiper
               loop={true}
               autoplay={{

@@ -28,7 +28,7 @@ export default function CheckoutTopArea() {
           </a>
         </Link>
       </Typography>
-      <Typography
+      {/* <Typography
         variant="subtitle1"
         gutterBottom
         component="div"
@@ -36,7 +36,7 @@ export default function CheckoutTopArea() {
       >
         Please fill in the fields below and place order to complete your
         purchase!
-      </Typography>
+      </Typography> */}
       <br />
     </>
   );
