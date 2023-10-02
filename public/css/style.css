@@ -13851,7 +13851,7 @@ html .bg--parallax {
     border-top:1px solid #E5E5E5;
     z-index: 1001;
     text-align: right;
-    max-height: 105px;
+    max-height: 400px;
   }
   .ps-product--detail .mobile-fixed-tab .text-danger{
     position:relative;
@@ -14064,7 +14064,9 @@ html .bg--parallax {
 }
 
 
-
+.w-full{
+  width: 100% !important;
+}
 
 
 

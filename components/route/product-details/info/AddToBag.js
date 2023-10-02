@@ -13,8 +13,8 @@ import { useRouter } from "next/router";
 import { addBagDataLayer } from "../../../../service/data-layer-creator/dataLayerCreator";
 import commonService from "../../../../service/menu/commonService";
 import { sendtCartToSave } from "../../../../service/cart-service/cartService";
+import { Grid } from "@mui/material";
 // import ItemAddedToBag from "../item-added-to-bag/ItemAddedToBag";
-
 
 const ItemAddedToBag = dynamic(() =>
   import("../item-added-to-bag/ItemAddedToBag")
@@ -80,7 +80,6 @@ export default function AddToBag({ product, selectedVariation, sku, size }) {
         setBntloading(false);
         // commonService.sendtCartToSave(shoppingBag, userInfo.token)
         // sendtCartToSave(shoppingBag, userInfo.token)
-
       } else {
         setOutofStock(true);
         setBntloading(false);
@@ -122,36 +121,43 @@ export default function AddToBag({ product, selectedVariation, sku, size }) {
       // setDialog(true);
     }
   };
-useEffect(() => {
-  setItemQty(1)
-  setOutofStock(false)
-}, [router.asPath, selectedVariation])
+  useEffect(() => {
+    setItemQty(1);
+    setOutofStock(false);
+  }, [router.asPath, selectedVariation]);
 
   return (
     <>
       {product.category_id === 7 ? (
-        <div className="mb-5">
-          <button onClick={decreaseQty} className="qty-btn">
-            -
-          </button>
-          <span className="qty-value">{cutFabQty}</span>
-          <button onClick={increaseQty} className="qty-btn">
-            +
-          </button>
-          <span>Yard</span>
-          <div className="mt-2">
-            <label>Fabric Description</label>
-          </div>
-          <textarea
-            cols="30"
-            rows="2"
-            onChange={handleCutFabricDescription}
-            value={cutFabricDescription}
-          ></textarea>
+        <div>
+          <Grid container>
+            <Grid xs={7} sm={12} sx={{ textAlign: "left" }}>
+              <button onClick={decreaseQty} className="qty-btn">
+                -
+              </button>
+              <span className="qty-value">{cutFabQty}</span>
+              <button onClick={increaseQty} className="qty-btn">
+                +
+              </button>
+              <span>Yard</span>
+            </Grid>
+            <Grid xs={5} sm={12}>
+              <div>
+                <label>Fabric Description</label>
+              </div>
+              <textarea
+                cols="19"
+                rows="2"
+                onChange={handleCutFabricDescription}
+                value={cutFabricDescription}
+              ></textarea>
+            </Grid>
+          </Grid>
         </div>
       ) : (
         <ItemQty itemQty={itemQty} setItemQty={setItemQty} />
       )}
+
       {selectedVariation.vSize.length > 0 ? (
         <>
           {bntloading ? (
@@ -160,7 +166,7 @@ useEffect(() => {
             </button>
           ) : (
             <button
-              className="ps-btn ps-btn--rounded ps-product__buy"
+              className="ps-btn ps-btn--rounded ps-product__buy "
               onClick={addItemToBag}
             >
               ADD TO BAG
@@ -171,17 +177,36 @@ useEffect(() => {
         <>
           {selectedVariation.inventory > 0 ? (
             <>
-              {bntloading ? (
-                <button className="ps-btn ps-btn--rounded ps-product__buy">
-                  PROCESSING
-                </button>
+              {product.category_id === 7 ? (
+                <>
+                  {bntloading ? (
+                    <button className="ps-btn ps-btn--rounded ps-product__buy w-full">
+                      PROCESSING
+                    </button>
+                  ) : (
+                    <button
+                      className="ps-btn ps-btn--rounded ps-product__buy w-full"
+                      onClick={addItemToBag}
+                    >
+                      ADD TO BAG
+                    </button>
+                  )}
+                </>
               ) : (
-                <button
-                  className="ps-btn ps-btn--rounded ps-product__buy"
-                  onClick={addItemToBag}
-                >
-                  ADD TO BAG
-                </button>
+                <>
+                  {bntloading ? (
+                    <button className="ps-btn ps-btn--rounded ps-product__buy">
+                      PROCESSING
+                    </button>
+                  ) : (
+                    <button
+                      className="ps-btn ps-btn--rounded ps-product__buy"
+                      onClick={addItemToBag}
+                    >
+                      ADD TO BAG
+                    </button>
+                  )}
+                </>
               )}
             </>
           ) : (
@@ -195,9 +220,9 @@ useEffect(() => {
         {isOutofStock && <span className="my-2 text-danger">Out of stock</span>}
       </div>
       {!isSizeSelected && (
-          <p className="pb-2 text-danger">Please select your size</p>
+        <p className="pb-2 text-danger">Please select your size</p>
       )}
-      <ItemAddedToBag 
+      <ItemAddedToBag
         dialog={dialog}
         setDialog={setDialog}
         selectedVariation={selectedVariation}

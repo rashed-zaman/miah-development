@@ -26,6 +26,7 @@ export default function SizeVariation({
     } = event;
 
     setSize(value);
+    setNvalue(value);
   };
 
   useEffect(() => {
