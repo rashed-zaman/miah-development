@@ -1,7 +1,6 @@
 // import store from '../store/store'
 export default {
   calculateShipping(area, totalWight) {
-    console.log(area);
     let shippingPrice = 0;
     if (area) {
       if (totalWight < 1000) {

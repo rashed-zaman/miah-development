@@ -49,7 +49,7 @@ export default function ShoppinBagMini() {
       .then((res) => {
         // --------------------------------------------
 
-        console.log(res, {shoppingBag});
+        // console.log(res, {shoppingBag});
 
         // setCart(JSON.parse(res.config.data))
         // const combineCart =[...cart.cart, shoppingBag];

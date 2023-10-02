@@ -13,7 +13,6 @@ import { IMAGE_URL } from "../../service/serviceConfig";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
-
 const drawerBleeding = 100;
 
 const Root = styled("div")(({ theme }) => ({
@@ -31,7 +30,10 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const Puller = styled(Box)(({ theme }) => ({
   width: 50,
   height: 4,
-  backgroundColor: theme.palette.mode === "light" ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.2)",
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? "rgba(0, 0, 0, 0.2)"
+      : "rgba(0, 0, 0, 0.2)",
   borderRadius: 3,
   position: "absolute",
   top: 8,
@@ -56,22 +58,20 @@ export default function SwipeableEdgeDrawer({
   const [totalamount, setTotalAmount] = useState(0);
   const [tax, seTaxt] = useState(0);
 
-
   // methods
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
   const handleTouchStart = () => {
-    const element = document.getElementById("__next")
-    element.style.overflow = "hidden"
-  }
+    const element = document.getElementById("__next");
+    element.style.overflow = "hidden";
+  };
 
   const handleTouchEnd = () => {
-    const element = document.getElementById("__next")
-      element.style.overflow = ""
-  
-  }
+    const element = document.getElementById("__next");
+    element.style.overflow = "";
+  };
 
   const calculateTex = () => {
     if (totalamount > 0) {
@@ -83,16 +83,15 @@ export default function SwipeableEdgeDrawer({
   // side effects
   useEffect(() => {
     setCartLeng(shoppingCart.reduce((a, b) => a + (b.qty || 0), 0));
-    setTotalAmount(shoppingCart.reduce((a, b) => a + (b.amount || 0), 0))
+    setTotalAmount(shoppingCart.reduce((a, b) => a + (b.amount || 0), 0));
     calculateTex();
-    
-  }, [shoppingCart])
+  }, [shoppingCart]);
 
-    // site effects
-    useEffect(() => {
-      calculateTex();
-    }, [totalamount]);
-  
+  // site effects
+  useEffect(() => {
+    calculateTex();
+  }, [totalamount]);
+
   return (
     <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <Root>
@@ -102,7 +101,7 @@ export default function SwipeableEdgeDrawer({
             ".MuiDrawer-root > .MuiPaper-root": {
               minHeight: `calc(50% - ${drawerBleeding}px)`,
               overflow: "visible",
-              maxHeight:"80%"
+              maxHeight: "80%",
             },
           }}
         />
@@ -125,24 +124,28 @@ export default function SwipeableEdgeDrawer({
                 borderTopLeftRadius: 8,
                 borderTopRightRadius: 8,
                 visibility: "visible",
-                overflow: 'none',
+                overflow: "none",
                 right: 0,
                 left: 0,
-                borderTop: "1px solid rgba(0,0,0,.05)"
+                borderTop: "1px solid rgba(0,0,0,.05)",
               }}
             >
               <Puller />
-              <Grid container sx={{p:2, px:4, position:"relative"}}>
+              <Grid container sx={{ p: 2, px: 4, position: "relative" }}>
                 <Grid item xs={6}>
-                {cartLenght} Items
+                  <strong>{cartLenght} Items</strong>
                 </Grid>
-                <Grid item xs={6} sx={{textAlign:"right"}}>
-                ৳ {totalamount + tax +
+                <Grid item xs={6} sx={{ textAlign: "right" }}>
+                  <strong>
+                    ৳{" "}
+                    {totalamount +
+                      tax +
                       parseInt(shippingCharge) -
                       digitalDiscount -
                       offerDiscount.discountValue -
                       creditDiscountObj.amount -
-                      couponDiscountObj.discountAmount} 
+                      couponDiscountObj.discountAmount}
+                  </strong>
                 </Grid>
                 {/* <div style={{position: "absolute", background:"#ffffff", height:'200px', width:'100%', bottom: "-44px", left:0}}>
 
@@ -156,16 +159,17 @@ export default function SwipeableEdgeDrawer({
               pb: 2,
               height: "100%",
               overflow: "auto",
-              position:"relative",
-              top: "-60px"
+              position: "relative",
+              top: "-60px",
             }}
           >
-            <Box sx={{paddingBottom:"50px"}}>
+            <Box sx={{ paddingBottom: "50px" }}>
               <OrderSummary
                 digitalDiscount={digitalDiscount}
                 shippingCharge={shippingCharge}
                 couponDiscount={couponDiscount}
                 shoppingCart={shoppingCart}
+                type="mobile drawer"
               />
               {shoppingCart.map((item, pos) => {
                 return (

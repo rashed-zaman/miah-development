@@ -8,6 +8,7 @@ import CouponCard from "./CouponCard";
 export default function OrderSummary({
   digitalDiscount,
   shippingCharge,
+  type
 }) {
   const ProductLength = useSelector((state) =>
     state.shoppingBag.shoppingCart.reduce((a, b) => a + (b.qty || 0), 0)
@@ -192,9 +193,26 @@ export default function OrderSummary({
             <ListItem sx={{pb:{xs:'0', sm:'8px'}, pt:{xs:'0', sm:'8px'}}}>
               <Grid container spacing={0}>
                 <Grid item xs={6}>
-                  <b>Total</b>
+                  {
+                    type == "mobile drawer" ?
+                    <span>Total</span>:
+                    <b>Total</b>
+                  }
                 </Grid>
                 <Grid item xs={6} className="text-right">
+                  {
+                     type == "mobile drawer" ?
+                     <>
+                      {totalAmount +
+                        tax +
+                        parseInt(shippingCharge) -
+                        digitalDiscount -
+                        offerDiscount.discountValue -
+                        creditDiscountObj.amount -
+                        couponDiscountObj.discountAmount}
+                     </>
+
+                  :
                   <b>
                   &#2547;{" "}
                     {totalAmount +
@@ -205,6 +223,7 @@ export default function OrderSummary({
                       creditDiscountObj.amount -
                       couponDiscountObj.discountAmount}
                   </b>
+}
                 </Grid>
               </Grid>
             </ListItem>
