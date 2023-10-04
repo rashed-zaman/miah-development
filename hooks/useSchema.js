@@ -6,7 +6,7 @@ export default function useSchema() {
   const hasShipping = useSelector(
     (state) => state.checkout.formInitialValue.hasShipping
   );
-  
+
   const rules = Yup.object().shape({
     billingCity: Yup.object().required("Requird"),
     billingArea: Yup.object().required("Requird"),
@@ -20,18 +20,21 @@ export default function useSchema() {
     shippingInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
+      phone: Yup.string()
+        .required("Requird")
+        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
       address: Yup.string().required("Requird"),
-      zipcode: Yup.string().required("Requird"),
+      // zipcode: Yup.string().required("Requird"),
     }),
     billigInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
+      phone: Yup.string()
+        .required("Requird")
+        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
       address: Yup.string().required("Requird"),
       // zipcode: Yup.string().required("Requird"),
     }),
-    
   });
 
   const billingRules = Yup.object().shape({
@@ -44,7 +47,9 @@ export default function useSchema() {
     billigInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
+      phone: Yup.string()
+        .required("Requird")
+        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
       address: Yup.string().required("Requird"),
       // zipcode: Yup.string().required("Requird"),
     }),
@@ -54,13 +59,12 @@ export default function useSchema() {
   const [schema, setSchema] = useState(billingRules);
 
   useEffect(() => {
-    if(hasShipping === true){
-      setSchema(rules)
+    if (hasShipping === true) {
+      setSchema(rules);
+    } else {
+      setSchema(billingRules);
     }
-  }, [hasShipping])
-  
-
-
+  }, [hasShipping]);
 
   return [schema];
 }

@@ -154,7 +154,7 @@ export default function Checkout() {
 
   useEffect(() => {
     setFormState(INITIAL_FORM_STATE);
-  }, [INITIAL_FORM_STATE]);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchLocations());

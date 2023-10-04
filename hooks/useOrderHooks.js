@@ -15,6 +15,11 @@ export const useOrderSubmit = () => {
   const siteOptions = useSelector((state) => state.menu.siteOptions);
   const [isSubmitted, setSubmitted] = useState(false);
   const [hasStock, setHasStock] = useState(false);
+
+  const hasShipping = useSelector(
+    (state) => state.checkout.formInitialValue.hasShipping
+  );
+  
   const submitOrder = (values, token, shippingCharge) => {
     // const formValue = Object.assign({}, values);
   
@@ -39,7 +44,7 @@ export const useOrderSubmit = () => {
 
     formValue.cart = shoppingBag;
 
-    if (values.hasShipping === false) {
+    if (hasShipping === false) {
       formValue.shippingInfo = formValue.billigInfo;
     }
     const body = { cart: shoppingBag };
