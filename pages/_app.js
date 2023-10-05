@@ -46,6 +46,10 @@ function MyApp({ Component, pageProps }) {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
+        <meta
+          name="google-site-verification"
+          content="D23tJ83LUY2-kmE_2mIxyS9bqnZWFkAFoTsZHBip7uw"
+        />
       </Head>
       <Script
         id="fb-pixel"

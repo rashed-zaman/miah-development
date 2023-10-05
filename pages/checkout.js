@@ -123,6 +123,7 @@ export default function Checkout() {
   };
 
   const handleOrderSubmit = (values) => {
+    // console.log('hello');
     values?.paymentType === "cash" && setBtnLoading(true);
     if (userInfo.token) {
       submitOrder(values, userInfo.token, shippingCharge);
@@ -154,7 +155,7 @@ export default function Checkout() {
 
   useEffect(() => {
     setFormState(INITIAL_FORM_STATE);
-  }, []);
+  }, [hasLoggedIn && INITIAL_FORM_STATE ]);
 
   useEffect(() => {
     dispatch(fetchLocations());
