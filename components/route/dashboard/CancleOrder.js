@@ -26,7 +26,13 @@ export default function CancleOrder() {
       .then((res) => {
         setAllOrders(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status == 401 || "401") {
+          localStorage.clear();
+          location.reload();
+          console.log(err);
+        }
+      });
   };
   // sideeffects
   React.useEffect(() => {

@@ -56,7 +56,14 @@ export default function AddressBook() {
           res.data.data.find((shipping) => shipping.status === 1)
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        if (err.response.status == 401 || "401") {
+          localStorage.clear();
+          location.reload();
+          console.log(err);
+        }
+      });
   };
 
   const editBilling = (address, type) => {

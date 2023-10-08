@@ -19,7 +19,13 @@ export default function WishList() {
       .then((res) => {
         setAllWishList(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status == 401 || "401") {
+          localStorage.clear();
+          location.reload();
+          console.log(err);
+        }
+      });
   };
 
   const removeWishList = (id) => {

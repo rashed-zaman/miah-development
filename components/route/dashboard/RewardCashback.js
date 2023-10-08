@@ -61,7 +61,13 @@ export default function RewardCashback() {
         setData(res.data);
         // console.log(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status == 401 || "401") {
+          localStorage.clear();
+          location.reload();
+          console.log(err);
+        }
+      });
   };
 
   useEffect(() => {

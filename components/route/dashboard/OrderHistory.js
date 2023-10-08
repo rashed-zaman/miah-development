@@ -48,6 +48,11 @@ export default function OrderHistory() {
         getAllOrders();
       })
       .catch((error) => {
+        if (error.response.status == 401 || "401") {
+          localStorage.clear();
+          location.reload();
+          console.log(err);
+        }
         console.log(error);
       });
     //  console.log(allOrdes);
