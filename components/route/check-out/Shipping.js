@@ -47,8 +47,8 @@ export default function Shipping({ handleShippingCharge, hasShipping }) {
 
   return (
     <>
-      <Grid container spacing={1} rowSpacing={2} mb={1} p={2}>
-        {/* <Grid item sm={6}>
+      <Grid container spacing={1} rowSpacing={2}  p={2}>
+        <Grid item sm={6}>
           {hasLoggedIn && defaultAddress?.shippingAlldata?.defaultShipping ? (
             <AddressTypeUser
               name="addressType"
@@ -64,7 +64,9 @@ export default function Shipping({ handleShippingCharge, hasShipping }) {
               label="Address Type"
             />
           )}
-        </Grid> */}
+        </Grid>
+        </Grid>
+        <Grid container spacing={1} rowSpacing={2} mb={1} p={2} pt={0}>
         <Grid item sm={6} xs={12}>
           <TextFieldWrapper name="shippingInfo.fName" label="Frist Name" />
         </Grid>

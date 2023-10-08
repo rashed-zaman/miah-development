@@ -16,25 +16,22 @@ export default function useSchema() {
     shippingCity: Yup.object().required("Requird"),
     shippingArea: Yup.object().required("Requird"),
 
-    // terms: Yup.boolean().oneOf([true], "Message").required("Requird"),
+    terms: Yup.boolean().oneOf([true], "Message").required("Requird"),
     shippingInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string()
-        .required("Requird")
-        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
+      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
       address: Yup.string().required("Requird"),
-      // zipcode: Yup.string().required("Requird"),
+      zipcode: Yup.string().required("Requird"),
     }),
     billigInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string()
-        .required("Requird")
-        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
+      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
       address: Yup.string().required("Requird"),
-      // zipcode: Yup.string().required("Requird"),
+      zipcode: Yup.string().required("Requird"),
     }),
+    
   });
 
   const billingRules = Yup.object().shape({
@@ -42,16 +39,14 @@ export default function useSchema() {
     billingArea: Yup.object().required("Requird"),
     billingDivision: Yup.object().required("Requird"),
 
-    // terms: Yup.boolean().oneOf([true], "Message").required("Requird"),
+    terms: Yup.boolean().oneOf([true], "Message").required("Requird"),
 
     billigInfo: Yup.object().shape({
       fName: Yup.string().required("Requird"),
       lName: Yup.string().required("Requird"),
-      phone: Yup.string()
-        .required("Requird")
-        .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
+      phone: Yup.string().required("Requird").matches(/^[0-9]{11}$/, 'mobile number must be exactly 11 digits'),
       address: Yup.string().required("Requird"),
-      // zipcode: Yup.string().required("Requird"),
+      zipcode: Yup.string().required("Requird"),
     }),
   });
 
@@ -59,12 +54,13 @@ export default function useSchema() {
   const [schema, setSchema] = useState(billingRules);
 
   useEffect(() => {
-    if (hasShipping === true) {
-      setSchema(rules);
-    } else {
-      setSchema(billingRules);
+    if(hasShipping === true){
+      setSchema(rules)
     }
-  }, [hasShipping]);
+  }, [hasShipping])
+  
+
+
 
   return [schema];
 }

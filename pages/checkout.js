@@ -44,6 +44,7 @@ import CouponCard from "../components/route/check-out/CouponCard";
 import AddressForm from "../components/route/check-out/signin/AddressForm";
 import { fetchDefaultAddress } from "../redux/checkout/checkoutActions";
 import axios from "axios";
+import * as Yup from "yup";
 
 export default function Checkout() {
   //=================== hooks =================
@@ -56,7 +57,7 @@ export default function Checkout() {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const shoppingBag = useSelector((state) => state.shoppingBag.shoppingCart);
   const persist = useSelector((state) => state);
-  const [schema] = useSchema();
+  // const [schema] = useSchema();
   // ============= state =========================
   const [formState, setFormState] = useState(INITIAL_FORM_STATE);
   const [mobileNumberDialog, setMobileNumberDialog] = useState(false);
@@ -70,6 +71,7 @@ export default function Checkout() {
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [value, setValue] = React.useState("old");
   const [hasLoggedIn, setHasLoggedIn] = useState(false);
+  const [schema, setSchema] = useState(null);
 
   // =================== methods =================
   // send otp
@@ -123,7 +125,6 @@ export default function Checkout() {
   };
 
   const handleOrderSubmit = (values) => {
-    // console.log('hello');
     values?.paymentType === "cash" && setBtnLoading(true);
     if (userInfo.token) {
       submitOrder(values, userInfo.token, shippingCharge);
@@ -150,12 +151,52 @@ export default function Checkout() {
     setCouponDiscount(val);
   };
 
+  const createValidationSchema = () => {
+    const rules = Yup.object().shape({
+      billingCity: Yup.object().required("Requird"),
+      billingArea: Yup.object().required("Requird"),
+      billingDivision: Yup.object().required("Requird"),
+
+      shippingDivision: hasShipping ? Yup.object().required("Requird") : "",
+      shippingCity: hasShipping ? Yup.object().required("Requird") : "",
+      shippingArea: hasShipping ? Yup.object().required("Requird") : "",
+
+      // terms: Yup.boolean().oneOf([true], "Message").required("Requird"),
+
+      billigInfo: Yup.object().shape({
+        fName: Yup.string().required("Requird"),
+        lName: Yup.string().required("Requird"),
+        phone: Yup.string()
+          .required("Requird")
+          .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
+        address: Yup.string().required("Requird"),
+        zipcode: Yup.string().required("Requird"),
+      }),
+
+      shippingInfo: hasShipping
+        ? Yup.object().shape({
+            fName: Yup.string().required("Requird"),
+            lName: Yup.string().required("Requird"),
+            phone: Yup.string()
+              .required("Requird")
+              .matches(
+                /^[0-9]{11}$/,
+                "mobile number must be exactly 11 digits"
+              ),
+            address: Yup.string().required("Requird"),
+            zipcode: Yup.string().required("Requird"),
+          })
+        : null,
+    });
+    setSchema(rules)
+  };
+
   // ==================== side effects ==============
   // dispatch(fetchLocations());
 
   useEffect(() => {
     setFormState(INITIAL_FORM_STATE);
-  }, [hasLoggedIn && INITIAL_FORM_STATE ]);
+  }, [hasLoggedIn && INITIAL_FORM_STATE]);
 
   useEffect(() => {
     dispatch(fetchLocations());
@@ -177,9 +218,14 @@ export default function Checkout() {
   useEffect(() => {
     if (userInfo.token) {
       dispatch(fetchDefaultAddress(userInfo.token));
+      setFormState(INITIAL_FORM_STATE)
       setHasLoggedIn(true);
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    createValidationSchema()
+  }, [hasShipping]);
 
   return (
     <>
@@ -211,10 +257,10 @@ export default function Checkout() {
                         title="Billing Details"
                       >
                         <Box px={1}>
-                            <Billing
-                              handleShippingCharge={handleShippingCharge}
-                              hasShipping={hasShipping}
-                            />
+                          <Billing
+                            handleShippingCharge={handleShippingCharge}
+                            hasShipping={hasShipping}
+                          />
                           {/* <UserSummary /> */}
                         </Box>
                         <Grid container spacing={2} px={2}>
