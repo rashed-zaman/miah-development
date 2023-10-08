@@ -20,13 +20,13 @@ export default {
   authGetData: async function (api, {token}) {
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + token,
+      Authorization: 'Bearer ' + "token",
     }
     try {
       const response = await axios.get(BASE_URL + api,  { headers });
       return response;
     } catch (error) {
-      if (token && error.response.status === 401 || "401") {
+      if (!token == undefined || "" && error.response.status === 401 || "401") {
         localStorage.clear();
         location.reload();
       }
