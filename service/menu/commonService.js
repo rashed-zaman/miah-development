@@ -17,19 +17,19 @@ export default {
       throw error;
     }
   },
-  authGetData: async function (api, token) {
+  authGetData: async function (api, {token}) {
     const headers = {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token,
     }
     try {
       const response = await axios.get(BASE_URL + api,  { headers });
-      if (response.status === 401 || "401") {
-          localStorage.clear()
-          location.reload()
-      }
       return response;
     } catch (error) {
+      if (token && error.response.status === 401 || "401") {
+        localStorage.clear();
+        location.reload();
+      }
       throw error;
     }
   },
