@@ -24,6 +24,10 @@ export default {
     }
     try {
       const response = await axios.get(BASE_URL + api,  { headers });
+      if (response.status === 401 || "401") {
+          localStorage.clear()
+          location.reload()
+      }
       return response;
     } catch (error) {
       throw error;
