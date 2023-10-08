@@ -11,7 +11,7 @@ export default function Area({ defaultValue, handleShippingCharge, hasShipping }
   const area = useSelector((state) => state.checkout.shippingAreas);
   const BagWight = useSelector((state) => state.shoppingBag.shoppingCart.reduce((a, b) => a + ((b.weight) || 0), 0))
   const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField("shippingCity");
+  const [field, meta] = useField("shippingArea");
 
   // local state
   const [options, setOptions] = React.useState([]);
@@ -23,7 +23,7 @@ export default function Area({ defaultValue, handleShippingCharge, hasShipping }
 
   // methods
   const onChange = (event, newValue) => {
-    setFieldValue("shippingCity", newValue);
+    setFieldValue("shippingArea", newValue);
     setFieldValue("shippingInfo.areaId", newValue.id);
     setValue(newValue);
     handleShippingCharge(shippingCalculation.calculateShipping(newValue, BagWight))

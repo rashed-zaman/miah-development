@@ -74,7 +74,7 @@ const initialState = {
     shippingCity: "",
     shippingArea: "",
     addressType: null,
-    terms: false,
+    terms: true,
 
     tran_id: Date.now(),
     paymentType: "cash",

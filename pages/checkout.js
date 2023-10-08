@@ -54,6 +54,7 @@ export default function Checkout() {
   const INITIAL_FORM_STATE = useSelector(
     (state) => state.checkout.formInitialValue
   );
+  const defaultAddress = useSelector((state) => state.checkout.defaultAddress);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const shoppingBag = useSelector((state) => state.shoppingBag.shoppingCart);
   const persist = useSelector((state) => state);
@@ -169,8 +170,7 @@ export default function Checkout() {
         phone: Yup.string()
           .required("Requird")
           .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
-        address: Yup.string().required("Requird"),
-        zipcode: Yup.string().required("Requird"),
+        address: Yup.string().required("Requird")
       }),
 
       shippingInfo: hasShipping
@@ -183,8 +183,7 @@ export default function Checkout() {
                 /^[0-9]{11}$/,
                 "mobile number must be exactly 11 digits"
               ),
-            address: Yup.string().required("Requird"),
-            zipcode: Yup.string().required("Requird"),
+            address: Yup.string().required("Requird")
           })
         : null,
     });
@@ -194,9 +193,7 @@ export default function Checkout() {
   // ==================== side effects ==============
   // dispatch(fetchLocations());
 
-  useEffect(() => {
-    setFormState(INITIAL_FORM_STATE);
-  }, [hasLoggedIn && INITIAL_FORM_STATE]);
+
 
   useEffect(() => {
     dispatch(fetchLocations());
@@ -222,6 +219,16 @@ export default function Checkout() {
       setHasLoggedIn(true);
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    setFormState(INITIAL_FORM_STATE);
+  }, [(defaultAddress.billigInfo || defaultAddress.billigInfo) && hasLoggedIn && INITIAL_FORM_STATE]);
+
+  useEffect(() => {
+    if (hasLoggedIn && !defaultAddress.billigInfo && !hasShipping) {
+      setFormState(INITIAL_FORM_STATE);
+    }
+  }, [INITIAL_FORM_STATE])
 
   useEffect(() => {
     createValidationSchema()
