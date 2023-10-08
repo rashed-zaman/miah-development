@@ -126,6 +126,7 @@ export default function Checkout() {
   };
 
   const handleOrderSubmit = (values) => {
+    values.hasShipping = hasShipping
     values?.paymentType === "cash" && setBtnLoading(true);
     if (userInfo.token) {
       submitOrder(values, userInfo.token, shippingCharge);

@@ -44,7 +44,7 @@ export const useOrderSubmit = () => {
 
     formValue.cart = shoppingBag;
 
-    if (hasShipping === false) {
+    if (formValue.hasShipping === false) {
       formValue.shippingInfo = formValue.billigInfo;
     }
     const body = { cart: shoppingBag };
