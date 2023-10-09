@@ -119,7 +119,7 @@ const MobileAccount = () => {
               <Form>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField name="email" label="Email" type="email" />
+                    <TextField name="email" label="Email" type="text" />
                   </Grid>
                   <Grid item xs={12}>
                     <PasswordWrapper name="password" label="Password" />
