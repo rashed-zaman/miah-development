@@ -171,7 +171,8 @@ export default function Checkout() {
         phone: Yup.string()
           .required("Requird")
           .matches(/^[0-9]{11}$/, "mobile number must be exactly 11 digits"),
-        address: Yup.string().required("Requird")
+        address: Yup.string().required("Requird"),
+        zipcode: Yup.string().required("Requird"),
       }),
 
       shippingInfo: hasShipping
@@ -184,7 +185,8 @@ export default function Checkout() {
                 /^[0-9]{11}$/,
                 "mobile number must be exactly 11 digits"
               ),
-            address: Yup.string().required("Requird")
+            address: Yup.string().required("Requird"),
+            zipcode: Yup.string().required("Requird"),
           })
         : null,
     });
