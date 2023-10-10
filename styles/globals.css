@@ -136,7 +136,7 @@ body {
 
 /* fb messenger */
 .fb_dialog_content iframe:first-child {
-  bottom: 66px !important;
+  bottom: 155px !important;
 }
 
 a:hover{
