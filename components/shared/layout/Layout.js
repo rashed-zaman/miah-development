@@ -7,7 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Popup from "../popup/Popup";
-import FacebookChat from "../facebook-chat/FacebookChat";
+// import FacebookChat from "../facebook-chat/FacebookChat";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Box } from "@mui/material";
@@ -109,7 +109,7 @@ export default function Layout({ children }) {
       <PreLoader />
       <MobileShoppingDialog />
       {/* <Popup /> */}
-      <FacebookChat />
+      {/* <FacebookChat /> */}
 
       <Snackbar
         sx={{ maxWidth: { sm: "500px" } }}
