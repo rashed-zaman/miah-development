@@ -24,7 +24,7 @@ export default function ExclusiveProduct({ data,title}) {
           <div className="ps-shop__product">
             <Box sx={{ padding: { xs: "0px 10px" } }}>
               <div className="row">
-                {data.product ? (
+                {data.product.length > 0 ? (
                   data.product.map((product, index) => {
                     return (
                       <div key={index} className="col-6 col-md-4 col-lg-3 px-1">
@@ -69,6 +69,8 @@ export async function getServerSideProps(context) {
     title = "New Arrival";
   } else if (params.exclusive === "festiveProduct") {
     title = "Eid Collection";
+  } else if (params.exclusive === "saleableProduct") {
+    title = "Sale";
   }
   const axiosRes = await axios
     .get(

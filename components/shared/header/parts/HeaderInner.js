@@ -97,6 +97,15 @@ export default function HeaderInner({menu}) {
                 </a>
               </Link>
             </li> */}
+
+            <li className="has-mega-menu">
+              <Link href={ "/exclusive-trendz-product/saleableProduct"}>
+                <a>
+                  Sale
+                </a>
+              </Link>
+            </li>
+
         </ul>
       </div>
       <HeaderRight />

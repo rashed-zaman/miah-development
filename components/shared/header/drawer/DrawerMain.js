@@ -222,6 +222,28 @@ const DrawerMain = ({ classes, menu}) => {
               </Grid> 
             </Link>
           </Box>                           */}
+
+          <Box
+            sx={{
+              background: "#f5f5f5",
+              borderRadius: "2px",
+              paddingBottom: "5px",
+              marginBottom: "15px",
+            }}
+          >
+            <Link href={ "/exclusive-trendz-product/saleableProduct"}>
+              <Grid container spacing={1} onClick={closeDrawer}>
+                <Grid item xs={8}>
+                  <Box sx={{ paddingLeft: "10px" }}>
+                    <a>
+                     Sale
+                    </a>
+                  </Box>
+                </Grid>
+              </Grid> 
+            </Link>
+          </Box>                          
+
         </Container>
         <Container maxWidth="sm">
           <Grid container spacing={1}>
