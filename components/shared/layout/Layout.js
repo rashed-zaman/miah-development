@@ -108,7 +108,7 @@ export default function Layout({ children }) {
       {/* <MenuSlideBar /> */}
       <PreLoader />
       <MobileShoppingDialog />
-      {/* <Popup /> */}
+      <Popup />
       {/* <FacebookChat /> */}
 
       <Snackbar
