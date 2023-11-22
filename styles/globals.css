@@ -48,9 +48,9 @@ body {
 }
 
 .close-icon-button {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
 }
 
 .MuiPagination-ul {
@@ -142,3 +142,4 @@ body {
 a:hover{
   color: #000;
 }
+
