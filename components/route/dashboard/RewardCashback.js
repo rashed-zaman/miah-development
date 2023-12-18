@@ -312,7 +312,7 @@ export default function RewardCashback() {
         </section>
       </div>
       <h3>MIAHCLUB POINTS AND REWARDS</h3>
-      <p >This is your personal space. Get the low down on your membership status and all the points and rewards you've earned.</p>
+      <p >{"This is your personal space. Get the low down on your membership status and all the points and rewards you've earned."}</p>
       <Card sx={{ p: 4 }}>
         <Grid container spacing={2}>
           <Grid item sm={7} xs={12} >

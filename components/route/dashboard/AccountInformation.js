@@ -149,7 +149,7 @@ export default function AccountInformation() {
           </div>
           <div className="pt-30">
             <h3>LOG OUT FROM DEVICE</h3>
-            <p>This will log you out from web browsers you have used to access the miah website. To log in again, you'll have to enter your credentials.</p>
+            <p>{"This will log you out from web browsers you have used to access the miah website. To log in again, you'll have to enter your credentials."}</p>
             <div className="col-md-8 accLogOut" onClick={logoutAccount}>
               <span> LOG ME OUT</span>
               <span><ArrowForwardIcon /></span>
