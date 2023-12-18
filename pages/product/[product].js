@@ -80,7 +80,7 @@ export default function Product({ responseData, product, variants }) {
   };
 
   const checkProductSize = (variation) => {
-    if(variation.vSize.length > 0) {
+    if (variation.vSize.length > 0) {
       handleSizeChanged(variation.vSize[0])
     }
   }
@@ -127,7 +127,6 @@ export default function Product({ responseData, product, variants }) {
       window.removeEventListener("scroll", controlNavbar);
     };
   }, []);
-
   return (
     <>
       <HeadComponent data={responseData} type="details" />
@@ -148,15 +147,20 @@ export default function Product({ responseData, product, variants }) {
                         <span className="ps-product__price">
                           &#2547; {product.sales_cost}
                         </span>
+                        {product.discount && (
+                          <span className="ps-product__del" style={{ color: 'red' }}>&#2547; {product.discount}</span>
+                        )}
                       </div>
-                      <div className="ps-product__feature">
-                        <SizeVariation
-                          selectedVariation={selectedVariation}
-                          setSelectedVariation={setSelectedVariation}
-                          setSize={handleSizeChanged}
-                          selectedSizeId={selectedSizeId}
-                        />
-                      </div>
+                      {size ?
+                        <div className="ps-product__feature">
+                          <SizeVariation
+                            selectedVariation={selectedVariation}
+                            setSelectedVariation={setSelectedVariation}
+                            setSize={handleSizeChanged}
+                            selectedSizeId={selectedSizeId}
+                          />
+                        </div> : null
+                      }
                       <AddToBag
                         product={product}
                         selectedVariation={selectedVariation}

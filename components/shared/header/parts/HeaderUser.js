@@ -13,7 +13,7 @@ export default function HeaderUser({ userInfo }) {
       {userInfo.token ? (
         <div className="ps-login--modal p-0">
           <HeaderUserInfo/>
-          <DashboradSideMenu />
+          {/* <DashboradSideMenu /> */}
         </div>
       ) : (
         <div className="ps-login--modal">

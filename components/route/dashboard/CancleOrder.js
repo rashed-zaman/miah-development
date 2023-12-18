@@ -13,6 +13,7 @@ import Image from "next/image";
 import { IMAGE_URL } from "../../../service/serviceConfig";
 
 export default function CancleOrder() {
+
   // hooks
   const userInfo = useSelector((state) => state.auth.userInfo);
 
@@ -26,21 +27,17 @@ export default function CancleOrder() {
       .then((res) => {
         setAllOrders(res.data.data);
       })
-      .catch((err) => {
-        if (err.response.status == 401 || "401") {
-          localStorage.clear();
-          location.reload();
-          console.log(err);
-        }
-      });
+      .catch((err) => console.log(err));
   };
+
   // sideeffects
   React.useEffect(() => {
     getAllOrders();
   }, []);
+  
   return (
     <>
-      <h3>Your Canceled Order</h3>
+      {/* <h3>Cancel Order</h3> */}
       {allOrdes.map((order, pos) => {
         return (
           <Accordion key={pos}>

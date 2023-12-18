@@ -134,7 +134,7 @@ export default function FooterNavigation() {
           </div>
           {userInfo.token ? (
                 <div className="ps-nav__item">
-                 <Link href="/dashboard/account-information?id=0">
+                 <Link href="/profile/account-information">
                     <a>
                       <img src="/img/icon/user.png" alt="" />
                     </a>
@@ -186,7 +186,7 @@ export default function FooterNavigation() {
         </div>
         {userInfo.token ? (
               <div className="ps-nav__item">
-               <Link href="/dashboard/account-information?id=0">
+               <Link href="/profile/account-information">
                   <a>
                     <img src="/img/icon/user.png" alt="" />
                   </a>

@@ -1,20 +1,62 @@
-import React from "react";
-import { Card, Divider, Box, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import React ,{useState,useEffect}from "react";
+import { Card, Divider, Box, Grid, Button } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 import ChangeMobile from "./ChangeMobile";
+import ChangeBirthday from "./ChangeBirthday";
+import Link from "next/link";
+import { logout } from "../../../redux/auth/authActions";
+import { setFormInitailValueNull } from "../../../redux/checkout/checkoutActions";
+import { signOut } from 'next-auth/react';
+import { defaultAddress, formInitialValue } from "../../../demoData/demoData";
+import { useRouter } from "next/router";
+import commonService from "../../../service/menu/commonService";
+import { repleaceBag, resetShoppingCart } from "../../../redux/shoppingBag/shoppingBagActions";
+import { MiahLogButton } from "../../core/button/MiahButton";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import ClearIcon from '@mui/icons-material/Clear';
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '50%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 export default function AccountInformation() {
   // hooks
   const userInfo = useSelector((state) => state.auth.userInfo);
+  const dispatch = useDispatch();
+  const route = useRouter();
   // state
   const [passwordCheckd, setPasswordCheckd] = React.useState(false);
   const [emailCheckd, setEmailCheckd] = React.useState(false);
   const [mobileCheckd, setMobileCheckd] = React.useState(false);
+  const [birthDayCheckd, setBirthDayCheckd] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [openb, setOpenb] = React.useState(false);
+  const handleOpenB = () => setOpenb(true);
+  const handleCloseB = () => setOpenb(false);
+  const [openc, setOpenc] = React.useState(false);
+  const handleOpenC = () => setOpenc(true);
+  const handleCloseC = () => setOpenc(false);
+  const [opend, setOpend] = useState(false);
+  const handleOpenD = () => setOpend(true);
+  const handleCloseD = () => setOpend(false);
+
+  const [data, setData] = useState({});
 
   const handlePasswordChange = () => {
     setPasswordCheckd((prev) => !prev);
@@ -25,83 +67,160 @@ export default function AccountInformation() {
   const handleMobileChange = () => {
     setMobileCheckd((prev) => !prev);
   };
+  const handleBirthDayChange = () => {
+    setBirthDayCheckd((prev) => !prev);
+  };
 
   React.useEffect(() => {
     // console.log(userInfo);
   }, []);
 
+  // const formControlLabelStyle = {
+  //   "& .MuiFormControlLabel-label": {
+  //     color:'red',
+  //   }
+  // }
+  // methods
+  const logoutAccount = () => {
+    const data = {
+      formInitialValue: formInitialValue,
+      defaultAddress: defaultAddress,
+    };
+
+    dispatch(logout());
+
+    dispatch(setFormInitailValueNull(data));
+    route.push("/");
+    signOut({ redirect: false })
+    handleLogout()
+    dispatch(resetShoppingCart());
+  };
+  const handleLogout = () => {
+    commonService
+      .postAuthData("logout", {}, userInfo.token)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  useEffect(() => {
+    commonService.authGetData("profile", userInfo.token)
+    .then((res) => {
+      setData(res.data.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
   return (
     <>
-      <h3>Account Information</h3>
       <Card variant="outlined">
         <Box
           sx={{
-            borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
             padding: "0px 15px",
-            paddingTop: '5px'
+            paddingTop: '5px',
+            paddingBottom: '60px',
           }}
         >
-          <h4>Pesrsonal Information</h4>
+          <div className="pt-15">
+            <h3>MY DETAILS</h3>
+            <span>Feel free to edit any of your details below so your account is up to date.</span>
+          </div>
+          <div className="pt-30">
+            <h3>DETAILS</h3>
+            <p style={{textTransform:'uppercase'}}>{data.first_name+' '+data.last_name}</p>
+            <p>{data.birthday}</p>
+            <p style={{textTransform:'uppercase'}}>{data.gender}</p>
+            <span onClick={handleOpenD} className="editBtn"><a><b>EDIT</b></a></span>
+          </div>
+          <div className="pt-30">
+            <h3>LOGIN DETAILS</h3>
+            <h4>EMAIL</h4>
+            <p className="pb-0">{data.email}</p>
+            <span onClick={handleOpen} className="editBtn"><b>EDIT</b></span>
+            <h4 className="mt-15">MOBILE</h4>
+            <p className="pb-0">{data.phone}</p>
+            <span onClick={handleOpenB} className="editBtn"><b>EDIT</b></span>
+            <h4 className="mt-15">PASSWORD</h4>
+            <p className="pb-0">*************</p>
+            <span onClick={handleOpenC} className="editBtn"><b>EDIT</b></span>
+          </div>
+          <div className="pt-30">
+            <h3>LOG OUT FROM DEVICE</h3>
+            <p>This will log you out from web browsers you have used to access the miah website. To log in again, you'll have to enter your credentials.</p>
+            <div className="col-md-8 accLogOut" onClick={logoutAccount}>
+              <span> LOG ME OUT</span>
+              <span><ArrowForwardIcon /></span>
+            </div>
+          </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                  EDIT YOUR EMAIL
+                  <div className="cancelIcon" onClick={handleClose}>
+                    <ClearIcon/>
+                  </div>
+                  </Typography>
+                  <ChangeEmail userInfo={userInfo} data={data} setOpen={setOpen}/>
+                </Box>
+            </Modal>
+            <Modal
+                open={openb}
+                onClose={handleCloseB}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                  EDIT YOUR MOBILE NUMBER
+                  <div className="cancelIcon" onClick={handleCloseB}>
+                    <ClearIcon/>
+                  </div>
+                  </Typography>
+                  {/* <ChangePassword userInfo={userInfo} /> */}
+                  <ChangeMobile userInfo={userInfo} />
+                </Box>
+            </Modal>
+            <Modal
+                open={openc}
+                onClose={handleCloseC}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                  EDIT YOUR PASSWORD
+                  <div className="cancelIcon" onClick={handleCloseC}>
+                    <ClearIcon/>
+                  </div>
+                  </Typography>
+                  <ChangePassword userInfo={userInfo} setOpenc={setOpenc}/>
+                </Box>
+            </Modal>
+            <Modal
+                open={opend}
+                onClose={handleCloseD}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                  EDIT YOUR DETAILS
+                  <div className="cancelIcon" onClick={handleCloseD}>
+                    <ClearIcon/>
+                  </div>
+                  </Typography>
+                  <ChangeBirthday data={data} userInfo={userInfo} setOpend={setOpend}/>
+                </Box>
+            </Modal>
         </Box>
-        <Grid container spacing={2} pl={2}>
-          <Grid item sm={6} xs={6}>
-            <p>First Name</p>
-            <p>
-              <b>{userInfo.first_name}</b>
-            </p>
-          </Grid>
-          <Grid item sm={6} xs={6}>
-            <p>Last Name</p>
-            <p>
-              <b>{userInfo.last_name}</b>
-            </p>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <p>Email</p>
-            <p>
-              <b>{userInfo.email}</b>
-            </p>
-          </Grid>
-          <Grid item sm={12}>
-            <p>Mobile Number</p>
-            <p>
-              <b>{userInfo.phone}</b>
-            </p>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} pl={2}>
-          <Grid item sm={12}>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={handlePasswordChange}
-                    checked={passwordCheckd}
-                  />
-                }
-                label="Change Password"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={handleEmailChange}
-                    checked={emailCheckd}
-                  />
-                }
-                label="Change Email"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={handleMobileChange}
-                    checked={mobileCheckd}
-                  />
-                }
-                label="Change Mobile Number"
-              />
-            </FormGroup>
-          </Grid>
-        </Grid>
       </Card>
 
       {passwordCheckd ? (
@@ -118,7 +237,7 @@ export default function AccountInformation() {
 
           <Grid container spacing={2}>
             <Grid item sm={6}>
-              <ChangePassword userInfo={userInfo} />
+              <ChangePassword userInfo={userInfo} setOpend={setOpend}/>
             </Grid>
           </Grid>
         </Card>
@@ -136,7 +255,7 @@ export default function AccountInformation() {
           </Box>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} mt={2}>
-              <ChangeEmail userInfo={userInfo}/>
+              <ChangeEmail userInfo={userInfo} />
             </Grid>
           </Grid>
         </Card>
@@ -155,6 +274,23 @@ export default function AccountInformation() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} mt={2}>
               <ChangeMobile userInfo={userInfo} />
+            </Grid>
+          </Grid>
+        </Card>
+      ) : null}
+      {birthDayCheckd ? (
+        <Card variant="outlined" sx={{ marginTop: "20px" }}>
+          <Box
+            sx={{
+              borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+              padding: "0px 15px",
+            }}
+          >
+            <h4>Change Birthday</h4>
+          </Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} mt={2}>
+              <ChangeBirthday userInfo={userInfo} />
             </Grid>
           </Grid>
         </Card>

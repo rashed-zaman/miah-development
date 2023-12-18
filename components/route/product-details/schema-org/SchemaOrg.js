@@ -27,6 +27,8 @@ export default function SchemaOrg({ selectedVariation, product, resData }) {
                 "@type": "Offer",
                 "priceCurrency": "BDT",
                 "price": "${[product?.sales_cost]}",
+                "priceCurrency": "BDT",
+                "price": "${[product?.discount]}",
                 "itemCondition": "https://schema.org/NewCondition",
                 "availability": "https://schema.org/${resData.stockStatus}"
               }

@@ -47,7 +47,7 @@ export default function Signin({ chekout }) {
           redirect: false,
           // callbackUrl: "/dashboard/account-information?id=0",
         });
-        route.push("/dashboard/account-information?id=0");
+        route.push("/profile/rewards");
       }
     }
   }, [userInfo, route.isReady]);

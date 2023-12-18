@@ -1,4 +1,5 @@
 import * as React from "react";
+import{useEffect} from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,6 +14,10 @@ import Grid from "@mui/material/Grid";
 import TextField from "../../shared/formUI/textField";
 import commonService from "../../../service/menu/commonService";
 import { MiahSubmitLoadingButton } from "../../core/button/MiahButton";
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box } from "@mui/material";
 
 const INITIAL_FORM_STATE = {
   fName: "",
@@ -36,10 +41,23 @@ const FORM_VALIDATION = Yup.object().shape({
   // area: Yup.object().required("Requird"),
 });
 
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '50%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 export default function EditAddress({
   locations,
   addressToEdit,
   open,
+  setOpen,
   handleDialog,
   userInfo,
   getAllAddress
@@ -64,7 +82,7 @@ export default function EditAddress({
   const [addressId, setAddressId] = React.useState(0);
 
   const [msg, setMsg] = React.useState("");
-
+  const handleClose = () => setOpen(false);
   const onSubmit = (values) => {
     let api = "";
     let body = {};
@@ -101,15 +119,17 @@ export default function EditAddress({
         setIsLoading(false);
         setMsg(res.data.data.msg);
         getAllAddress()
+        console.log(res.data.data.msg);
+        // setOpen(false);
       })
       .catch((error) => {
         setIsLoading(false);
         console.log(error);
       });
   };
-  const handleClose = () => {
-    handleDialog();
-  };
+  // const handleClose = () => {
+  //   handleDialog();
+  // };
 
   const handleSetCity = (name, value) => {
     setCities(value.city);
@@ -123,6 +143,12 @@ export default function EditAddress({
     setEditData();
     setAddressId(addressToEdit.id);
   }, [addressToEdit]);
+
+  useEffect(() => {
+    if(msg === 'Billing address update successfully'){
+      setTimeout(()=>setOpen(false),500)
+    }
+  }, [msg]);
 
   const setEditData = () => {
     if(locations) {
@@ -176,13 +202,21 @@ export default function EditAddress({
     }
   };
   return (
-    <div>
-      <Dialog open={open} fullWidth maxWidth="sm">
-        <DialogTitle id="alert-dialog-title">
-          {"Update Address"} {addressId}
-        </DialogTitle>
-        <DialogContent>
-          <Formik
+    <>
+    <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+              UPDATE ADDRESS {addressId}
+                <div className="cancelIcon" onClick={handleClose}>
+                  <ClearIcon />
+                </div>
+              </Typography>
+              <Formik
             initialValues={{
               ...INITIAL_FORM_STATE,
             }}
@@ -261,21 +295,17 @@ export default function EditAddress({
                 </Grid>
               </Grid>
               <br />
-              {/* <Button type="submit" variant="contained" size="small">
+              <Button type="submit" variant="contained" fullWidth isloading={isloading}>
                 update address
-              </Button> */}
-              <MiahSubmitLoadingButton type="submit" isloading={isloading}>
+              </Button>
+              {/* <MiahSubmitLoadingButton type="submit" isloading={isloading}>
                 update address
-              </MiahSubmitLoadingButton>
+              </MiahSubmitLoadingButton> */}
               <div>{msg}</div>
             </Form>
           </Formik>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Ok</Button>
-          <Button onClick={handleClose}>cencle</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+            </Box>
+          </Modal>
+    </>
   );
 }

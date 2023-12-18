@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import commonService from "../../../service/menu/commonService";
 import { axiosCredential } from "../../../service/serviceConfig";
 
-export default function ChangeEmail({ userInfo }) {
+export default function ChangeEmail({ userInfo, data, setOpen}) {
   // hooks
 
   // state
@@ -15,7 +15,7 @@ export default function ChangeEmail({ userInfo }) {
   const [verifybtnLoading, setVerifyBtnLoading] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
   const [code, setCode] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(data.email);
   const [successMsg, setSuccessMsg] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
@@ -65,10 +65,11 @@ export default function ChangeEmail({ userInfo }) {
       commonService
         .postAuthData("checkEmailVerify", body, userInfo.token)
         .then((res) => {
-          console.log(res);
+          console.log(res)
           if (res.data.status === true) {
             setSuccessMsg(res.data.msg);
             setVerifyBtnLoading(false);
+            console.log(res.data.msg);
           } else {
             setSuccessMsg(res.data.msg);
             setVerifyBtnLoading(false);
@@ -79,6 +80,12 @@ export default function ChangeEmail({ userInfo }) {
         });
     })
   };
+
+  useEffect(() => {
+    if(successMsg === 'Email update successfully!'){
+      setTimeout(()=>setOpen(false),500)
+    }
+  }, [successMsg]);
   // side effects
   return (
     <>
@@ -144,7 +151,7 @@ export default function ChangeEmail({ userInfo }) {
               />
             </Button>
           ) : (
-            <Button onClick={sentEmail} variant="contained">
+            <Button onClick={sentEmail} variant="contained" fullWidth>
               Change
             </Button>
           )}

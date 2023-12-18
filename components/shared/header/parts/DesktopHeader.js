@@ -36,7 +36,37 @@ export default function DesktopHeader() {
         <header className="ps-header ps-header--3 ps-header--4">
           <HeaderInner menu={menu} />
         </header>
-      ) : (
+      ) : route.asPath === ("/profile/order-history")?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):route.asPath === ("/profile/rewards")?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):route.asPath === ("/profile/order-history")?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):route.asPath === ("/profile/account-information")?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):route.asPath === ("/profile/address-book")?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):route.asPath === ('/profile/wish-list')?(
+        <header className="ps-header ps-header--10000">
+          <Notify />
+          <Inner menu={menu} />
+        </header>
+      ):(
         <header className="ps-header ps-header--7">
           <Notify />
           <Inner menu={menu} />

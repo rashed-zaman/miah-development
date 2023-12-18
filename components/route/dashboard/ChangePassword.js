@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid } from "@mui/material";
@@ -22,10 +22,9 @@ const FORM_VALIDATION = Yup.object().shape({
     .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
 });
 
-export default function ChangePassword(userInfo) {
+export default function ChangePassword({userInfo, setOpenc}) {
   const [loadding, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
-
   const onSubmit = (values, { resetForm }) => {
     setLoading(true);
     setMsg("");
@@ -37,7 +36,7 @@ export default function ChangePassword(userInfo) {
 
     axiosCredential.get("sanctum/csrf-cookie").then((res) => {
       commonService
-        .postAuthData("updatePassword", body, userInfo.userInfo.token)
+        .postAuthData("updatePassword", body, userInfo.token)
         .then((res) => {
           setLoading(false);
           if (res.data.status === true) {
@@ -53,6 +52,11 @@ export default function ChangePassword(userInfo) {
         });
     })
   };
+  useEffect(() => {
+    if(msg === 'Password update successfully' || msg==='The current password is match with old password.'){
+      setTimeout(()=>setOpenc(false),500)
+    }
+  }, [msg]);
   return (
     <Formik
       initialValues={{

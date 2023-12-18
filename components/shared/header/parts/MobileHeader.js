@@ -125,7 +125,8 @@ export default function MobileHeader(props) {
       </HideOnScroll>
       <ShowOnScroll {...props}>
         <AppBar sx={{ boxShadow: "none" }}>
-          <Notify />
+        {route.asPath === ("/profile/rewards") ? null : route.asPath === ("/profile/order-history") ?null: route.asPath === ("/profile/account-information") ? null: route.asPath === ("/profile/address-book") ? null: route.asPath === ("/profile/wish-list") ? null:  <Notify />}
+          {/* <Notify /> */}
         </AppBar>
       </ShowOnScroll>
       {route.asPath !== "/" && (

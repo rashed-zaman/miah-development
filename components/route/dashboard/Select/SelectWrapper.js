@@ -21,7 +21,6 @@ const SelectWrapper = ({ name, options, defaultOption, label, ...otherProps }) =
     setFieldValue(name, value);
     childMethods(name, value);
     setdefaultValue(value);
-    console.log(otherProps);
   };
 
   const configSelect = {

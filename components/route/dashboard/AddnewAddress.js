@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import { MenuItem, Box, Grid, Button } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -36,7 +36,7 @@ const FORM_VALIDATION = Yup.object().shape({
   address: Yup.string().required("address"),
 });
 
-export default function AddnewAddress({ userInfo, getAllAddress }) {
+export default function AddnewAddress({ userInfo, getAllAddress,setOpenM }) {
   // hooks
   const locations = useSelector((state) => state.checkout.locations);
   const dispatch = useDispatch();
@@ -70,7 +70,6 @@ export default function AddnewAddress({ userInfo, getAllAddress }) {
   };
   const handleSetArea = (name, value) => {
     setAreas(value.area);
-    console.log(value);
   };
 
   const saveBillingAddress = (formValue, resetForm) => {
@@ -148,9 +147,13 @@ export default function AddnewAddress({ userInfo, getAllAddress }) {
       setEmail("");
       setMobile("");
     }
-    console.log(selectedType);
   }, [selectedType]);
 
+  useEffect(() => {
+    if(msg === 'Billing address added successfully' || msg === 'Shipping address added successfully'){
+      setTimeout(()=>setOpenM(false),500)
+    }
+  }, [msg]);
   return (
     <>
       <Formik
@@ -162,7 +165,7 @@ export default function AddnewAddress({ userInfo, getAllAddress }) {
         onSubmit={onSubmit}
       >
         <Form>
-          <Box sx={{ minWidth: 120, padding: "5px 8px" }}>
+          <Box sx={{ minWidth: '100%', padding: "5px 8px" }}>
             <Grid container spacing={2}>
               <Grid item sm={6} xs={12}>
                 <FormControl fullWidth>
@@ -246,12 +249,12 @@ export default function AddnewAddress({ userInfo, getAllAddress }) {
               </Grid>
             </Grid>
             <br />
-            {/* <Button variant="contained" size="small" type="submit">
+            <Button variant="contained" size="small" type="submit" fullWidth isloading={isloading}>
               submit
-            </Button> */}
-            <MiahSubmitLoadingButton type="submit" isloading={isloading}>
+            </Button>
+            {/* <MiahSubmitLoadingButton  type="submit" isloading={isloading}>
               submit
-            </MiahSubmitLoadingButton>
+            </MiahSubmitLoadingButton> */}
             <div>{msg}</div>
           </Box>
         </Form>

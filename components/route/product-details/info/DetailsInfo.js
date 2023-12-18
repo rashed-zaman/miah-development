@@ -31,10 +31,10 @@ export default function DetailsInfo({ product, selectedVariation, sku }) {
       <div className="ps-product__meta">
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           <span className="ps-product__price">TK {product.sales_cost}</span>
+          {product.discount && (
+            <span className="ps-product__del" style={{color:'red'}}>TK {product.discount}</span>
+          )}
         </Box>
-        {product.discount && (
-          <span className="ps-product__del" style={{color:'red'}}>TK {product.discount}</span>
-        )}
       </div>
     </>
   );
