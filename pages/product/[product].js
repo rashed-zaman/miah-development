@@ -213,7 +213,8 @@ export default function Product({ responseData, product, variants }) {
                           <p>
                             <b>Description</b>
                           </p>
-                          <span
+                          <div
+                            className="summer-note-video"
                             dangerouslySetInnerHTML={{
                               __html: product.sales_info,
                             }}

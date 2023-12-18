@@ -14069,8 +14069,10 @@ html .bg--parallax {
 }
 
 
-
-
+/* youtube embade style css */
+.summer-note-video iframe{
+  height: 300px !important;
+}
 
 
 
