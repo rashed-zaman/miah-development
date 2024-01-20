@@ -51,7 +51,8 @@ export default function OrderSummary({ orderDetails }) {
                   </Box>
                 </Grid>
               </Grid>
-              {orderDetails.credit_amount > 0 ? (
+
+              {/* {orderDetails.credit_amount > 0 ? (
                 <Grid container spacing={2}>
                   <Grid xs={6} sm={6} item>
                     <Box sx={{ textAlign: "right", color: "red" }}>Credit</Box>
@@ -62,9 +63,9 @@ export default function OrderSummary({ orderDetails }) {
                     </Box>
                   </Grid>
                 </Grid>
-              ) : null}
+              ) : null} */}
 
-              {orderDetails.credit_amount > 0 ? (
+              {/* {orderDetails.credit_amount > 0 ? (
                 <Grid container spacing={2}>
                   <Grid xs={6} sm={6} item>
                     <Box sx={{ textAlign: "right", color: "red" }}>
@@ -79,7 +80,8 @@ export default function OrderSummary({ orderDetails }) {
                     </Box>
                   </Grid>
                 </Grid>
-              ) : null}
+              ) : null} */}
+
               <Grid container spacing={2}>
                 <Grid xs={6} sm={6} item>
                   <Box sx={{ textAlign: "right" }}>Tax</Box>

@@ -58,6 +58,7 @@ export default function PasswordRecover() {
       axios
         .post(BASE_URL + "forgotPassword", { phone: values.phone })
         .then(function (response) {
+          console.log(response);
           if (response.data.status === true) {
             setFormData(values);
             setDialog(true);

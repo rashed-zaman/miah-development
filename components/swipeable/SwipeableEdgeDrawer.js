@@ -28,8 +28,8 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const Puller = styled(Box)(({ theme }) => ({
-  width: 50,
-  height: 4,
+  width: 100,
+  height: 10,
   backgroundColor:
     theme.palette.mode === "light"
       ? "rgba(0, 0, 0, 0.2)"
@@ -37,7 +37,7 @@ const Puller = styled(Box)(({ theme }) => ({
   borderRadius: 3,
   position: "absolute",
   top: 8,
-  left: "calc(50% - 15px)",
+  left: "calc(40%)",
 }));
 
 export default function SwipeableEdgeDrawer({
