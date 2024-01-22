@@ -10,7 +10,7 @@ export const IMAGE_URL = 'https://images.miah.shop/product/'
 // export const BASE_URL = 'https://api.miah.shop/api/'
 
 // export const BASE_URL = 'https://www.miahapi.amanatshahgroup.com/api/'
-export const BASE_URL = 'http://demoapi.miah.shop/api/'
+export const BASE_URL = 'https://demoapi.miah.shop/api/'
 
 // export const IMAGE_URL = 'http://images.blmtea.com/product/'
 // export const BASE_URL = 'http://api.blmtea.com/api/'
