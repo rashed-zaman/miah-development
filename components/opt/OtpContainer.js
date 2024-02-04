@@ -45,7 +45,7 @@ export default function OtpContainer({
             } else {
               setErrMsg(response.data.msg);
               setOtpType("new");
-              handeleSucceed();
+              // handeleSucceed();
               setBtnLoading(false);
             }
           })

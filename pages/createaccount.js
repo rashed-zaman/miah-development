@@ -31,7 +31,7 @@ const FORM_VALIDATION = Yup.object().shape({
   phone: Yup.string().required("Requird"),
   firstName: Yup.string().required("Requird"),
   lastName: Yup.string().required("Requird"),
-  email: Yup.string().required("Requird"),
+  // email: Yup.string().required("Requird"),
   password: Yup.string().required("Requird"),
   confirmPassword: Yup.string()
     .required("Requird")
