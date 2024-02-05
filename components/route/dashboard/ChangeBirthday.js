@@ -60,7 +60,7 @@ export default function UpdateDetails({data, userInfo, setOpend}) {
           <Grid container spacing={2}>
             <Grid item sm={12}>
               <Grid container>
-              <Grid sm={12}>
+              <Grid sm={12} xs={12}>
                   <TextField
                     required
                     id="outlined-required"
@@ -70,7 +70,7 @@ export default function UpdateDetails({data, userInfo, setOpend}) {
                     fullWidth
                   />
                 </Grid>
-              <Grid sm={12} mt={2}>
+              <Grid sm={12} xs={12} mt={2}>
                   <TextField
                     required
                     id="outlined-required"
@@ -85,24 +85,24 @@ export default function UpdateDetails({data, userInfo, setOpend}) {
             <h5 className="mt-15 pb-0">DATE OF BIRTH</h5>
             <Grid item sm={12}>
               <Grid container spacing={2}>
-                <Grid item sm={4}>      
+                <Grid item sm={4} xs={4}>      
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DateField value={date} fullWidth label={'DD'} format='DD' onChange={date=>setDate(date)} />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item sm={4}>
+                <Grid item sm={4} xs={4}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DateField value={date} fullWidth label={'MM'} format='MM' onChange={(month)=>setDate(month)} />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item sm={4}>
+                <Grid item sm={4} xs={4}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateField value={date} fullWidth label={'YYYY'}  format='YYYY' onChange={(year)=>setDate(year)} />
                   </LocalizationProvider>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <FormControl>
                 <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
                 <RadioGroup
@@ -118,7 +118,7 @@ export default function UpdateDetails({data, userInfo, setOpend}) {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               {/* <MiahSubmitButton onClick={updateChange}>UPDATE DETAILS</MiahSubmitButton> */}
               <Button fullWidth onClick={updateChange} variant="contained">UPDATE DETAILS</Button>
             </Grid>

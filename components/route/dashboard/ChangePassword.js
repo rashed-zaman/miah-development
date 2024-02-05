@@ -69,19 +69,19 @@ export default function ChangePassword({userInfo, setOpenc}) {
       <Form>
         <Box px={2} py={1}>
           <Grid container spacing={2}>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <PasswordWrapper label="Old Password" name="oldPassword" />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <PasswordWrapper label="New Password" name="newPassword" />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <PasswordWrapper
                 label="Confirm Password"
                 name="confirmPassword"
               />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <p style={{ textAlign: "center" }}>{msg}</p>
               {!loadding ? (
                 <MiahSubmitButton>Change Password</MiahSubmitButton>

@@ -66,14 +66,18 @@ export default function RewardCashback() {
       .authGetData("rewardPoint", userInfo.token)
       .then((res) => {
         setData(res.data);
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    getRewards();
-  }, []);
+    if (userInfo.token) {
+      getRewards();
+    }
+  }, [userInfo]);
+
+
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
     borderRadius: 5,
@@ -121,7 +125,7 @@ export default function RewardCashback() {
           <Grid container spacing={2}>
             <Grid item sm={6} xs={12}>
               <Card>
-                <Grid container spacing={2} p={1}>
+                <Grid container spacing={2} p={2}>
                   <Grid item sm={6}>
                     <h3>
                       <img
@@ -142,23 +146,23 @@ export default function RewardCashback() {
               </Card>
             </Grid>
             <Grid item sm={6} xs={12}>
-              <Card sx={{ padding: "15px" }}>
+              <Card sx={{ padding: 3 }} >
                 <h4>Convert Your Points To Credit</h4>
-                <Grid container>
-                  <Grid item sm={8} xs={12}>
+                <Grid container spacing={1}>
+                  <Grid item sm={8} xs={12} px={1}>
                     <TextField
                       required
                       fullWidth
                       onChange={handlePoints}
-                      variant="standard"
+                      variant="outlined"
                       label="Enter Points"
+                      size="small"
                     />
                   </Grid>
                   <Grid item sm={4} xs={12}>
                     <Button
                       variant="contained"
-                      sx={{ marginTop: "15px" }}
-                      size="small"
+                      fullWidth
                       onClick={convertPoints}
                     >
                       Convert
@@ -184,7 +188,7 @@ export default function RewardCashback() {
             </p>
           </>)
       }
-      <div className="mt-20">
+      <div className="mt-10">
         <h4>HOW TO GET MORE MIAHCLUB REWARDS</h4>
         <Slider {...settings}>
           <Card sx={{ minHeight: '141px', background: '#000', p: '12px' }}>
@@ -261,8 +265,8 @@ export default function RewardCashback() {
           </Card>
         </Slider>
       </div>
-      
-      <h3 className="mt-60">MORE OF WHAT YOU LOVE</h3>
+
+      <h4 className="mt-60">MORE OF WHAT YOU LOVE</h4>
       <p>We’ve collected some of our favourite products based on your preferences and purchases.</p>
       <div className="rewardrecent">
         <section className="    ps-bought">
@@ -311,12 +315,12 @@ export default function RewardCashback() {
           </div>
         </section>
       </div>
-      <h3>MIAHCLUB POINTS AND REWARDS</h3>
+      <h4>MIAHCLUB POINTS AND REWARDS</h4>
       <p >{"This is your personal space. Get the low down on your membership status and all the points and rewards you've earned."}</p>
       <Card sx={{ p: 4 }}>
         <Grid container spacing={2}>
           <Grid item sm={7} xs={12} >
-            <Grid container spacing={2} p={2} sx={{justifyContent:'space-between'}}>
+            <Grid container spacing={2} p={2} sx={{ justifyContent: 'space-between' }}>
               <Grid item sm={5} xs={12}>
                 <p>It&apos;s go time. You now have access to all level 1 rewards. Explore your rewards and start earning points to unlock the next level.</p>
                 {/* <Link href={''}>
@@ -332,50 +336,70 @@ export default function RewardCashback() {
                 </Link> */}
               </Grid>
               {/* <Grid item sm={3} xs={0}></Grid> */}
-              <Grid item sm={4} xs={12} mt={1}>
+
+              {/* <Grid item sm={4} xs={12} mt={1}>
                 {userInfo.userLevel == 1 ?
                   <img
-                    className = 'imgSize'
+                    className='imgSize'
                     src="/img/miahclublevel/miah club level-01.svg"
                     alt="level1"
                   /> : userInfo.userLevel == 2 ? <img
-                    className = 'imgSize'
+                    className='imgSize'
                     src="/img/miahclublevel/miah club level-02.svg"
-                    alt="level1"
+                    alt="level2"
                   /> : userInfo.userLevel == 3 ? <img
-                    className = 'imgSize'
+                    className='imgSize'
                     src="/img/miahclublevel/miah club level-03.svg"
-                    alt="level1"
+                    alt="level3"
                   /> : userInfo.userLevel == 4 ? <img
-                    className = 'imgSize'
+                    className='imgSize'
                     src="/img/miahclublevel/miah club level-04.svg"
-                    alt="level1"
+                    alt="level4"
                   /> : <img
-                    className = 'imgSize'
+                    className='imgSize'
                     src="/img/miahclublevel/miah club level-05.svg"
-                    alt="level1"
+                    alt="level5"
                   />
                 }
-              </Grid>
+              </Grid> */}
+
             </Grid>
           </Grid>
           <Grid item sm={5} xs={12} sx={{ background: '#f7f7f7' }}>
             <Grid container spacing={2} p={2}>
-              <Grid item sm={8} xs={8}>
-                <h4>
-                  Level Points
-                </h4>
-                <h1>{(userInfo.currentPoint)}</h1>
+              <Grid item sm={6} xs={6}>
+                {userInfo.userLevel == 1 ?
+                  <img
+                    className='imgSize'
+                    src="/img/miahclublevel/miah club level-01.svg"
+                    alt="level 1"
+                  /> : userInfo.userLevel == 2 ? <img
+                    className='imgSize'
+                    src="/img/miahclublevel/miah club level-02.svg"
+                    alt="level 2"
+                  /> : userInfo.userLevel == 3 ? <img
+                    className='imgSize'
+                    src="/img/miahclublevel/miah club level-03.svg"
+                    alt="level 3"
+                  /> : userInfo.userLevel == 4 ? <img
+                    className='imgSize'
+                    src="/img/miahclublevel/miah club level-04.svg"
+                    alt="level 4"
+                  /> : <img
+                    className='imgSize'
+                    src="/img/miahclublevel/miah club level-05.svg"
+                    alt="level 5"
+                  />
+                }
               </Grid>
-              <Grid item sm={4} xs={4}>
-                <h4>Next Level</h4>
-                <h5>Level {userInfo.nextLevel}</h5>
-                <h4>{userInfo.nextLevelPoint}</h4>
+              <Grid item sm={6} xs={6}>
+                <h4 className="text-right">
+                  Reward Points
+                </h4>
+                <h1 className="text-right">{data.reward_point}</h1>
               </Grid>
               <Grid item sm={12}>
-                {userInfo.userLevel == 1 ?
-                  <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 5000)} /> : userInfo.userLevel == 2 ? <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 10000)} /> : userInfo.userLevel == 3 ? <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 20000)} /> : userInfo.userLevel == 4 ? <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 40000)} /> : null
-                }
+                <BorderLinearProgress variant="determinate" value={Math.round((((data.currentPoint)) * 100) / data.nextLevelPoint)} />
               </Grid>
             </Grid>
           </Grid>

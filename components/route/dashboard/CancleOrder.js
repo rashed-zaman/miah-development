@@ -40,7 +40,7 @@ export default function CancleOrder() {
       {/* <h3>Cancel Order</h3> */}
       {allOrdes.map((order, pos) => {
         return (
-          <Accordion key={pos}>
+          <Accordion key={pos} sx={{marginLeft:'8px', marginBottom:'5px'}}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"

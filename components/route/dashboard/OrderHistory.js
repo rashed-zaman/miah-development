@@ -85,7 +85,7 @@ export default function OrderHistory() {
             {
             order.delivery_status == 'Done' ?
               <>
-                <Accordion>
+                <Accordion sx={{marginLeft:'8px', marginBottom:'5px'}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"

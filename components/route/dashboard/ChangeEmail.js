@@ -92,7 +92,7 @@ export default function ChangeEmail({ userInfo, data, setOpen}) {
       {codeSent ? (
         <Box px={2} py={1}>
           <Grid container spacing={2}>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <p>
                 <small>A verification code is sent to your email</small>
               </p>
@@ -103,19 +103,19 @@ export default function ChangeEmail({ userInfo, data, setOpen}) {
                 label="Enter Verification Code"
               />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <div>
                 <p className="textCenter">
                   <small>{successMsg}</small>
                 </p>
               </div>
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={6} xs={6}>
               <Button variant="outlined" fullWidth>
                 send again
               </Button>
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={6} xs={6}>
               {verifybtnLoading ? (
                 <Button variant="contained" fullWidth>
                   <CircularProgress color="inherit" size={18} />
