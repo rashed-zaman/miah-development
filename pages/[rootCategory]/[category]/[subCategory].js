@@ -20,9 +20,16 @@ const SubCategory = ({ data }) => {
 
 export default SubCategory;
 
+const getDeviceType = (userAgent) => {
+  if (/mobi/i.test(userAgent)) {
+    return 'mobile';
+  } else {
+    return 'desktop';
+  }
+};
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const { params, query } = context;
+  const { params, query, req } = context;
 
   const headers = {
     "Content-Type": "application/json",
@@ -30,11 +37,11 @@ export async function getServerSideProps(context) {
   };
 
   const priceOffset = priceRangeOffset(context);
+  const device = getDeviceType(req.headers['user-agent']);
   const axiosRes = await axios
     .get(
-      ` ${BASE_URL}productByCatSubId?subCategoryId=${params.subCategory}
+      ` ${BASE_URL}productList?subCategoryId=${params.subCategory}
         &offset=${priceOffset}
-        &promoProduct=${query.promoProduct ? query.promoProduct : 1}
         &attribute=
         &tags=
         &price=
@@ -45,12 +52,16 @@ export async function getServerSideProps(context) {
         &sizes=${query.size ? query.size : ""}
         &pattern=${query.pattern ? query.pattern : ""}
         &sorting=${query.order ? query.order : "DESC"}
+        &device=${device}
+        &featured=${query.featured ? query.featured : ""}
+        &priceOrder=${query.priceOrder ? query.priceOrder : ""}
+        &page=${query.page || 1}
       `,
       { headers }
     )
     .then((response) => {
      
-      return response.data.data;      
+      return response.data;      
     })
     .catch((error) => {
       let errObj = { error: true };

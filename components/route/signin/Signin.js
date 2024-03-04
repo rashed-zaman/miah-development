@@ -120,13 +120,13 @@ export default function Signin({ chekout }) {
                       <br />
                       <br />
                       {"Don't have account ? "}
-                      <Link href="/createaccount" scroll={false}>
+                      <Link href="/createaccount">
                         <a>
                           <u>Create Account.</u>
                         </a>
                       </Link>
                       <span style={{ marginLeft: "2px" }}> </span>
-                      <Link href="/password-recovery" scroll={false}>
+                      <Link href="/password-recovery">
                         <a>
                           <u>Forget Password.</u>
                         </a>

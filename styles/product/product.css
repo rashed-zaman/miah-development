@@ -142,6 +142,7 @@
 .description-table{
   width: 100%;
 }
+
 .description-table tr td {
   border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
   padding: 5px 15px !important;
@@ -175,7 +176,6 @@
 .shop-banner-text-content{
   align-self: center;
 }
-
 
 .ps-product__info .ps-product__title_bangla{
   font-family:  'Montserrat', sans-serif !important;

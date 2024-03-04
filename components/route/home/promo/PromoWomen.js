@@ -47,8 +47,7 @@ export default function PromoWomen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="/img/test/exclusive_shop_for_women_desktop.jpg"
-            alt="Saree"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_desktop.jpg"
           />
         </Box>
         <Box
@@ -65,7 +64,7 @@ export default function PromoWomen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/exclusive_shop_for_women_mobile.jpg"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_mobile.jpg"
             alt="Saree"
           />
         </Box>
@@ -73,7 +72,7 @@ export default function PromoWomen({ promotionDataLaye }) {
           <p className="ps-promo__type">Exclusive Shop For Women</p>
           <h4 className="ps-promo__title">{"Styles you'll Love"}</h4>
           <div className="ps-promo__link">
-            <Link href="https://d25xyv9ldicae3.cloudfront.net/media/exclusive_shop_for_women_desktop.jpg">
+            <Link href="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_desktop.jpg">
               <a>
                 <span>Shop Now</span>
                 <img src="/img/icon/arrow-long-right.svg" alt="" />

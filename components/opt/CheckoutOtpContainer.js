@@ -36,9 +36,6 @@ export default function CheckoutOtpContainer({
     setOtpType("new");
   };
 
-  const handeleSucceed = () => {
-    verifySucceed();
-  };
   const onSubmit = () => {
     if (code !== "") {
       setBtnLoading(true);

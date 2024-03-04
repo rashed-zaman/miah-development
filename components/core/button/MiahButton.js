@@ -25,6 +25,7 @@ const CommonButton = styled(Button)({
     // transform: `translateY(-5px)`
   },
 });
+
 const CommonButtonpayment = styled(Checkbox)({
   boxShadow: "none !important",
   outline: "none !important",
@@ -83,6 +84,7 @@ export function MiahButton({ methodFromParent, children, size }) {
     </CommonButton>
   );
 }
+
 export function MiahCupponButton({ methodFromParent, children, size }) {
   const handleClick = () => {
     methodFromParent ? methodFromParent() : null;
@@ -98,6 +100,7 @@ export function MiahCupponButton({ methodFromParent, children, size }) {
     </Button>
   );
 }
+
 export function MiahSubmitButton({ children }) {
   return (
     <CommonButton variant="contained" fullWidth type="submit">
@@ -105,6 +108,7 @@ export function MiahSubmitButton({ children }) {
     </CommonButton>
   );
 }
+
 export function MiahPaymentButton({ children }) {
   return (
     <CommonButtonpayment sx={{ mt:'5px'}} fullWidth variant="outlined" type="submit">
@@ -136,6 +140,7 @@ export function AddToBagButton({ addItemToBag, children }) {
     </CommonButton>
   );
 }
+
 export function MiahButtonRegular({ addItemToBag, children }) {
   const handleClick = () => {
     addItemToBag ? addItemToBag() : null;
@@ -148,7 +153,6 @@ export function MiahButtonRegular({ addItemToBag, children }) {
 }
 
 // submit button with loading
-
 export function MiahSubmitLoadingButton({ isloading, children, type }) {
   return (
     <Button type={type ? type : ""} variant="contained" size="small">

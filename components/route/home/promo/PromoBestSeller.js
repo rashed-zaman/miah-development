@@ -30,14 +30,14 @@ export default function PromoBestSeller({ promotionDataLaye }) {
         <Box sx={{ display: { xs: "block", sm: "none" } }}>
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/best-seller-mobile.jpg"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home/best-seller-mobile.jpg"
             alt="Salwar Kameez"
           />
         </Box>
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/Best_Seller.jpg.jpg"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home/Best_Seller.jpg"
           />
         </Box>
         <div className="ps-promo__content">

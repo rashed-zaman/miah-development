@@ -76,7 +76,6 @@ export async function getServerSideProps(context) {
     .get(
       `https://api.miah.shop/api/productByCatSubId?${params.exclusive}=1&offset=${priceOffset}&sorting=${query.order ? query.order :"ASC"}
       &promoProduct=${query.promoProduct ? query.promoProduct : 0}
-       
       `,
       { headers }
     )

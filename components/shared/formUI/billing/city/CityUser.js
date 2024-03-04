@@ -88,7 +88,7 @@ export default function CityUser({ defaultValue }) {
         <TextField
           {...params}
           name="billingCity"
-          label="City"
+          label="District"
           error={err ? true : false}
           helperText={err ? errTxt : ""}
         />

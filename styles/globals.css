@@ -5,6 +5,7 @@
 @import url("./product/product.css");
 @import url("./ng-progress//ng-progress.css");
 @import url("./drawer/drawer.css");
+
 html,
 body {
   padding: 0;
@@ -23,6 +24,7 @@ body {
 .mega-menu__column h4 a:hover {
   color: #000 !important;
 }
+
 .custom-1-border {
   border: 1px solid rgba(0, 0, 0, 0.8);
 }
@@ -30,6 +32,7 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
 .parentMarginZero p {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -94,6 +97,7 @@ body {
   padding: 20px 15px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 .swiper-pagination-bullet-active {
   background: rgba(0, 0, 0, 1) !important;
 }
@@ -111,6 +115,7 @@ body {
 .css-w6ajo6-MuiButtonBase-root-MuiTab-root {
   font-size: 1rem;
 }
+
 .bag-remove {
   background-color: rgba(0, 0, 0, 0.1);
   display: inline-block;
@@ -134,12 +139,34 @@ body {
   font-weight: 600;
 }
 
+
+
+/* category slide */
+
+.category-slide .slick-prev:before,
+.category-slide .slick-next:before {
+  color: #bababb;
+  font-weight: bold;
+}
+
+.category-slide-button {
+  background: #eff0f4;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px 10px;
+  width: 100%;
+}
+
 /* fb messenger */
 .fb_dialog_content iframe:first-child {
   bottom: 155px !important;
 }
 
-a:hover{
+a:hover {
   color: #000;
 }
 
+.MuiButtonBase-root{
+  font-size: 1rem;
+}

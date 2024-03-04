@@ -15,7 +15,11 @@ import Area from "../../shared/formUI/billing/area/Area";
 // import UserSummary from "../../components/route/check-out/UserSummary";
 import UserSummary from "./UserSummary";
 
-export default function Billing({ hasShipping, handleShippingCharge }) {
+export default function Billing({
+  hasShipping,
+  handleShippingCharge,
+  newUserMobile,
+}) {
   // hooks
   const dispatch = useDispatch();
   // redux state
@@ -50,7 +54,9 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
 
   return (
     <>
-      {hasLoggedIn && defaultAddress.defaultBilling !== "" && <UserSummary />}
+      {hasLoggedIn && defaultAddress.defaultBilling !== "" && (
+        <UserSummary defaultAddress={defaultAddress} />
+      )}
 
       {hasLoggedIn && defaultAddress.defaultBilling !== "" && (
         <Box
@@ -134,7 +140,7 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                 <TextFieldWrapper name="billigInfo.address" label="Address" />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
+                <TextFieldWrapper name="billigInfo.zipcode" label="Postal Code" />
               </Grid>
               <Grid item sm={6} xs={12}>
                 {hasLoggedIn ? (
@@ -268,9 +274,7 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
             <Grid item sm={6} xs={12}>
               <TextFieldWrapper name="billigInfo.address" label="Address" />
             </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
-            </Grid>
+            
             <Grid item sm={6} xs={12}>
               {hasLoggedIn ? (
                 <>
@@ -287,7 +291,6 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                 <Division options={locations} />
               )}
             </Grid>
-
             <Grid item sm={6} xs={12}>
               {hasLoggedIn ? (
                 <>
@@ -301,7 +304,6 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                 <City options={city} />
               )}
             </Grid>
-
             <Grid item sm={6} xs={12}>
               {hasLoggedIn ? (
                 <>
@@ -325,6 +327,9 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                   handleShippingCharge={handleShippingCharge}
                 />
               )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.zipcode" label="Postal Code" />
             </Grid>
           </Grid>
         </Box>
@@ -374,7 +379,12 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                 <TextFieldWrapper name="billigInfo.lName" label="Last Name" />
               )}
             </Grid>
-            <Grid item sm={6} xs={12}>
+            <Grid
+              item
+              sm={6}
+              xs={12}
+              sx={{display:'none'}}
+            >
               {hasLoggedIn ? (
                 <TextFieldWrapper
                   readOnly={true}
@@ -385,6 +395,8 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                 <TextFieldWrapper
                   name="billigInfo.phone"
                   label="Mobile Number"
+                  readOnly={true}
+                  defaultvalue={newUserMobile}
                 />
               )}
             </Grid>
@@ -401,9 +413,6 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
             </Grid>
             <Grid item sm={6} xs={12}>
               <TextFieldWrapper name="billigInfo.address" label="Address" />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextFieldWrapper name="billigInfo.zipcode" label="Zip Code" />
             </Grid>
             <Grid item sm={6} xs={12}>
               {hasLoggedIn ? (
@@ -459,6 +468,9 @@ export default function Billing({ hasShipping, handleShippingCharge }) {
                   handleShippingCharge={handleShippingCharge}
                 />
               )}
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <TextFieldWrapper name="billigInfo.zipcode" label="Postal Code" />
             </Grid>
           </Grid>
         </Box>

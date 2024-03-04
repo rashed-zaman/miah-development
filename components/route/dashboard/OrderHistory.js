@@ -15,7 +15,10 @@ import Image from "next/image";
 import { IMAGE_URL } from "../../../service/serviceConfig";
 import OrderStausStapper from "./OrderStausStapper";
 import { Link } from "@mui/material";
-import { partialrefundDataLayer, refundDataLayer } from "../../../service/data-layer-creator/dataLayerCreator";
+import {
+  partialrefundDataLayer,
+  refundDataLayer,
+} from "../../../service/data-layer-creator/dataLayerCreator";
 
 export default function OrderHistory() {
   // hooks
@@ -35,7 +38,6 @@ export default function OrderHistory() {
   };
 
   const cancleOrder = (id) => {
-
     const body = {
       orderId: id,
       requestType: "order",
@@ -81,11 +83,10 @@ export default function OrderHistory() {
       {/* <h3>Your Order</h3> */}
       {allOrdes.map((order, pos) => {
         return (
-          < div key={pos}>
-            {
-            order.delivery_status == 'Done' ?
+          <div key={pos}>
+            {order.delivery_status == "Done" ? (
               <>
-                <Accordion sx={{marginLeft:'8px', marginBottom:'5px'}}>
+                <Accordion sx={{ marginLeft: "8px", marginBottom: "5px" }}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -94,9 +95,15 @@ export default function OrderHistory() {
                       <Grid item sm={4} xs={4}>
                         <Typography>Order# {order.order_id} </Typography>
                       </Grid>
-                      <Grid item sm={4} sx={{ display: { xs: "none", sm: "block" } }}>
+                      <Grid
+                        item
+                        sm={4}
+                        sx={{ display: { xs: "none", sm: "block" } }}
+                      >
                         <Typography>
-                          <Moment format="MMMM Do YYYY">{order.invoice_date}</Moment>
+                          <Moment format="MMMM Do YYYY">
+                            {order.invoice_date}
+                          </Moment>
                         </Typography>
                       </Grid>
                       <Grid item sm={4} xs={8}>
@@ -105,14 +112,14 @@ export default function OrderHistory() {
                             background: "#000",
                             color: "#fff",
                             textAlign: "center",
-                            marginRight: '5px'
+                            marginRight: "5px",
                           }}
                         >
                           {order.delivery_status}
                         </Typography>
                         {/* <Button variant="outlined" size="small">
-                  {order.delivery_status}
-                </Button> */}
+                            {order.delivery_status}
+                          </Button> */}
                       </Grid>
                     </Grid>
                   </AccordionSummary>
@@ -130,7 +137,9 @@ export default function OrderHistory() {
                           <p className="mb-0">
                             <b>Ordered Placed</b>
                           </p>
-                          <Moment format="MMMM Do YYYY">{order.invoice_date}</Moment>
+                          <Moment format="MMMM Do YYYY">
+                            {order.invoice_date}
+                          </Moment>
                         </Grid>
                         <Grid item sm={2} xs={6}>
                           <p className="mb-0">
@@ -144,35 +153,40 @@ export default function OrderHistory() {
                           </p>
                           {order.customer_name}
                         </Grid>
-                        <Grid item sm={3} xs={6} sx={{ marginTop: { xs: "15px" } }}>
+                        <Grid
+                          item
+                          sm={3}
+                          xs={6}
+                          sx={{ marginTop: { xs: "15px" } }}
+                        >
                           <Link
                             target="_blank"
-                            href={"/order/order-details?orderid=" + order.order_id}
+                            href={
+                              "/order/order-details?orderid=" + order.order_id
+                            }
                           >
-                            
-                              <Button
-                                fullWidth
-                                variant="contained"
-                                size="small"
-                                sx={{
-                                  borderColor: "#000",
-                                  background: "#000",
-                                  color: "#fff",
-                                  marginBottom: '5px',
-                                  "&:hover": {
-                                    color: "#000",
-                                    backgroundColor: "#fff",
-                                    borderColor: "#fff",
-                                  },
-                                }}
-                              >
-                                Details
-                              </Button>
-                           
+                            <Button
+                              fullWidth
+                              variant="contained"
+                              size="small"
+                              sx={{
+                                borderColor: "#000",
+                                background: "#000",
+                                color: "#fff",
+                                marginBottom: "5px",
+                                "&:hover": {
+                                  color: "#000",
+                                  backgroundColor: "#fff",
+                                  borderColor: "#fff",
+                                },
+                              }}
+                            >
+                              Details
+                            </Button>
                           </Link>
                           {order.delivery_status == "Processing Order" &&
-                            order.type != "Cancel" &&
-                            order.cancel_request != "order" ? (
+                          order.type != "Cancel" &&
+                          order.cancel_request != "order" ? (
                             <Button
                               fullWidth
                               onClick={() => cancleOrder(order.order_id)}
@@ -183,7 +197,7 @@ export default function OrderHistory() {
                             </Button>
                           ) : null}
                           {order.cancel_request == "order" &&
-                            order.type != "Cancel" ? (
+                          order.type != "Cancel" ? (
                             <Button
                               fullWidth
                               variant="outlined"
@@ -252,9 +266,9 @@ export default function OrderHistory() {
                                 </Grid>
                                 <Grid item sm={5} xs={12}>
                                   {product.cancel_request == "0" &&
-                                    order.delivery_status == "Processing Order" &&
-                                    order.type != "Cancel" &&
-                                    order.cancel_request != "order" ? (
+                                  order.delivery_status == "Processing Order" &&
+                                  order.type != "Cancel" &&
+                                  order.cancel_request != "order" ? (
                                     <Button
                                       onClick={() => cancleItem(product)}
                                       fullWidth
@@ -265,8 +279,8 @@ export default function OrderHistory() {
                                     </Button>
                                   ) : null}
                                   {product.cancel_request == "1" &&
-                                    order.delivery_status != "order" &&
-                                    order.cancel_request != "order" ? (
+                                  order.delivery_status != "order" &&
+                                  order.cancel_request != "order" ? (
                                     <Button
                                       fullWidth
                                       variant="outlined"
@@ -277,7 +291,11 @@ export default function OrderHistory() {
                                     </Button>
                                   ) : null}
                                   {order.delivery_status === "Done" ? (
-                                    <Button fullWidth variant="outlined" size="small">
+                                    <Button
+                                      fullWidth
+                                      variant="outlined"
+                                      size="small"
+                                    >
                                       Write a product review
                                     </Button>
                                   ) : null}
@@ -290,8 +308,8 @@ export default function OrderHistory() {
                     </Card>
                   </AccordionDetails>
                 </Accordion>
-              </> : null
-          }
+              </>
+            ) : null}
           </div>
         );
       })}

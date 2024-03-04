@@ -9,6 +9,7 @@ import PriceFilter from "./all-filter-options/PriceFilter";
 import AppliedFilter from "./AppliedFilter";
 import SizeFilter from "./all-filter-options/SizeFilter";
 import PatternFilter from "./all-filter-options/PatternFilter";
+import StyleFilter from "./all-filter-options/StyleFilter";
 
 export default function FilterOptions({ data, type, setMobileFilter }) {
   // =============== hooks ================
@@ -57,6 +58,21 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         />
       )}
 
+      <StyleFilter
+        data={data}
+        size={size}
+        color={color}
+        ocassion={ocassion}
+        fabric={fabric}
+        pattern={pattern}
+        category={category}
+        comitedValue={comitedValue}
+        setComittedValue={setComittedValue}
+        getRoute={getRoute}
+        type={type}
+        setMobileFilter={setMobileFilter}
+      />
+      
       <PriceFilter
         data={data}
         color={color}

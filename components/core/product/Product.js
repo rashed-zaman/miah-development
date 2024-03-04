@@ -67,7 +67,7 @@ export default function Product({ product }) {
                   return (
                     <SwiperSlide key={slideIndex}>
                       <Image
-                        src={`${IMAGE_URL}m_thumb/${slide.img}`}
+                        src={`${IMAGE_URL}/${slide.img}`}
                         alt={slide.img}
                         width={300}
                         height={300}

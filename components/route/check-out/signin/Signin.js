@@ -62,7 +62,7 @@ export default function Signin({chekout}) {
         <Form>
           {chekout ? (
             <Card>
-              <CardContent  >
+              <CardContent>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={5}>
                     <TextField name="email" label="Email or Phone Number" type="text" />
@@ -80,7 +80,7 @@ export default function Signin({chekout}) {
                     </Grid>
                   ) : null}
                 </Grid>
-              </CardContent  >
+              </CardContent>
             </Card> 
           ) : (
             <Grid container spacing={2} justifyContent="center">

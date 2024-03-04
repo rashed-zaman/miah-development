@@ -96,7 +96,7 @@ export default function Area({ defaultValue, handleShippingCharge, hasShipping }
       renderInput={(params) => (
         <TextField
           {...params} name="billingArea" 
-          label="Area"
+          label="Thana"
           error={err ? true : false}
           helperText={err ? errTxt : ""}
         />

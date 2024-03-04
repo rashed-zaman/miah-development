@@ -183,11 +183,12 @@ export const fetchDefaultAddress = (token) => {
         }
       })
       .catch((error) => {
-        if (error.response.status == 401 || "401") {
-          localStorage.clear();
-          location.reload();
-          console.log(error);
-        }
+        console.log(error);
+        // if (error.response.status == 401 || "401") {
+        //   localStorage.clear();
+        //   location.reload();
+        //   console.log(error);
+        // }
       });
   };
 };

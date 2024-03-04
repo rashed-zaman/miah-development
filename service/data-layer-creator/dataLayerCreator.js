@@ -150,7 +150,7 @@ export const productListDatalayer = (data, type) => {
     listName = data.breadCam.sub_category;
   }
 
-  const prodList = data.product.map((item) => {
+  const prodList = data.product.data.map((item) => {
     return {
       item_id: item.id,
       item_name: item.name,

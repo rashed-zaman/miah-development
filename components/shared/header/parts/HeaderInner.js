@@ -9,6 +9,8 @@ const HeaderRight = dynamic(() => import("./HeaderRight"))
 
 export default function HeaderInner({menu}) {
 
+  console.log(menu);
+
   return (
     <div className="ps-header__inner">
       <div className="ps-header__left">

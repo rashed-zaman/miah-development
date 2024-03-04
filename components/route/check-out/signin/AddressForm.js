@@ -14,7 +14,7 @@ export default function AddressForm({chekout, handleShippingCharge, hasShipping,
 
   return (
     <>
-      {chekout ?(
+      {chekout ? (
             <Card>
               <CardContaier titleTypographyProps={{fontSize: 122}} title="Billing Details">
                 <Billing handleShippingCharge={handleShippingCharge} />

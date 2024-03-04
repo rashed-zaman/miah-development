@@ -26,6 +26,7 @@ export default function SizeFilter({
   comitedValue,
   type,
 }) {
+  
   // =============== hooks ================
   const router = useRouter();
   const dispatch = useDispatch();

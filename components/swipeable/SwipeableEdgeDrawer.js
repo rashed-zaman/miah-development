@@ -140,8 +140,8 @@ export default function SwipeableEdgeDrawer({
                     ৳{" "}
                     {totalamount +
                       tax +
-                      parseInt(shippingCharge) -
-                      digitalDiscount -
+                      parseInt(shippingCharge ? shippingCharge : 0 ) -
+                      parseInt(digitalDiscount ? digitalDiscount : 0)  -
                       offerDiscount.discountValue -
                       creditDiscountObj.amount -
                       couponDiscountObj.discountAmount}

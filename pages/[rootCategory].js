@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getSession } from 'next-auth/react';
 
 import { BASE_URL } from "../service/serviceConfig";
-import { getOffset, priceRangeOffset } from "../service/common-service/commonService";
+import { priceRangeOffset } from "../service/common-service/commonService";
 import LayoutProductList from "../components/shared/layout/LayoutProductList";
-// import { useRouter } from 'next/router'
 
-const RootCategory = ({ data }) => {
+const RootCategory = ({ data}) => {
   // const router = useRouter()
-  
   // useEffect(() => {
   //   console.log(getOffset(router))
   // }, [router.asPath])
-  
   return (
     <>
       {data.error ? (
@@ -28,42 +25,55 @@ const RootCategory = ({ data }) => {
 
 export default RootCategory;
 
+const getDeviceType = (userAgent) => {
+  if (/mobi/i.test(userAgent)) {
+    return 'mobile';
+  } else {
+    return 'desktop';
+  }
+};
+
 export async function getServerSideProps(context) {
   const session = await getSession( context );
-  const { params, query } = context;
-
+  const { params, query, req } = context;
   const headers = {
     'Content-Type': 'application/json',
     Authorization: 'Bearer ' + session?.token,
   }
-
   const priceOffset = priceRangeOffset(context);
+  const device = getDeviceType(req.headers['user-agent']);
+  
+
   const axiosRes = await axios
     .get(
-      ` ${BASE_URL}productByCatSubId?departmentId=${params.rootCategory}
-        &offset=${priceOffset}
-        &promoProduct=${query.promoProduct ? query.promoProduct : 1}
-        &attribute=
-        &tags=
-        &price=
-        &color=${query.color ? query.color : ""}
-        &fabric=${query.fabric ? query.fabric : ""}
-        &occasion=${query.occasion ? query.occasion : ""}
-        &price=${query.priceRange ? query.priceRange : ""}
-        &sizes=${query.size ? query.size : ""}
-        &pattern=${query.pattern ? query.pattern : ""}
-        &sorting=${query.order ? query.order : "DESC"}
+      `${BASE_URL}productList?departmentId=${params.rootCategory}
+      &offset=${priceOffset}
+      &attribute=
+      &tags=
+      &price=
+      &color=${query.color ? query.color : ""}
+      &fabric=${query.fabric ? query.fabric : ""}
+      &occasion=${query.occasion ? query.occasion : ""}
+      &price=${query.priceRange ? query.priceRange : ""}
+      &sizes=${query.size ? query.size : ""}
+      &pattern=${query.pattern ? query.pattern : ""}
+      &sorting=${query.order ? query.order : "DESC"}
+      &device=${device}
+      &styles=${query.styles ? query.styles : ""}
+      &bestSelling=${query.bestSelling ? query.bestSelling : ""}
+      &featured=${query.featured ? query.featured : ""}
+      &priceOrder=${query.priceOrder ? query.priceOrder : ""}
+      &page=${query.page || 1}
       `,
-      
       { headers }
     )
     .then((response) => {
-      return response.data.data;
+      return response.data;
     })
     .catch((error) => {
       let errObj = { error: true };
       return errObj;
     });
 
-  return { props: { data: axiosRes } };
+  return { props: { data: axiosRes }};
 }

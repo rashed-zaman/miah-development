@@ -75,7 +75,6 @@ export const useOrderSubmit = () => {
         // if stock erro found sent to shopping bag
         if (res.data.status === 1) {
           dispatch(repleaceBag(res.data.data));
-          console.log(res.data.data);
           router.push("/shopping-bag");
         }
       })

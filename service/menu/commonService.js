@@ -26,6 +26,10 @@ export default {
       const response = await axios.get(BASE_URL + api,  { headers });
       return response;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        location.href= "/"
+      }
       throw error;
     }
   },

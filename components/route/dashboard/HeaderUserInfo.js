@@ -30,7 +30,7 @@ export default function HeaderUserInfo() {
   };
 
   useEffect(() => {
-    getRewards();
+    userInfo.token && getRewards();
   }, []);
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 5,

@@ -103,7 +103,7 @@ export default function OrderSummary({
                   Shipping
                 </Grid>
                 <Grid item xs={6} className="text-right">
-                &#2547; {shippingCharge}
+                &#2547; {shippingCharge ? shippingCharge: 0}
                 </Grid>
               </Grid>
             </ListItem>
@@ -205,8 +205,8 @@ export default function OrderSummary({
                      <>
                       {totalAmount +
                         tax +
-                        parseInt(shippingCharge) -
-                        digitalDiscount -
+                        parseInt(shippingCharge ? shippingCharge : 0 ) -
+                        parseInt(digitalDiscount ? digitalDiscount : 0) -
                         offerDiscount.discountValue -
                         creditDiscountObj.amount -
                         couponDiscountObj.discountAmount}
@@ -217,8 +217,8 @@ export default function OrderSummary({
                   &#2547;{" "}
                     {totalAmount +
                       tax +
-                      parseInt(shippingCharge) -
-                      digitalDiscount -
+                      parseInt(shippingCharge ? shippingCharge : 0 ) -
+                      parseInt(digitalDiscount ? digitalDiscount : 0) -
                       offerDiscount.discountValue -
                       creditDiscountObj.amount -
                       couponDiscountObj.discountAmount}
@@ -228,9 +228,9 @@ export default function OrderSummary({
               </Grid>
             </ListItem>
         </List>
-      <OfferDiscount />
+      {/* <OfferDiscount /> */}
       <Box sx={{display:{xs:'none', sm:'block'}}}>
-        <CouponCard/>
+        {/* <CouponCard/> */}
       </Box>
    </>
   );

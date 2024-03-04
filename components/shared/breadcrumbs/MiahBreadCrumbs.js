@@ -2,23 +2,15 @@ import React, { useEffect, useState } from "react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Typography } from "@mui/material";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 
-// import HeadComponent from "../formUI/head/HeadComponent";
-const HeadComponent = dynamic(() => import("../formUI/head/HeadComponent"));
-
-export default function MiahBreadCrumbs({
-  type,
-  data,
-  setFilter,
-  setMobileFilter,
-}) {
-  // local state
+export default function MiahBreadCrumbs({ type, data }) {
+  // =========================== local state ===================
   const [breadCrumbs, setBreadCrumbs] = useState([]);
   const [title, setTitle] = useState("");
   const [structuredData, setstructuredData] = useState({});
-  // methods
+
+  // ========================= methods ========================
 
   const createBreadCumbs = () => {
     setBreadCrumbs([]);
@@ -66,10 +58,6 @@ export default function MiahBreadCrumbs({
     }
   };
 
-  function handleClick(event) {
-    event.preventDefault();
-    console.info("You clicked a breadcrumb.");
-  }
   const createBreadCrumbsSchena = () => {
     if (breadCrumbs.length > 0) {
       let itemList = [];
@@ -131,92 +119,6 @@ export default function MiahBreadCrumbs({
         )}
       </Breadcrumbs>
       <hr />
-      {title.length ? (
-        <div className="row">
-          <div className="col-12 col-lg-6">
-            <Typography
-              variant="h6"
-              gutterBottom
-              component="h1"
-              color="text.primary"
-              sx={{ marginTop: 1 }}
-            >
-              <b className="ps-shop__name">
-                {data.breadCam.body_title ? data.breadCam.body_title : "Title"}{" "}
-              </b>
-              <small
-                  style={{ fontSize: "14px", textTransform: "capitalize" }}
-                >
-                  ({data.totalRow} Products)
-                </small>
-              {/* {data.totalRow < 20 ? (
-                <small
-                  style={{ fontSize: "14px", textTransform: "capitalize" }}
-                >
-                  ({data.totalRow} Products)
-                </small>
-              ) : (
-                <small
-                  style={{ fontSize: "14px", textTransform: "capitalize" }}
-                >
-                  ({Math.floor(data.totalRow / 20) * 20} Products)
-                </small>
-              )} */}
-            </Typography>
-          </div>
-          <div className="col-12 col-lg-6">
-            <div
-              className="ps-wrapper--mobile"
-              onClick={() => setMobileFilter(true)}
-            >
-              <a className="ps-wrapper__action filter shop-filter">
-                <img
-                  className="icon-funnel"
-                  src="/img/icon/filter.svg"
-                  alt=""
-                />
-                Filters & Sort
-              </a>
-            </div>
-            <div className="ps-wrapper" style={{ display: "none" }}>
-              <div className="ps-wrapper__type"></div>
-              <div className="ps-wrapper__onsale"></div>
-              <div
-                className="ps-wrapper__show"
-                onClick={() => setMobileFilter(true)}
-              >
-                <a className="ps-wrapper__action filter shop-filter">
-                  <img
-                    className="icon-funnel mr-2"
-                    src="/img/icon/filter.svg"
-                    alt=""
-                  />
-                  Filters & Sort
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : // <Typography
-      //   variant="h6"
-      //   gutterBottom
-      //   component="h1"
-      //   color="text.primary"
-      //   sx={{marginTop: 1 }}
-      // >
-      //   <b className="ps-shop__name" >{title} </b>
-      //   {data.totalRow < 20 ? (
-      //     <small style={{ fontSize: "14px", textTransform: "capitalize" }}>
-      //       ({data.totalRow} Products)
-      //     </small>
-      //   ) : (
-      //     <small style={{ fontSize: "14px", textTransform: "capitalize" }}>
-      //       ({Math.floor(data.totalRow / 20) * 20} Products)
-      //     </small>
-      //   )}
-      // </Typography>
-
-      null}
     </>
   );
 }

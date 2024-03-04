@@ -6,8 +6,10 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import IconButton from "@mui/material/IconButton";
 import HeadComponent from "../formUI/head/HeadComponent";
 import DesktopFilter from "../filter/DesktopFilter";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { productListDatalayer } from "../../../service/data-layer-creator/dataLayerCreator";
+import FilterOptions from "../filter/FilterOptions";
+import FilterTopBar from "../filter/FilterTopBar";
 
 // import Breadcrumb from "../bread-crumbs/Breadcrumb";
 // import Filter from "../filter/Filter";
@@ -32,53 +34,80 @@ export default function LayoutProductList({ data, type }) {
   const router = useRouter();
 
   // ================= local state ============
-  
-  const [filter, setFilter] = useState(false);
+
+  const [filter, setFilter] = useState(true);
   const [mobileFilter, setMobileFilter] = useState(false);
-  
+  const [productLayoutClass, setProductLayoutClass] = useState(
+    "col-6 col-md-4 col-lg-3 px-1"
+  );
+
   // ================= side effects ============
   useEffect(() => {
-    productListDatalayer(data, type)
-  }, [data, type])
-  
+    productListDatalayer(data, type);
+  }, [data, type]);
+
   return (
     <>
       <HeadComponent data={data} />
       <div className="ps-shop ps-shop--grid">
         <ProductBanner data={data} />
         <div className="container product-container">
-          {data.product && (
-            <MiahBreadCrumbs
-              data={data}
-              type={type}
-              setMobileFilter={setMobileFilter}
-              setFilter={setFilter}
-            />
+          {data.product.data && (
+            <>
+              <MiahBreadCrumbs
+                data={data}
+                type={type}
+              />
+              <FilterTopBar
+                data={data}
+                setMobileFilter={setMobileFilter}
+                setFilter={setFilter}
+                filter={filter}
+                mobileFilter={mobileFilter}
+                setProductLayoutClass={setProductLayoutClass}
+              />
+            </>
           )}
-          <DesktopFilter data={data} setMobileFilter={setMobileFilter} />
-          <div
-            className="ps-shop__product"
-            style={{ width: filter ? "80%" : "100%" }}
-          >
-            <Box sx={{ padding: { xs: "0px 10px" } }}>
-              <div className="row">
-                {data.product ? (
-                  data.product.map((product, index) => {
-                    return (
-                      <div key={index} className="col-6 col-md-4 col-lg-3 px-1">
-                        <Product product={product} />
+
+          {/* <DesktopFilter data={data} setMobileFilter={setMobileFilter} /> */}
+
+          <Grid container spacing={2}>
+            <Grid
+              item
+              xs={12}
+              md={filter ? 3 : 0}
+              sx={{ display: { xs: "none", sm: filter ? "block" : "none" } }}
+            >
+              <FilterOptions
+                data={data}
+                type="mobile"
+                setMobileFilter={setMobileFilter}
+              />
+            </Grid>
+            <Grid item xs={12} md={filter ? 9 : 12}>
+              <div className="ps-shop__product">
+                <Box sx={{ padding: { xs: "0px 10px" } }}>
+                  <div className="row">
+                    {data.product.data ? (
+                      data.product.data.map((product, index) => {
+                        return (
+                          <div key={index} className={productLayoutClass}>
+                            <Product product={product} />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="col-12">
+                        <p>No Product Found</p>
                       </div>
-                    );
-                  })
-                ) : (
-                  <div className="col-12">
-                    <p>No Product Found</p>
+                    )}
                   </div>
-                )}
+                </Box>
               </div>
-            </Box>
-          </div>
-          <div
+            </Grid>
+          </Grid>
+
+          {/* <div
             className="product-filter-container"
             style={{ width: filter ? "20%" : "0" }}
           >
@@ -97,9 +126,9 @@ export default function LayoutProductList({ data, type }) {
                 </IconButton>
               </div>
             </div>
-            {/* <FilterOptions /> */}
-          </div>
-          {data.product && <ProductPagination products={data} />}
+            <FilterOptions />
+          </div> */}
+          {data.product.data && <ProductPagination products={data.product} />}
         </div>
       </div>
       <MobileFilter

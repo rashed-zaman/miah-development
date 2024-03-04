@@ -78,14 +78,14 @@ export default function AppliedFilter({
           {type === "mobile" && (
             <div className="row">
               <div className="col-6 text-center">
-              <p className="mb-0">
+              <p className="mb-0 pl-0">
                 <b>Applied filters</b>
               </p>
 
               </div>
-              <div className="col-6 text-center">
+              {/* <div className="col-6 text-center">
                 <small>Total Products ({data?.product.length})</small>
-              </div>
+              </div> */}
             </div>
           )}
           <Stack direction="row" spacing={1}>
