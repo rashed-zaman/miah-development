@@ -78,7 +78,9 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
         .postData("easyCheckoutOtpVerify", { phone: mobile, code: code })
         .then((res) => {
 
-          if (res.data.status) {
+          console.log(res);
+
+          if (res.data.status == true) {
             setBtnLoading(false);
             const { token } = res.data.data;
             if (token) {
@@ -94,6 +96,7 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
           } else{
             setErr(true)
           }
+
           setBtnLoading(false);
 
           // setIsOtpSent(true);

@@ -1,14 +1,12 @@
 import React from "react";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import Link from "next/link";
-
 
 // import HeaderRight from "./HeaderRight";
 
-const HeaderRight = dynamic(() => import("./HeaderRight"))
+const HeaderRight = dynamic(() => import("./HeaderRight"));
 
-export default function HeaderInner({menu}) {
-
+export default function HeaderInner({ menu }) {
   console.log(menu);
 
   return (
@@ -92,7 +90,7 @@ export default function HeaderInner({menu}) {
                 </li>
               );
             })}
-            {/* <li className="has-mega-menu">
+          {/* <li className="has-mega-menu">
               <Link href={ "/exclusive-trendz-product/festiveProduct"}>
                 <a>
                   Eid Collection
@@ -100,14 +98,11 @@ export default function HeaderInner({menu}) {
               </Link>
             </li> */}
 
-            <li className="has-mega-menu">
-              <Link href={ "/exclusive-trendz-product/saleableProduct"}>
-                <a>
-                  Sale
-                </a>
-              </Link>
-            </li>
-
+          <li className="has-mega-menu">
+            <Link href={"/exclusive-trendz-product/saleableProduct"}>
+              <a>Sale</a>
+            </Link>
+          </li>
         </ul>
       </div>
       <HeaderRight />

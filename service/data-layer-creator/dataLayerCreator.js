@@ -220,6 +220,7 @@ export const partialrefundDataLayer = (product) => {
     },
   });
 };
+
 export const removecartDataLayer = (item) => {
   window.dataLayer?.push({
     event: "removeFromCart",

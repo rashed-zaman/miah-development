@@ -25,10 +25,10 @@ export default function DesktopHeader() {
   const dispatch = useDispatch();
 
   // side effect
-  useEffect(() => {
-    dispatch(fetchStieOptions());
-    dispatch(fetchMenu());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchStieOptions());
+  //   dispatch(fetchMenu());
+  // }, []);
   
   return (
     <>

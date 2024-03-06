@@ -58,8 +58,12 @@ export default function ProductBanner({ data }) {
                 )}
               </div>
             </div>
-            
-            <Box component="section" className="category-slide px-3" sx={{ marginBottom:{xs:3}, marginTop:{xs:2} }}>
+
+            <Box
+              component="section"
+              className="category-slide px-3"
+              sx={{ marginBottom: { xs: 3 }, marginTop: { xs: 2 } }}
+            >
               <Slider {...settings}>
                 {subCategoryList.length > 0
                   ? subCategoryList.map((sub, index) => {

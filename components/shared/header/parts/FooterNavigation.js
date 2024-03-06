@@ -56,151 +56,216 @@ export default function FooterNavigation() {
   useEffect(() => {
     dispatch(fetchStieOptions());
     dispatch(fetchMenu());
-  }, [dispatch]);
+  }, []);
 
   // -------------------------
-      // const [show, setShow] = useState(true)
-      // const controlNavbar = () => {
-      //     if (window.scrollY>100) {
-      //         setShow(false)
-      //     } else {
-      //         setShow(true)
-      //     }
-      // }
+  // const [show, setShow] = useState(true)
+  // const controlNavbar = () => {
+  //     if (window.scrollY>100) {
+  //         setShow(false)
+  //     } else {
+  //         setShow(true)
+  //     }
+  // }
 
-      // useEffect(() => {
-      //     window.addEventListener('scroll', controlNavbar)
-      //     return () => {
-      //         window.removeEventListener('scroll', controlNavbar)
-      //     }
-      // }, [])
-      const [hState, sethState] = useState("bottom");
+  // useEffect(() => {
+  //     window.addEventListener('scroll', controlNavbar)
+  //     return () => {
+  //         window.removeEventListener('scroll', controlNavbar)
+  //     }
+  // }, [])
 
-      useEffect(() => {
-        var lastVal = 0;
-        window.onscroll = function () {
-          let y = window.scrollY;
-          if (y > lastVal) {
-            sethState("down");
-          }
-          if (y < lastVal) {
-            sethState("up");
-          }
-          if (y === 0) {
-            sethState("bottom");
-          }
-          lastVal = y;
-        };
-      }, []);
+  const [hState, sethState] = useState("bottom");
+
+  useEffect(() => {
+    var lastVal = 0;
+    window.onscroll = function () {
+      let y = window.scrollY;
+      if (y > lastVal) {
+        sethState("down");
+      }
+      if (y < lastVal) {
+        sethState("up");
+      }
+      if (y === 0) {
+        sethState("bottom");
+      }
+      lastVal = y;
+    };
+  }, []);
   // -------------------------
 
   return (
     <>
-      {route.asPath === ("/product/${product.slug}") ? (
-          <div className={`ps-navigation--footer ${hState}`}>
+      {route.asPath === "/product/${product.slug}" ? (
+        <div className={`ps-navigation--footer ${hState}`}>
           <div className="ps-nav__item" onClick={openDrawer}>
             <img src="/img/icon/menu.svg" alt="" />
             <a href="#" id="close-menu">
               <img src="/img/icon/close-red.svg" alt="" />
             </a>
-            <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Shop</span>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Shop
+            </span>
           </div>
           <div className="ps-nav__item">
             <Link href="/">
               <a>
-                <img src="/img/icon/home.png" alt=""/>
+                <img src="/img/icon/home.png" alt="" />
               </a>
             </Link>
-            <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Home</span>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Home
+            </span>
           </div>
           <div className="ps-nav__item" onClick={shoppingDialog}>
             <a>
               <img src="/img/icon/cart.png" alt="" />
               <span className="badge">{SgoppingBagLength}</span>
             </a>
-            <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Cart</span>
-          </div>        
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Cart
+            </span>
+          </div>
           <div className="ps-nav__item">
             <a>
               <img src="/img/icon/heart.svg" alt="" />
-  
+
               {userInfo.token ? (
                 <span className="badge">{wishLenght}</span>
               ) : (
                 <span className="badge">0</span>
               )}
             </a>
-            <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Wishlist</span>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Wishlist
+            </span>
           </div>
           {userInfo.token ? (
-                <div className="ps-nav__item">
-                 <Link href="/profile/account-information">
-                    <a>
-                      <img src="/img/icon/user.png" alt="" />
-                    </a>
-                  </Link>
-                  <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Me</span>
-                </div>
-            ) : (
-              <div className="ps-nav__item" onClick={mobileUserAccount}>
-                <img src="/img/icon/user.png" alt="" />
-                <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Me</span>
-              </div>
-          )}
-        </div>
-        ) : route.asPath === ("/checkout" ) ? null: (
-          <div className='ps-navigation--footer'>
-        <div className="ps-nav__item" onClick={openDrawer}>
-          <img src="/img/icon/menu.svg" alt="" />
-          <a href="#" id="close-menu">
-            <img src="/img/icon/close-red.svg" alt="" />
-          </a>
-          <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Shop</span>
-        </div>
-        <div className="ps-nav__item">
-          <Link href="/">
-            <a>
-              <img src="/img/icon/home.png" alt=""/>
-            </a>
-          </Link>
-          <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Home</span>
-        </div>
-        <div className="ps-nav__item" onClick={shoppingDialog}>
-          <a>
-            <img src="/img/icon/cart.png" alt="" />
-            <span className="badge">{SgoppingBagLength}</span>
-          </a>
-          <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Cart</span>
-        </div>        
-        <div className="ps-nav__item">
-          <a>
-            <img src="/img/icon/heart.svg" alt="" />
-
-            {userInfo.token ? (
-              <span className="badge">{wishLenght}</span>
-            ) : (
-              <span className="badge">0</span>
-            )}
-          </a>
-          <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Wishlist</span>
-        </div>
-        {userInfo.token ? (
-              <div className="ps-nav__item">
-               <Link href="/profile/account-information">
-                  <a>
-                    <img src="/img/icon/user.png" alt="" />
-                  </a>
-                </Link>
-                <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Me</span>
-              </div>
+            <div className="ps-nav__item">
+              <Link href="/profile/account-information">
+                <a>
+                  <img src="/img/icon/user.png" alt="" />
+                </a>
+              </Link>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "10px",
+                  color: "#00000094",
+                }}
+              >
+                Me
+              </span>
+            </div>
           ) : (
             <div className="ps-nav__item" onClick={mobileUserAccount}>
               <img src="/img/icon/user.png" alt="" />
-              <span style={{display:'block', fontSize:'10px',color:'#00000094'}}>Me</span>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "10px",
+                  color: "#00000094",
+                }}
+              >
+                Me
+              </span>
             </div>
-        )}
-      </div>
-        )}
+          )}
+        </div>
+      ) : route.asPath === "/checkout" ? null : (
+        <div className="ps-navigation--footer">
+          <div className="ps-nav__item" onClick={openDrawer}>
+            <img src="/img/icon/menu.svg" alt="" />
+            <a href="#" id="close-menu">
+              <img src="/img/icon/close-red.svg" alt="" />
+            </a>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Shop
+            </span>
+          </div>
+          <div className="ps-nav__item">
+            <Link href="/">
+              <a>
+                <img src="/img/icon/home.png" alt="" />
+              </a>
+            </Link>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Home
+            </span>
+          </div>
+          <div className="ps-nav__item" onClick={shoppingDialog}>
+            <a>
+              <img src="/img/icon/cart.png" alt="" />
+              <span className="badge">{SgoppingBagLength}</span>
+            </a>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Cart
+            </span>
+          </div>
+          <div className="ps-nav__item">
+            <a>
+              <img src="/img/icon/heart.svg" alt="" />
+
+              {userInfo.token ? (
+                <span className="badge">{wishLenght}</span>
+              ) : (
+                <span className="badge">0</span>
+              )}
+            </a>
+            <span
+              style={{ display: "block", fontSize: "10px", color: "#00000094" }}
+            >
+              Wishlist
+            </span>
+          </div>
+          {userInfo.token ? (
+            <div className="ps-nav__item">
+              <Link href="/profile/account-information">
+                <a>
+                  <img src="/img/icon/user.png" alt="" />
+                </a>
+              </Link>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "10px",
+                  color: "#00000094",
+                }}
+              >
+                Me
+              </span>
+            </div>
+          ) : (
+            <div className="ps-nav__item" onClick={mobileUserAccount}>
+              <img src="/img/icon/user.png" alt="" />
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "10px",
+                  color: "#00000094",
+                }}
+              >
+                Me
+              </span>
+            </div>
+          )}
+        </div>
+      )}
       {/* <div className={`ps-navigation--footer ${hState}`}>
         <div className="ps-nav__item" onClick={openDrawer}>
           <img src="/img/icon/menu.svg" alt="" />
