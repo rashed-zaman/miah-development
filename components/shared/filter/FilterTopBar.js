@@ -83,7 +83,7 @@ export default function FilterTopBar({
         goTourl("priceOrder=asc", "");
       }
     } else {
-      goTourl("");
+      goTourl("", "desc");
     }
   };
 

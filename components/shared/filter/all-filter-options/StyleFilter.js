@@ -25,6 +25,8 @@ export default function StyleFilter({
   // destructure props
   const { categoryList, subCategoryList } = data;
 
+  console.log(subCategoryList);
+
   // local state
   const [style, setStyle] = useState([]);
 
@@ -48,6 +50,8 @@ export default function StyleFilter({
 
   return (
     <>
+    {
+      categoryList.length > 0 &&
       <AccordionLayout title="Style" id="style-id">
         <Grid container spacing={1}>
           {categoryList.map((cat, index) => {
@@ -74,6 +78,7 @@ export default function StyleFilter({
             })} */}
         </Grid>
       </AccordionLayout>
+    }
     </>
   );
 }
