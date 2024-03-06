@@ -45,13 +45,13 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
     setIsOtpSent(false);
     setCode("");
     sentOtp();
-    setErr(false)
+    setErr(false);
   };
 
   // send opt
   const sentOtp = () => {
     setBtnLoading(true);
-    setErr(false)
+    setErr(false);
     axiosCredential.get("sanctum/csrf-cookie").then((res) => {
       commonService
         .postData("alienOtp", { phone: mobile })
@@ -77,25 +77,43 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
       commonService
         .postData("easyCheckoutOtpVerify", { phone: mobile, code: code })
         .then((res) => {
+          console.log(res.data);
 
-          console.log(res);
-
-          if (res.data.status == true) {
+          if (res.data.status == false) {
             setBtnLoading(false);
-            const { token } = res.data.data;
-            if (token) {
-              setCheckout(true);
-              dispatch(setUserInfo(res.data.data));
-            } else {
-              if (processType === "regular") {
-                setCheckout(true);
-              } else {
-                submitEasyCheckoutOrder();
-              }
-            }
-          } else{
             setErr(true)
+            return;
           }
+
+          if (res.data.data.response == "success") {
+            setCheckout(true);
+            dispatch(setUserInfo(res.data.data));
+          }
+
+          if (res.data.status) {
+            if (processType === "easy") {
+              submitEasyCheckoutOrder();
+            } else {
+              setCheckout(true);
+            }
+          }
+
+          // if (res.data.status == true) {
+          //   setBtnLoading(false);
+          //   const { token } = res.data.data;
+          //   if (token) {
+          //     setCheckout(true);
+          //     dispatch(setUserInfo(res.data.data));
+          //   } else {
+          //     if (processType === "regular") {
+          //       setCheckout(true);
+          //     } else {
+          //       submitEasyCheckoutOrder();
+          //     }
+          //   }
+          // } else{
+          //   setErr(true)
+          // }
 
           setBtnLoading(false);
 
@@ -141,11 +159,11 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
       .postData("easyCheckout", body)
       .then((res) => {
         if (res.data.status) {
-          setOpen(true)
-          setIsOtpSent(false)
-          setAddress("")
-          setMobile("")
-          setCode("")
+          setOpen(true);
+          setIsOtpSent(false);
+          setAddress("");
+          setMobile("");
+          setCode("");
         }
       })
       .catch((error) => {
