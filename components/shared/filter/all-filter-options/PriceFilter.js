@@ -16,6 +16,10 @@ export default function PriceFilter({
   comitedValue,
   type = { type },
   setMobileFilter,
+  bestSelling,
+  featured,
+  priceOrder,
+  style
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -32,7 +36,7 @@ export default function PriceFilter({
   const handleSliderCommitted = async (event, newValue) => {
     setComittedValue(newValue);
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&fabric=${fabric}&priceRange=${newValue}&order=${category}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&fabric=${fabric}&priceRange=${newValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
 

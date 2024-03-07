@@ -31,6 +31,10 @@ export default function ColorFilter({
   pattern,
   comitedValue,
   type,
+  bestSelling,
+  featured,
+  priceOrder,
+  style
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -42,7 +46,7 @@ export default function ColorFilter({
     setColor(e.target.value);
     dispatch(setColorFilter(e.target.value));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&occasion=${ocassion}&pattern=${pattern}&color=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&occasion=${ocassion}&pattern=${pattern}&color=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
   return (

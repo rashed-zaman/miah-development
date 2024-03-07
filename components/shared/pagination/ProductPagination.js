@@ -42,6 +42,12 @@ export default function ProductPagination({ products }) {
             router.query.fabric +
             "&order=" +
             router.query.order +
+            "&priceOrder=" +
+            router.query.priceOrder +
+            "&bestSelling=" +
+            router.query.bestSelling +
+            "&featured=" +
+            router.query.featured +
             "&styles=" + router.query.styles
         )
       : router.push(prevRoute[0] + "?page=" + value );

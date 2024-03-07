@@ -18,6 +18,11 @@ export default function StyleFilter({
   pattern,
   comitedValue,
   type,
+  bestSelling,
+  featured,
+  priceOrder,
+  style,
+  setStyle
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -27,9 +32,6 @@ export default function StyleFilter({
 
   console.log(subCategoryList);
 
-  // local state
-  const [style, setStyle] = useState([]);
-
   // methods
   const handleStyle = (slug) => {
     const isExist = style.find((item) => item === slug);
@@ -38,7 +40,7 @@ export default function StyleFilter({
       : [...style, slug];
 
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&size=${size}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&styles=${temStyle}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&size=${size}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&styles=${temStyle}&featured=${featured?featured: ""}&bestSelling${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}`;
     router.push(url);
 
     setStyle(temStyle);
@@ -50,22 +52,21 @@ export default function StyleFilter({
 
   return (
     <>
-    {
-      categoryList.length > 0 &&
-      <AccordionLayout title="Style" id="style-id">
-        <Grid container spacing={1}>
-          {categoryList.map((cat, index) => {
-            return (
-              <Grid xs={6} key={index} item>
-                <StyleFilterCard
-                  handleStyle={handleStyle}
-                  style={style}
-                  data={cat}
-                />
-              </Grid>
-            );
-          })}
-          {/* {categoryList.map((cat, index) => {
+      {categoryList.length > 0 && (
+        <AccordionLayout title="Style" id="style-id">
+          <Grid container spacing={1}>
+            {categoryList.map((cat, index) => {
+              return (
+                <Grid xs={6} key={index} item>
+                  <StyleFilterCard
+                    handleStyle={handleStyle}
+                    style={style}
+                    data={cat}
+                  />
+                </Grid>
+              );
+            })}
+            {/* {categoryList.map((cat, index) => {
                 return (
                 <Grid xs={6} key={index} item>
                     <StyleFilterCard
@@ -76,9 +77,9 @@ export default function StyleFilter({
                 </Grid>
                 );
             })} */}
-        </Grid>
-      </AccordionLayout>
-    }
+          </Grid>
+        </AccordionLayout>
+      )}
     </>
   );
 }

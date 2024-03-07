@@ -25,8 +25,11 @@ export default function SizeFilter({
   pattern,
   comitedValue,
   type,
+  bestSelling,
+  featured,
+  priceOrder,
+  style
 }) {
-  
   // =============== hooks ================
   const router = useRouter();
   const dispatch = useDispatch();
@@ -37,7 +40,7 @@ export default function SizeFilter({
     setSize(e.target.value);
     dispatch(setSizeFilter(e.target.value));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&size=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&size=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
 

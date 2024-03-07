@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Stack, Chip } from "@mui/material";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,12 +26,13 @@ export default function AppliedFilter({
   getRoute,
   pattern,
   type,
-  data
+  data,
 }) {
   // =============== hooks ================
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { query } = router;
   // ================ methods ============
 
   const removeColor = () => {
@@ -71,6 +72,20 @@ export default function AppliedFilter({
     const url = `${currentUrl}?filter=&occasion=${ocassion}&pattern=&color=${color}&fabric=&priceRange=${comitedValue}`;
     router.push(url);
   };
+
+  useEffect(() => {
+    dispatch(setColorFilter(""));
+    dispatch(setOccasionFilter(""));
+    dispatch(setFabricFilter(""));
+    dispatch(setPatternFilter(""));
+    dispatch(setSizeFilter(""));
+    setColor("");
+    setoccasion("");
+    setFabric("");
+    setPattern("");
+    setSize("");
+  }, [query.rootCategory, query.category, query.subCategory]);
+
   return (
     <>
       <Grid container spacing={2}>
@@ -78,10 +93,9 @@ export default function AppliedFilter({
           {type === "mobile" && (
             <div className="row">
               <div className="col-6 text-center">
-              <p className="mb-0 pl-0">
-                <b>Applied filters</b>
-              </p>
-
+                <p className="mb-0 pl-0">
+                  <b>Applied filters</b>
+                </p>
               </div>
               {/* <div className="col-6 text-center">
                 <small>Total Products ({data?.product.length})</small>

@@ -14,6 +14,8 @@ import StyleFilter from "./all-filter-options/StyleFilter";
 export default function FilterOptions({ data, type, setMobileFilter }) {
   // =============== hooks ================
   const router = useRouter();
+  const { query } = router;
+  const { bestSelling, featured, priceOrder } = query;
 
   // ==================== local state =============
   const [comitedValue, setComittedValue] = useState([
@@ -26,6 +28,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
   const [ocassion, setoccasion] = useState("");
   const [pattern, setPattern] = useState("");
   const [category, setCategory] = useState("");
+  const [style, setStyle] = useState([]);
 
   // ==================== methods =================
   const getRoute = () => {
@@ -71,8 +74,14 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         getRoute={getRoute}
         type={type}
         setMobileFilter={setMobileFilter}
+        query={query}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
+        setStyle={setStyle}
       />
-      
+
       <PriceFilter
         data={data}
         color={color}
@@ -85,6 +94,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         getRoute={getRoute}
         type={type}
         setMobileFilter={setMobileFilter}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <SizeFilter
@@ -99,6 +112,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setSize={setSize}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <ColorFilter
@@ -112,6 +129,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setColor={setColor}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <FabricFilter
@@ -125,6 +146,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setFabric={setFabric}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <OccasionFilter
@@ -138,6 +163,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setoccasion={setoccasion}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <PatternFilter
@@ -151,6 +180,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setPattern={setPattern}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
 
       <CategoryFilter
@@ -164,6 +197,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         setCategory={setCategory}
         getRoute={getRoute}
         type={type}
+        bestSelling={bestSelling}
+        featured={featured}
+        priceOrder={priceOrder}
+        style={style}
       />
       {type !== "mobile" && (
         <AppliedFilter

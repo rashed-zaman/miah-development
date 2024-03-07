@@ -3,6 +3,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import AppsIcon from '@mui/icons-material/Apps';
 
 const shortList = [
   { label: "Best Seller", val: "best" },
@@ -24,13 +25,14 @@ export default function FilterTopBar({
   // =============== hooks ================
   const router = useRouter();
 
+  console.log(router.query);
+
   // local state
   const [activeFilter, setActiveFilter] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [short, setShort] = useState(null);
 
   // methods
-
   const goTourl = (props, orderBy) => {
     const page = router.query.page ? router.query.page : "";
     const filter = router.query.filter ? router.query.filter : "";
@@ -39,16 +41,22 @@ export default function FilterTopBar({
     const fabric = router.query.fabric ? router.query.fabric : "";
     const order = router.query.order ? router.query.order : "";
     const styles = router.query.styles ? router.query.styles : "";
+    const priceRange = router.query.priceRange ? router.query.priceRange : "";
+    const size = router.query.size ? router.query.size : "";
 
     let prevRoute = router.asPath.split("?");
     router.asPath.indexOf("filter") !== -1
       ? router.push(
           prevRoute[0] +
             "?page=" +
-            page +
+            1 +
             "&filter=" +
             filter +
             // "&promoProduct=0" +
+            "&size=" +
+            size +
+            "&priceRange=" +
+            priceRange +
             "&occasion=" +
             occasion +
             "&color=" +
@@ -62,7 +70,7 @@ export default function FilterTopBar({
             "&" +
             props
         )
-      : router.push(prevRoute[0] + "?" + props);
+      : router.push(prevRoute[0] + "?page=&filter=" + props);
   };
 
   const handlefilter = (id, className) => {
@@ -74,13 +82,13 @@ export default function FilterTopBar({
     setShort(value);
     if (value !== null) {
       if (value.val == "best") {
-        goTourl("bestSelling=1", "");
+        goTourl("bestSelling=1&featured=", "");
       } else if (value.val == "feat") {
-        goTourl("featured=1", "");
+        goTourl("featured=&bestSelling=1", "");
       } else if (value.val == "high") {
-        goTourl("priceOrder=desc", "");
+        goTourl("priceOrder=desc&featured=&bestSelling=", "");
       } else if (value.val == "low") {
-        goTourl("priceOrder=asc", "");
+        goTourl("priceOrder=asc&featured=&bestSelling=", "");
       }
     } else {
       goTourl("", "desc");
@@ -162,15 +170,16 @@ export default function FilterTopBar({
         <div className="text-center pt-1">
           <img
             src="/img/filter-icon-one.svg"
-            width={20}
-            height={20}
+            width={21}
+            height={22}
             alt="filter two grid"
             style={{ opacity: activeFilter === 2 ? "1" : "0.3" }}
             className="mx-3 mt-2 cursor-pointer"
             onClick={() => handlefilter(2, "col-6  px-1")}
           />
+          <AppsIcon fontSize="large" sx={{marginTop:'7px'}} color={activeFilter == 2 ? "disabled" : ""}  onClick={() => handlefilter(1, "col-6 col-md-4 col-lg-3 px-1")} />
 
-          <img
+          {/* <img
             src="/img/filter-icon.svg"
             width={20}
             height={20}
@@ -178,7 +187,7 @@ export default function FilterTopBar({
             style={{ opacity: activeFilter === 1 ? "1" : "0.3" }}
             className="mx-2 mt-2 cursor-pointer"
             onClick={() => handlefilter(1, "col-6 col-md-4 col-lg-3 px-1")}
-          />
+          /> */}
         </div>
       </Grid>
       <Grid item xs={3} sx={{ display: { sm: "block", xs: "none" } }}>
