@@ -3,7 +3,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import AppsIcon from '@mui/icons-material/Apps';
+import AppsIcon from "@mui/icons-material/Apps";
 
 const shortList = [
   { label: "Best Seller", val: "best" },
@@ -24,8 +24,25 @@ export default function FilterTopBar({
 }) {
   // =============== hooks ================
   const router = useRouter();
+  const prevRoute = router.asPath.split("?");
+  const { query } = router;
+  const { occasion, pattern, color, fabric, styles, priceRange, size } = query;
 
-  console.log(router.query);
+  const oldFilterUrl = `?page=1&filter=&size=${size ? size : ""}&priceRange=${
+    priceRange ? priceRange : ""
+  }&occasion=${occasion ? occasion : ""}&color=${color ? color : ""}
+&fabric=${fabric ? fabric : ""}&order=&styles=${styles ? styles : ""}&pattern=${
+    pattern ? pattern : ""
+  }`;
+
+  const getRoute = () => {
+    if (router.asPath.indexOf("?") != -1) {
+      let prevRoute = router.asPath.split("?");
+      return prevRoute[0] + oldFilterUrl;
+    } else {
+      return prevRoute[0] + "?page=1&filter=";
+    }
+  };
 
   // local state
   const [activeFilter, setActiveFilter] = useState(1);
@@ -33,46 +50,6 @@ export default function FilterTopBar({
   const [short, setShort] = useState(null);
 
   // methods
-  const goTourl = (props, orderBy) => {
-    const page = router.query.page ? router.query.page : "";
-    const filter = router.query.filter ? router.query.filter : "";
-    const occasion = router.query.occasion ? router.query.occasion : "";
-    const color = router.query.color ? router.query.color : "";
-    const fabric = router.query.fabric ? router.query.fabric : "";
-    const order = router.query.order ? router.query.order : "";
-    const styles = router.query.styles ? router.query.styles : "";
-    const priceRange = router.query.priceRange ? router.query.priceRange : "";
-    const size = router.query.size ? router.query.size : "";
-
-    let prevRoute = router.asPath.split("?");
-    router.asPath.indexOf("filter") !== -1
-      ? router.push(
-          prevRoute[0] +
-            "?page=" +
-            1 +
-            "&filter=" +
-            filter +
-            // "&promoProduct=0" +
-            "&size=" +
-            size +
-            "&priceRange=" +
-            priceRange +
-            "&occasion=" +
-            occasion +
-            "&color=" +
-            color +
-            "&fabric=" +
-            fabric +
-            "&order=" +
-            orderBy +
-            "&styles=" +
-            styles +
-            "&" +
-            props
-        )
-      : router.push(prevRoute[0] + "?page=&filter=" + props);
-  };
-
   const handlefilter = (id, className) => {
     setActiveFilter(id);
     setProductLayoutClass(className);
@@ -80,18 +57,19 @@ export default function FilterTopBar({
 
   const handleShort = (e, value) => {
     setShort(value);
-    if (value !== null) {
-      if (value.val == "best") {
-        goTourl("bestSelling=1&featured=", "");
-      } else if (value.val == "feat") {
-        goTourl("featured=&bestSelling=1", "");
-      } else if (value.val == "high") {
-        goTourl("priceOrder=desc&featured=&bestSelling=", "");
-      } else if (value.val == "low") {
-        goTourl("priceOrder=asc&featured=&bestSelling=", "");
-      }
-    } else {
-      goTourl("", "desc");
+    const url = getRoute();
+    console.log(url);
+    if (value !== null && value.val == "best") {
+      router.push(url + "&bestSelling=1&featured=&priceOrder=");
+    } else if (value !== null && value.val == "feat") {
+      router.push(url + "&bestSelling=&featured=1&priceOrder=");
+    } else if (value !== null && value.val == "high") {
+      router.push(url + "&bestSelling=&featured=&priceOrder=desc");
+    } else if (value !== null && value.val == "low") {
+      router.push(url + "&bestSelling=&featured=&priceOrder=asc");
+    }
+    if (value == null) {
+      router.push(url + "&bestSelling=&featured=&priceOrder=");
     }
   };
 
@@ -177,7 +155,12 @@ export default function FilterTopBar({
             className="mx-3 mt-2 cursor-pointer"
             onClick={() => handlefilter(2, "col-6  px-1")}
           />
-          <AppsIcon fontSize="large" sx={{marginTop:'7px'}} color={activeFilter == 2 ? "disabled" : ""}  onClick={() => handlefilter(1, "col-6 col-md-4 col-lg-3 px-1")} />
+          <AppsIcon
+            fontSize="large"
+            sx={{ marginTop: "7px" }}
+            color={activeFilter == 2 ? "disabled" : ""}
+            onClick={() => handlefilter(1, "col-6 col-md-4 col-lg-3 px-1")}
+          />
 
           {/* <img
             src="/img/filter-icon.svg"

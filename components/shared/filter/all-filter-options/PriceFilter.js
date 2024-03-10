@@ -19,7 +19,7 @@ export default function PriceFilter({
   bestSelling,
   featured,
   priceOrder,
-  style
+  style,
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -36,7 +36,11 @@ export default function PriceFilter({
   const handleSliderCommitted = async (event, newValue) => {
     setComittedValue(newValue);
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&fabric=${fabric}&priceRange=${newValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${pattern}&occasion=${ocassion}&color=${color}&fabric=${fabric}&priceRange=${newValue}&order=${category}&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
 
@@ -96,17 +100,17 @@ export default function PriceFilter({
               }}
             >
               <div className="px-2">
-              <Slider
-                getAriaLabel={() => "Price range"}
-                size="small"
-                step={10}
-                value={value}
-                min={minValue}
-                max={maxValue}
-                onChange={handleChange}
-                onChangeCommitted={handleSliderCommitted}
-                valueLabelDisplay="auto"
-              />
+                <Slider
+                  getAriaLabel={() => "Price range"}
+                  size="small"
+                  step={10}
+                  value={value}
+                  min={minValue}
+                  max={maxValue}
+                  onChange={handleChange}
+                  onChangeCommitted={handleSliderCommitted}
+                  valueLabelDisplay="auto"
+                />
               </div>
               <div className="row">
                 <div className="col-6 text-left">{comitedValue[0]} TK</div>

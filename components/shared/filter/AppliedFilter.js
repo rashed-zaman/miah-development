@@ -27,6 +27,10 @@ export default function AppliedFilter({
   pattern,
   type,
   data,
+  bestSelling,
+  featured,
+  priceOrder,
+  style,
 }) {
   // =============== hooks ================
   const filter = useSelector((state) => state.filter);
@@ -39,7 +43,11 @@ export default function AppliedFilter({
     setColor("");
     dispatch(setColorFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${""}&fabric=${fabric}&priceRange=${comitedValue}`;
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${""}&fabric=${fabric}&pattern=${pattern}&priceRange=${comitedValue}&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
 
@@ -47,7 +55,11 @@ export default function AppliedFilter({
     setoccasion("");
     dispatch(setOccasionFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=&color=${color}&fabric=${fabric}&priceRange=${comitedValue}`;
+    const url = `${currentUrl}?filter=&occasion=&color=${color}&fabric=${fabric}&priceRange=${comitedValue}&pattern=${pattern}&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
 
@@ -55,21 +67,33 @@ export default function AppliedFilter({
     setFabric("");
     dispatch(setFabricFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&fabric=&priceRange=${comitedValue}`;
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&fabric=&priceRange=${comitedValue}&pattern=${pattern}&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
   const removePattern = () => {
     setPattern("");
     dispatch(setPatternFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&pattern=&color=${color}&fabric=&priceRange=${comitedValue}`;
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&fabric=&priceRange=${comitedValue}&pattern=&order=&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
   const removeSize = () => {
     setSize("");
     dispatch(setSizeFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&pattern=&color=${color}&fabric=&priceRange=${comitedValue}`;
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&order=&size=&fabric=&priceRange=${comitedValue}&pattern=${pattern}&featured=${
+      featured ? featured : ""
+    }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
+      priceOrder ? priceOrder : ""
+    }&styles=${style ? style : ""}`;
     router.push(url);
   };
 

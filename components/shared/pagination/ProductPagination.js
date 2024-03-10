@@ -60,7 +60,7 @@ export default function ProductPagination({ products }) {
 
   // ================== side effect ==========
   useEffect(() => {
-    router.query.page >1
+    router.query.page > 1
       ? setPage(Number(router.query.page))
       : setPage(1);
   }, [router.query]);

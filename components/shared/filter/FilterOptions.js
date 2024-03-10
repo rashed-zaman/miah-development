@@ -58,6 +58,10 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
           getRoute={getRoute}
           type={type}
           data={data}
+          bestSelling={bestSelling}
+          featured={featured}
+          priceOrder={priceOrder}
+          style={style}
         />
       )}
 
