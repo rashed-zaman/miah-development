@@ -24,7 +24,7 @@ const initVal = {
   billing_region_id: 2,
   billing_city_id: 59,
   billing_area_id: 1260,
-  billing_zip_code: '',
+  billing_zip_code: "",
   status: 0,
 };
 
@@ -34,7 +34,7 @@ const shipptininitVal = {
   shipping_region_id: 2,
   shipping_city_id: 59,
   shipping_area_id: 1260,
-  shipping_zip_code: '',
+  shipping_zip_code: "",
   status: 0,
 };
 
@@ -119,9 +119,12 @@ export const fetchDefaultAddress = (token) => {
           addressData.billing.billing = billing;
           addressData.shipping.shipping = shipping;
 
-          const defaultBilling = billing.find((item) => parseInt(item.status) === 1);
-          const defaultShipping = shipping.find((item) => parseInt(item.status) === 1);
-
+          const defaultBilling = billing.find(
+            (item) => parseInt(item.status) === 1
+          );
+          const defaultShipping = shipping.find(
+            (item) => parseInt(item.status) === 1
+          );
 
           if (defaultBilling) {
             addressData.billing.defaultBilling = defaultBilling;
@@ -129,12 +132,15 @@ export const fetchDefaultAddress = (token) => {
             const billingDivision = state.checkout.locations.find(
               (item) => item.id === defaultBilling.billing_region_id
             );
+            console.log({ billingDivision });
             const billingCity = billingDivision?.city?.find(
               (item) => item.id === defaultBilling.billing_city_id
             );
+            console.log({ billingCity });
             const billingArea = billingCity.area.find(
               (item) => item.id === defaultBilling.billing_area_id
             );
+            console.log({ billingArea });
 
             addressData.billing.billingDivision = billingDivision;
             addressData.billing.billingCity = billingCity;
@@ -246,7 +252,7 @@ export const getBillingAddress = (address) => {
       billingArea: billingArea,
       address: address.billing_address,
       zipcode: address.billing_zip_code,
-      addNewBilling: address.billing_address == 'Add New' ? true : false,
+      addNewBilling: address.billing_address == "Add New" ? true : false,
     };
     dispatch(setBillingAddress(data));
   };
@@ -284,13 +290,14 @@ export const getShippingAddress = (address) => {
       shippingDivision: shippingDivision,
       shippingCity: shippingCity,
       shippingArea: shippingArea,
-      first_name:address.first_name ? address.first_name : '',
-      last_name:address.last_name ? address.last_name : '',
-      address: address.shipping_address === 'Add New' ? '' : address.shipping_address,
-      zipcode: address.shipping_zip_code ? address.shipping_zip_code : '',
-      email: address.email ? address.email : '',
-      phone: address.contact ? address.contact : '',
-      addNewShipping: address.shipping_address === 'Add New' ? true: false,
+      first_name: address.first_name ? address.first_name : "",
+      last_name: address.last_name ? address.last_name : "",
+      address:
+        address.shipping_address === "Add New" ? "" : address.shipping_address,
+      zipcode: address.shipping_zip_code ? address.shipping_zip_code : "",
+      email: address.email ? address.email : "",
+      phone: address.contact ? address.contact : "",
+      addNewShipping: address.shipping_address === "Add New" ? true : false,
     };
     // console.log({address, data});
     dispatch(setShippingAddress(data));

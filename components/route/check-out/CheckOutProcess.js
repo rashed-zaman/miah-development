@@ -13,6 +13,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { repleaceBag } from "../../../redux/shoppingBag/shoppingBagActions";
 
 export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
   // hooks
@@ -77,7 +78,6 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
       commonService
         .postData("easyCheckoutOtpVerify", { phone: mobile, code: code })
         .then((res) => {
-          console.log(res.data);
 
           if (res.data.status == false) {
             setBtnLoading(false);
@@ -153,13 +153,14 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
       name: name,
       mobile: mobile,
       address: address,
-      cart: toString(shoppingBag),
+      cart: JSON.stringify(shoppingBag),
     };
     commonService
       .postData("easyCheckout", body)
       .then((res) => {
         if (res.data.status) {
-          setOpen(true);
+          // setOpen(true);
+          router.push("/easy-checkout")
           setIsOtpSent(false);
           setAddress("");
           setMobile("");
@@ -172,14 +173,12 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
   };
 
   // side effect
-
   useEffect(() => {
     setNewUserMobile(mobile);
   }, [mobile]);
 
   return (
     <>
-      {/* <button onClick={submitEasyCheckoutOurder}>Submit Order</button> */}
       {processType === "regular" ? (
         <RegularProcess
           setProcesstype={setProcesstype}

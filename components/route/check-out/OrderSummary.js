@@ -146,7 +146,7 @@ export default function OrderSummary({
                   </Grid>
                 </Grid>
               </ListItem>
-            ) :null }
+            ) : null }
             {creditDiscountObj.amount > 0 ? (
               <>
                 <Divider />
@@ -177,7 +177,7 @@ export default function OrderSummary({
               </ListItem>
             ) : null}
 
-            {digitalDiscount > 0 ? (
+            { digitalDiscount > 0 ? (
               <ListItem sx={{pb:{xs:'0', sm:'8px'}, pt:{xs:'0', sm:'8px'}}}>
                 <Grid container spacing={0}>
                   <Grid item xs={6}>
@@ -228,9 +228,9 @@ export default function OrderSummary({
               </Grid>
             </ListItem>
         </List>
-      {/* <OfferDiscount /> */}
+      <OfferDiscount />
       <Box sx={{display:{xs:'none', sm:'block'}}}>
-        {/* <CouponCard/> */}
+        <CouponCard/>
       </Box>
    </>
   );

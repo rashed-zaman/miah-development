@@ -7,8 +7,6 @@ import Link from "next/link";
 const HeaderRight = dynamic(() => import("./HeaderRight"));
 
 export default function HeaderInner({ menu }) {
-  console.log(menu);
-
   return (
     <div className="ps-header__inner">
       <div className="ps-header__left">
@@ -90,19 +88,17 @@ export default function HeaderInner({ menu }) {
                 </li>
               );
             })}
-          {/* <li className="has-mega-menu">
-              <Link href={ "/exclusive-trendz-product/festiveProduct"}>
-                <a>
-                  Eid Collection
-                </a>
-              </Link>
-            </li> */}
-
           <li className="has-mega-menu">
+            <Link href={"/exclusive-trendz-product/festiveProduct"}>
+              <a>Eid Collection</a>
+            </Link>
+          </li>
+
+          {/* <li className="has-mega-menu">
             <Link href={"/exclusive-trendz-product/saleableProduct"}>
               <a>Sale</a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       <HeaderRight />

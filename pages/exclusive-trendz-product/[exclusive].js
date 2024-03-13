@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getSession } from 'next-auth/react';
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import { BASE_URL } from "../../service/serviceConfig";
 import Product from "../../components/core/product/Product";
@@ -9,8 +9,7 @@ import commonService from "../../service/menu/commonService";
 import ProductPagination from "../../components/shared/pagination/ProductPagination";
 import { priceRangeOffset } from "../../service/common-service/commonService";
 
-export default function ExclusiveProduct({ data,title}) {
-
+export default function ExclusiveProduct({ data, title }) {
   return (
     <>
       <Head>
@@ -19,6 +18,15 @@ export default function ExclusiveProduct({ data,title}) {
       </Head>
       <div className="ps-shop ps-shop--grid">
         <div className="container product-container">
+          {title === "Eid Collection" && (
+            <div className="col-md-12 px-0">
+              <img
+                src="https://d25xyv9ldicae3.cloudfront.net/media/home/eid-banner.jpg"
+                alt="eid collection"
+                width="100%"
+              />
+            </div>
+          )}
           <h3 className="ps-shop__name mt-4">{title}</h3>
           <hr />
           <div className="ps-shop__product">
@@ -40,7 +48,7 @@ export default function ExclusiveProduct({ data,title}) {
               </div>
             </Box>
           </div>
-        {data.product && <ProductPagination products={data} />}
+          {data.product && <ProductPagination products={data} />}
         </div>
       </div>
     </>
@@ -74,7 +82,9 @@ export async function getServerSideProps(context) {
   }
   const axiosRes = await axios
     .get(
-      `https://api.miah.shop/api/productByCatSubId?${params.exclusive}=1&offset=${priceOffset}&sorting=${query.order ? query.order :"ASC"}
+      `https://api.miah.shop/api/productByCatSubId?${
+        params.exclusive
+      }=1&offset=${priceOffset}&sorting=${query.order ? query.order : "DESC"}
       &promoProduct=${query.promoProduct ? query.promoProduct : 0}
       `,
       { headers }
@@ -88,4 +98,3 @@ export async function getServerSideProps(context) {
     });
   return { props: { data: axiosRes, title: title } };
 }
-

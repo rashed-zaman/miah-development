@@ -14,10 +14,9 @@ import { setCoupon, setCredit } from "../../../redux/checkout/checkoutActions";
 import Chip from "@mui/material/Chip";
 import { useEffect } from "react";
 import { axiosCredential } from "../../../service/serviceConfig";
-import LoyaltyIcon from '@mui/icons-material/Loyalty';
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
+import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import { Button } from "@mui/material";
-
 
 export default function CouponCard() {
   // =============hooks===============
@@ -43,7 +42,7 @@ export default function CouponCard() {
       setCoupon({
         code: "",
         discountAmount: 0,
-      }) 
+      })
     );
     setCouponError("");
   };
@@ -128,7 +127,7 @@ export default function CouponCard() {
         .catch((error) => {
           console.log(error);
         });
-    })
+    });
   };
 
   const getRewards = () => {
@@ -154,57 +153,75 @@ export default function CouponCard() {
   }, []);
   return (
     <>
-     <Box sx={{boxShadow:{sm:'none', xs:'0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)'}, p:{xs:1,sm:'none', borderRadius:{sm:'none',xs:'5px'}}}}>
-        <Accordion sx={{boxShadow:'none',"& .Mui-expanded":{
-          margin:'0px 0'
-        },"& .MuiAccordion-root.Mui-expanded": {
-          m:0,
-          minHeight:'62px'
-        }}}>
+      <Box
+        sx={{
+          boxShadow: {
+            sm: "none",
+            xs: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+          },
+          p: { xs: 1, sm: "none", borderRadius: { sm: "none", xs: "5px" } },
+        }}
+      >
+        <Accordion
+          sx={{
+            boxShadow: "none",
+            "& .Mui-expanded": {
+              margin: "0px 0",
+            },
+            "& .MuiAccordion-root.Mui-expanded": {
+              m: 0,
+              minHeight: "62px",
+            },
+          }}
+        >
           <AccordionSummary
             // expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
-            sx={{minHeight:21,"& .MuiAccordionSummary-contentGutters" :{
-              margin:'0px 0' 
-            },'& .Mui-expanded':{
-              margin:'0px 0 !important' 
-            }}}
-          >  
-            <small style={{ margin: "0px"}} >
+            sx={{
+              minHeight: 21,
+              "& .MuiAccordionSummary-contentGutters": {
+                margin: "0px 0",
+              },
+              "& .Mui-expanded": {
+                margin: "0px 0 !important",
+              },
+            }}
+          >
+            <small style={{ margin: "0px" }}>
               {/* Apply Points/Credits/Gift Card */}
               <Grid item xs={12} sm={12}>
-                <LoyaltyIcon/>
-                 Have a cupon?
+                <LoyaltyIcon />
+                <span style={{ fontSize: "1rem", marginLeft: 5 }}>Have a cupon?</span>
               </Grid>
             </small>
           </AccordionSummary>
-          <AccordionDetails sx={{padding:'0 16px 0'}}>
-            <Box sx={{border: 'none', margin: "0px"}}>
-                <b>
-                  <small>Coupon</small>
-                </b>
-              <p style={{ margin: "0px", marginBottom: "0px" }}>
-              </p>
+          <AccordionDetails sx={{ padding: "0 16px 0" }}>
+            <Box sx={{ border: "none", margin: "0px" }}>
+              <b>
+                <small>Coupon</small>
+              </b>
+              <p style={{ margin: "0px", marginBottom: "0px" }}></p>
               <Grid container justifyContent="center" spacing={1}>
-                  <Grid item xs={12} sm={9}>
-                    <TextField
-                      value={couponCode}
-                      onChange={handleOnChange}
-                      fullWidth
-                      size="small"
-                      label="Enter Coupon"
-                      variant="outlined"
-                    />
-                    <div>
-                      <p className="textCenter text-danger">{couponError}</p>
-                    </div>
-                  </Grid>
-                  <Grid item xs={12} sm={3}>
-                    
-                    <MiahCupponButton methodFromParent={submitCoupon}>Submit</MiahCupponButton>
-                    {/* <Button variant="contained" methodFromParent={submitCoupon}>Submit</Button> */}
-                  </Grid>
+                <Grid item xs={12} sm={9}>
+                  <TextField
+                    value={couponCode}
+                    onChange={handleOnChange}
+                    fullWidth
+                    size="small"
+                    label="Enter Coupon"
+                    variant="outlined"
+                  />
+                  <div>
+                    <p className="textCenter text-danger">{couponError}</p>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <MiahCupponButton methodFromParent={submitCoupon}>
+                    Submit
+                  </MiahCupponButton>
+                  {/* <Button variant="contained" methodFromParent={submitCoupon}>Submit</Button> */}
+                </Grid>
                 <Grid item xs={12} sm={6}>
                   {couponDiscountObj.code.length ? (
                     <Chip
@@ -217,30 +234,40 @@ export default function CouponCard() {
             </Box>
           </AccordionDetails>
         </Accordion>
-          {
-            userInfo.token?(
-              <Accordion sx={{boxShadow:'none', '&:before': {
-                display: 'none',
-            }, "& .Mui-expanded":{
-              margin:'0px 0'
-            },"& .MuiAccordion-root.Mui-expanded": {
-              m:0,
-              minHeight:'62px'
-            }}} >
+        {userInfo.token ? (
+          <Accordion
+            sx={{
+              boxShadow: "none",
+              "&:before": {
+                display: "none",
+              },
+              "& .Mui-expanded": {
+                margin: "0px 0",
+              },
+              "& .MuiAccordion-root.Mui-expanded": {
+                m: 0,
+                minHeight: "62px",
+              },
+            }}
+          >
             <AccordionSummary
               // expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{minHeight:21,"& .MuiAccordionSummary-contentGutters" :{
-                margin:'0px 0' 
-              },'& .Mui-expanded':{
-                margin:'0px 0 !important' 
-              }}}
+              sx={{
+                minHeight: 21,
+                "& .MuiAccordionSummary-contentGutters": {
+                  margin: "0px 0",
+                },
+                "& .Mui-expanded": {
+                  margin: "0px 0 !important",
+                },
+              }}
             >
               <small style={{ margin: "0px" }}>
                 <Grid item xs={12} sm={12}>
-                  <CreditScoreIcon/>
-                 Apply your credit?
+                  <CreditScoreIcon />
+                  <span style={{ fontSize: "1rem",  marginLeft: 5  }}>Apply your credit?</span>
                 </Grid>
               </small>
             </AccordionSummary>
@@ -267,7 +294,9 @@ export default function CouponCard() {
                     </div>
                   </Grid>
                   <Grid item xs={12} sm={5}>
-                    <MiahCupponButton methodFromParent={submitCredit}>Apply Credit</MiahCupponButton>
+                    <MiahCupponButton methodFromParent={submitCredit}>
+                      Apply Credit
+                    </MiahCupponButton>
                     {/* <MiahCupponButton methodFromParent={submitCredit}>Apply Credit</MiahCupponButton> */}
                     {/* <MiahButton methodFromParent={submitCredit}>
                       Apply Credit
@@ -289,9 +318,8 @@ export default function CouponCard() {
               </Box>
             </AccordionDetails>
           </Accordion>
-            ):null
-          }
-     </Box>
+        ) : null}
+      </Box>
     </>
   );
 }

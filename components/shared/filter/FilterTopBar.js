@@ -1,9 +1,9 @@
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import AppsIcon from "@mui/icons-material/Apps";
+import ProductSort from "./sort-options/ProductSort";
 
 const shortList = [
   { label: "Best Seller", val: "best" },
@@ -171,10 +171,12 @@ export default function FilterTopBar({
             className="mx-2 mt-2 cursor-pointer"
             onClick={() => handlefilter(1, "col-6 col-md-4 col-lg-3 px-1")}
           /> */}
+          
         </div>
       </Grid>
       <Grid item xs={3} sx={{ display: { sm: "block", xs: "none" } }}>
-        <Autocomplete
+        <ProductSort />
+        {/* <Autocomplete
           value={short}
           onChange={(event, newValue) => handleShort(event, newValue)}
           inputValue={inputValue}
@@ -185,8 +187,8 @@ export default function FilterTopBar({
           id="combo-box-demo"
           options={shortList}
           size="small"
-          renderInput={(params) => <TextField {...params} label="Short By" />}
-        />
+          renderInput={(params) => <TextField {...params} label="Sort By" />}
+        /> */}
       </Grid>
       <Grid item xs={12}>
         <hr />

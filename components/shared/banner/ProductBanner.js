@@ -6,17 +6,43 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 
-const settings = {
-  arrows: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  variableWidth: true,
-};
-
 export default function ProductBanner({ data }) {
   const { categoryList, subCategoryList } = data;
   const router = useRouter();
+
+  const numberOfSlideToShow = () => {
+    if (subCategoryList.length > 0) {
+      if (subCategoryList.length == 1) {
+        return 1;
+      }
+      if (subCategoryList.length == 2) {
+        return 2;
+      }
+      if (subCategoryList.length > 2) {
+        return 3;
+      }
+    } else if (categoryList.length ) {
+      if (categoryList.length == 1) {
+        return 1;
+      }
+      if (categoryList.length == 2) {
+        return 2;
+      }
+      if (categoryList.length > 2) {
+        return 3;
+      }
+    } else{
+      return 3
+    }
+  };
+
+  const settings = {
+    arrows: true,
+    speed: 500,
+    slidesToShow: numberOfSlideToShow(),
+    slidesToScroll: 1,
+    variableWidth: true,
+  };
 
   const { category, rootCategory, subCategory } = router.query;
 

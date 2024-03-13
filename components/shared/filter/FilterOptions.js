@@ -10,6 +10,8 @@ import AppliedFilter from "./AppliedFilter";
 import SizeFilter from "./all-filter-options/SizeFilter";
 import PatternFilter from "./all-filter-options/PatternFilter";
 import StyleFilter from "./all-filter-options/StyleFilter";
+import ProductSort from "./sort-options/ProductSort";
+import { Box } from "@mui/material";
 
 export default function FilterOptions({ data, type, setMobileFilter }) {
   // =============== hooks ================
@@ -64,6 +66,16 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
           style={style}
         />
       )}
+
+      <Box
+        sx={{
+          display: {
+            sm: "none",
+          },
+        }}
+      >
+        <ProductSort type={"mobile"} />
+      </Box>
 
       <StyleFilter
         data={data}

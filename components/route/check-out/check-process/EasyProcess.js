@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { Button, CircularProgress, IconButton, Grid } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  IconButton,
+  Grid,
+  Typography,
+} from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -69,10 +75,16 @@ export default function EasyProcess({
           <hr />
           <Grid container spacing={2}>
             <Grid item sm={6}>
-              <h3>Choose How You Would Like To Checkout</h3>
-              <p className="mb-0">
+              <Typography variant="h5" component="h5" className="mb-1">
+                Choose How You Would Like To Checkout
+              </Typography>
+              <Typography variant="p" component="h5">
+                Sign in for a faster checkout.
+              </Typography>
+              <br />
+              {/* <p className="mb-0">
                 <b>Sign in for a faster checkout.</b>
-              </p>
+              </p> */}
               <p className="mb-4">
                 Please choose an option below to place order to complete your
                 purchase!

@@ -43,8 +43,10 @@ export default function SecondaryNavigation() {
   };
   
   useEffect(() => {
-    getRewards();
-  }, []);
+    if (userInfo.token) {
+      getRewards();
+    }
+  }, [userInfo]);
   return (
     <>
         <div className="container">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Box } from "@mui/material";
+import dynamic from "next/dynamic";
 
 import TextFieldWrapper from "../../shared/formUI/textField";
 import { fetchDefaultAddress } from "../../../redux/checkout/checkoutActions";
@@ -13,7 +14,9 @@ import City from "../../shared/formUI/billing/city/City";
 import AreaUser from "../../shared/formUI/billing/area/AreaUser";
 import Area from "../../shared/formUI/billing/area/Area";
 // import UserSummary from "../../components/route/check-out/UserSummary";
-import UserSummary from "./UserSummary";
+// import UserSummary from "./UserSummary";
+
+const UserSummary = dynamic(() => import("./UserSummary"));
 
 export default function Billing({
   hasShipping,

@@ -109,7 +109,7 @@ export default function MobileBag({ shoppingBag, removeItem, changeQty }) {
                             </button>
                           </div>
                           <div className="text-center">
-                            {item.stock == true ? (
+                          {item.stock == true || item.stock == "true" ? (
                               <span className="text-danger">out of stock </span>
                             ) : null}
                           </div>

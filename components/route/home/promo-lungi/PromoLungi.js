@@ -35,7 +35,7 @@ export default function PromoLungi() {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/home/mobile-lungi.jpg"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home/mobile-lungi_eid.jpg"
             alt="Panjabi"
           />
           <div className="ps-promo__content">
@@ -103,7 +103,7 @@ export default function PromoLungi() {
                 </div>
                 <img
                   className="ps-video__image"
-                  src="https://d25xyv9ldicae3.cloudfront.net/media/home/lungi_desktop.jpg"
+                  src="https://d25xyv9ldicae3.cloudfront.net/media/home/lungi_desktop_eid.jpg"
                 />
               </div>
             </div>

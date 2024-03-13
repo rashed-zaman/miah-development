@@ -188,7 +188,8 @@ export default function RewardCashback() {
             </p>
           </>)
       }
-      <div className="mt-10">
+
+      {/* <div className="mt-10">
         <h4>HOW TO GET MORE MIAHCLUB REWARDS</h4>
         <Slider {...settings}>
           <Card sx={{ minHeight: '141px', background: '#000', p: '12px' }}>
@@ -204,9 +205,6 @@ export default function RewardCashback() {
               <h3 style={{ color: '#ffffff' }}>
                 <small>One Time Free Shipping</small>
               </h3>
-              {/* <p style={{ marginBottom: '0px', color: '#ffffff' }}>
-              <small>BDDAY-</small>
-            </p> */}
             </Box>
           </Card>
           <Card sx={{ minHeight: '141px', background: '#000', p: '12px' }}>
@@ -222,9 +220,6 @@ export default function RewardCashback() {
               <h3 style={{ color: '#ffffff' }}>
                 <small>One Time Free Shipping and Birthday 15% Off </small>
               </h3>
-              {/* <p style={{ marginBottom: '0px', color: '#ffffff' }}>
-              <small>BDDAY-</small>
-            </p> */}
             </Box>
           </Card>
           <Card sx={{ minHeight: '141px', background: '#000', p: '12px' }}>
@@ -240,9 +235,6 @@ export default function RewardCashback() {
               <h3 style={{ color: '#ffffff' }}>
                 <small>One Month 5% Off and Birthday 15% Off</small>
               </h3>
-              {/* <p style={{ marginBottom: '0px', color: '#ffffff' }}>
-              <small>BDDAY-</small>
-            </p> */}
             </Box>
           </Card>
           <Card sx={{ minHeight: '141px', background: '#000', p: '12px' }}>
@@ -258,13 +250,10 @@ export default function RewardCashback() {
               <h3 style={{ color: '#ffffff' }}>
                 <small>Shipping All Time Free and Birthday 15% Off</small>
               </h3>
-              {/* <p style={{ marginBottom: '0px', color: '#ffffff' }}>
-              <small>BDDAY-</small>
-            </p> */}
             </Box>
           </Card>
         </Slider>
-      </div>
+      </div> */}
 
       <h4 className="mt-60">MORE OF WHAT YOU LOVE</h4>
       <p>We’ve collected some of our favourite products based on your preferences and purchases.</p>

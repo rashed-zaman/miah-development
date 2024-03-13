@@ -10,8 +10,10 @@ export default {
     }
   },
   postData: async function (api, body) {
+    const headers = {
+      'Content-Type': 'application/json'}
     try {
-      const response = await axios.post(BASE_URL + api , body);
+      const response = await axios.post(BASE_URL + api , body, { headers : headers });
       return response;
     } catch (error) {
       throw error;
