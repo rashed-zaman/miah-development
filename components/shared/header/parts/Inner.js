@@ -102,7 +102,7 @@ export default function Inner({ menu }) {
               );
             })}
             <li className="has-mega-menu">
-              <Link href={"/exclusive-trendz-product/festiveProduct"}>
+              <Link href={"/eid-collection/festiveProduct"}>
                 <a>
                   Eid Collection
                 </a>

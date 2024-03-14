@@ -22,7 +22,7 @@ export default function Banner() {
             poster="/img/1920x1080-01-01-01.jpg"
           >
             <source
-              src="https://d25xyv9ldicae3.cloudfront.net/media/miah_banner_desktop_19032023.mp4"
+              src="https://d25xyv9ldicae3.cloudfront.net/media/home/eid_video_desktop.mp4"
               type="video/mp4"
             />
           </video>
@@ -39,7 +39,7 @@ export default function Banner() {
             poster="/img/768x1195-01-01-01.jpg"
           >
             <source
-              src="https://d25xyv9ldicae3.cloudfront.net/media/miah_banner_mobile_19032023.mp4"
+              src="https://d25xyv9ldicae3.cloudfront.net/media/home/eid_video_mobile.mp4"
               type="video/mp4"
             />
           </video>
