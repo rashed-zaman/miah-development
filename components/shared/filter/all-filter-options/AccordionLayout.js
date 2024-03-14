@@ -38,7 +38,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function AccordionLayout({ children, title, id }) {
   return (
     <>
-      <Accordion defaultExpanded>
+      <Accordion>
         <AccordionSummary aria-controls="panel1d-content" id={id}>
           <Typography variant="button">{title}</Typography>
         </AccordionSummary>

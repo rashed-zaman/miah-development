@@ -72,7 +72,7 @@ export default function PromoWomen({ promotionDataLaye }) {
           <p className="ps-promo__type">Exclusive Shop For Women</p>
           <h4 className="ps-promo__title">{"Styles you'll Love"}</h4>
           <div className="ps-promo__link">
-            <Link href="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_desktop_eid.jpg">
+            <Link href="/exclusive-trendz-product/exclusiveWomen">
               <a>
                 <span>Shop Now</span>
                 <img src="/img/icon/arrow-long-right.svg" alt="" />

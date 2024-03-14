@@ -32,8 +32,8 @@ export default function ExclusiveProduct({ data, title }) {
           <div className="ps-shop__product">
             <Box sx={{ padding: { xs: "0px 10px" } }}>
               <div className="row">
-                {data.product.length > 0 ? (
-                  data.product.map((product, index) => {
+                {data.product.data.length > 0 ? (
+                  data.product.data.map((product, index) => {
                     return (
                       <div key={index} className="col-6 col-md-4 col-lg-3 px-1">
                         <Product product={product} />
@@ -48,7 +48,7 @@ export default function ExclusiveProduct({ data, title }) {
               </div>
             </Box>
           </div>
-          {data.product && <ProductPagination products={data} />}
+          {data.product && <ProductPagination products={data.product} />}
         </div>
       </div>
     </>
@@ -80,17 +80,19 @@ export async function getServerSideProps(context) {
   } else if (params.exclusive === "saleableProduct") {
     title = "Sale";
   }
+
   const axiosRes = await axios
     .get(
-      `https://api.miah.shop/api/productByCatSubId?${
-        params.exclusive
-      }=1&offset=${priceOffset}&sorting=${query.order ? query.order : "DESC"}
+      `${BASE_URL}productList?${params.exclusive}=1
+      &offset=${priceOffset}
+      &sorting=${query.order ? query.order : "DESC"}
+      &device=desktop&page=${query.page || 1}
       &promoProduct=${query.promoProduct ? query.promoProduct : 0}
       `,
       { headers }
     )
     .then((response) => {
-      return response.data.data;
+      return response.data;
     })
     .catch((error) => {
       let errObj = { error: true };

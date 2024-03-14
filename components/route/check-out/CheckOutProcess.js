@@ -88,6 +88,7 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
           if (res.data.data.response == "success") {
             setCheckout(true);
             dispatch(setUserInfo(res.data.data));
+            setBtnLoading(false);
           }
 
           if (res.data.status) {
@@ -95,6 +96,7 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
               submitEasyCheckoutOrder();
             } else {
               setCheckout(true);
+              setBtnLoading(false);
             }
           }
 
@@ -115,7 +117,7 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
           //   setErr(true)
           // }
 
-          setBtnLoading(false);
+          // setBtnLoading(false);
 
           // setIsOtpSent(true);
         })
@@ -161,14 +163,18 @@ export default function CheckOutProcess({ setCheckout, setNewUserMobile }) {
         if (res.data.status) {
           // setOpen(true);
           router.push("/easy-checkout")
-          setIsOtpSent(false);
-          setAddress("");
-          setMobile("");
-          setCode("");
+          setTimeout(() => {
+            setBtnLoading(false);
+            setIsOtpSent(false);
+            setAddress("");
+            setMobile("");
+            setCode("");
+          }, 4000);
         }
       })
       .catch((error) => {
         console.log(error);
+        setBtnLoading(false);
       });
   };
 
