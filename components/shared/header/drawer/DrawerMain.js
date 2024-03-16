@@ -210,7 +210,7 @@ const DrawerMain = ({ classes, menu}) => {
               marginBottom: "15px",
             }}
           >
-            <Link href={ "/eid-collection/festiveProduct"}>
+            <Link href={ "/eid-collection"}>
               <Grid container spacing={1} onClick={closeDrawer}>
                 <Grid item xs={8}>
                   <Box sx={{ paddingLeft: "10px" }}>

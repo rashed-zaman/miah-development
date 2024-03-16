@@ -102,7 +102,7 @@ export default function Inner({ menu }) {
               );
             })}
             <li className="has-mega-menu">
-              <Link href={"/eid-collection/festiveProduct"}>
+              <Link href={"/eid-collection"}>
                 <a>
                   Eid Collection
                 </a>

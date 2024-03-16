@@ -89,7 +89,7 @@ export default function HeaderInner({ menu }) {
               );
             })}
           <li className="has-mega-menu">
-            <Link href={"/eid-collection/festiveProduct"}>
+            <Link href={"/eid-collection"}>
               <a>Eid Collection</a>
             </Link>
           </li>
