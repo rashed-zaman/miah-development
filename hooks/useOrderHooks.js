@@ -43,6 +43,8 @@ export const useOrderSubmit = () => {
     formValue.shippingInfo.areaId = values.shippingArea.id;
 
     formValue.cart = shoppingBag;
+    
+    formValue.tran_id = Date.now()
 
     if (formValue.hasShipping === false) {
       formValue.shippingInfo = formValue.billigInfo;
@@ -98,7 +100,6 @@ export const useOrderSubmit = () => {
 
     tag.parentNode.replaceChild(script, tag);
     // tag.parentNode.insertBefore(script, tag)
-    console.log("seamless working");
   };
 
   const activeSllzBtn = (order, userInfo) => {
