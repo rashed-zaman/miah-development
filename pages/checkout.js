@@ -3,23 +3,43 @@ import CheckOut from "../components/route/check-out/CheckOut";
 import CheckOutProcess from "../components/route/check-out/CheckOutProcess";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { fetchLocations } from "../redux/checkout/checkoutActions";
-
+import { setLocations } from "../redux/checkout/checkoutActions";
+import commonService from "../service/menu/commonService";
 
 export default function Checkout() {
-  const dispatch = useDispatch()
-  const persist = useSelector((state) => state)
-  const userInfo = useSelector((state) => state.auth.userInfo)
-  const shoppingBag = useSelector((state) => state.shoppingBag.shoppingCart)
-  
-  const router = useRouter()
+  const dispatch = useDispatch();
+  const persist = useSelector((state) => state);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const shoppingBag = useSelector((state) => state.shoppingBag.shoppingCart);
+
+  const router = useRouter();
   const [chekcout, setCheckout] = useState(false);
-  const [newUserMobile, setNewUserMobile] = useState('');
+  const [newUserMobile, setNewUserMobile] = useState("");
+
+  const fetchLocations = () => {
+    commonService
+      .getData("allLocation")
+      .then((res) => {
+        console.log("hello");
+        const menu = res;
+        if (menu.length > 0) {
+          dispatch(setLocations(menu));
+        }
+        setCheckout(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    const {token} = userInfo
-    token ? setCheckout(true): setCheckout(false)
-  }, [userInfo])
+    const { token } = userInfo;
+    if (token) {
+      fetchLocations();
+    } else {
+      setCheckout(false);
+    }
+  }, [userInfo]);
 
   useEffect(() => {
     if (persist._persist.rehydrated) {
@@ -27,12 +47,18 @@ export default function Checkout() {
         router.push("/");
       }
     }
-  }, [persist])
+  }, [persist]);
 
-  useEffect(() => {
-    dispatch(fetchLocations());
-  }, []);
-  
-  
-  return <>{chekcout ? <CheckOut newUserMobile={newUserMobile} /> : <CheckOutProcess  setNewUserMobile={setNewUserMobile} setCheckout={setCheckout} />}</>;
+  return (
+    <>
+      {chekcout ? (
+        <CheckOut newUserMobile={newUserMobile} />
+      ) : (
+        <CheckOutProcess
+          setNewUserMobile={setNewUserMobile}
+          setCheckout={setCheckout}
+        />
+      )}
+    </>
+  );
 }

@@ -12,10 +12,13 @@ import Product from "../components/core/product/Product";
 import { Typography } from "@mui/material";
 import ProductPagination from "../components/shared/pagination/ProductPagination";
 import { getOffset } from "../service/common-service/commonService";
+import axios from "axios";
+import { BASE_URL } from "../service/serviceConfig";
 
 export default function Search() {
   // hooks
   const router = useRouter();
+  const { query } = router;
 
   // local state
   const [responseData, setResponseData] = useState({});
@@ -39,33 +42,47 @@ export default function Search() {
     if (router.isReady) {
       setBackDrp(true);
       const getProducts = () => {
-        const api =
-          "productByCatSubId?search=" +
-          router.query.searchBy +
-          "&offset=" +
-          getOffset(router) +
-          "&attribute=&tags=&price=&sorting=DESC";
-        commonService
-          .getData(api)
-          .then((res) => {
-            setProduct(res.product);
-            setResponseData(res);
+        // const api =
+        //   "productList?search=" +
+        //   router.query.searchBy +
+        //   "&offset=" +
+        //   "&page=1" +
+        //   "&device=desktop&sorting=DESC";
+
+        const api = `productList?search=${query.searchBy}&page=${query.page ? query.page : 1}&device=desktop&sorting=DESC`;
+
+        axios
+          .get(BASE_URL + api)
+          .then((response) => {
+            setProduct(response.data.product.data);
+            setResponseData(response);
             setBackDrp(false);
+            console.log("Response data:", response.data.product.data);
           })
           .catch((error) => {
-            console.log(error);
+            console.error("Error:", error);
           });
+
+        // commonService
+        //   .getData(api)
+        //   .then((res) => {
+        //     console.log(res);
+        //     setProduct(res.product.data);
+        //     setResponseData(res);
+        //     setBackDrp(false);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
       };
 
       getProducts();
     }
   }, [router.query, router.isReady]);
 
-
   useEffect(() => {
-    setParams(router.query.searchBy)
-  }, [router.query])
-  
+    setParams(router.query.searchBy);
+  }, [router.query]);
 
   return (
     <>
@@ -131,8 +148,8 @@ export default function Search() {
               </Grid>
             ) : (
               <>
-                {responseData.product.length > 0 ? (
-                  responseData.product.map((product, index) => {
+                {product.length > 0 ? (
+                  product.map((product, index) => {
                     return (
                       <div key={index} className="col-6 col-md-4 col-lg-3 mb-5">
                         <Product product={product} />
@@ -147,7 +164,9 @@ export default function Search() {
               </>
             )}
           </div>
-          {responseData.product && !backDrp && <ProductPagination products={responseData} />}
+          {product && !backDrp && (
+            <ProductPagination products={responseData.data.product} />
+          )}
         </div>
       </div>
     </>
