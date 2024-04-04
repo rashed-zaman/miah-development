@@ -84,7 +84,7 @@ export default function OrderSummary({ orderDetails }) {
 
               <Grid container spacing={2}>
                 <Grid xs={6} sm={6} item>
-                  <Box sx={{ textAlign: "right" }}>Tax</Box>
+                  <Box sx={{ textAlign: "right" }}>Vat</Box>
                 </Grid>
                 <Grid xs={6} sm={6} item>
                   <Box sx={{ textAlign: "left" }}>

@@ -26,7 +26,8 @@ export default function CategoryFilter({
   bestSelling,
   featured,
   priceOrder,
-  style
+  style,
+  size
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function CategoryFilter({
     setCategory(newValue);
     dispatch(setShortOrder(newValue));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&pattern=${pattern}&color=${color}&fabric=${fabric}&priceRange=${comitedValue}&order=${newValue}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&pattern=${pattern}&size=${size}&color=${color}&fabric=${fabric}&priceRange=${comitedValue}&order=${newValue}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
   return (

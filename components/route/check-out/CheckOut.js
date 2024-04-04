@@ -168,9 +168,9 @@ export default function CheckOut({newUserMobile}) {
     setDigitalDiscount(val);
   };
 
-  const handleCouponDiscount = (val) => {
-    setCouponDiscount(val);
-  };
+  // const handleCouponDiscount = (val) => {
+  //   setCouponDiscount(val);
+  // };
 
   const createValidationSchema = () => {
     const rules = Yup.object().shape({

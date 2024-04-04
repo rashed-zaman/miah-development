@@ -26,7 +26,8 @@ export default function OccasionFilter({
   bestSelling,
   featured,
   priceOrder,
-  style
+  style,
+  size
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -39,7 +40,7 @@ export default function OccasionFilter({
     dispatch(setOccasionFilter(e.target.value));
     const currentUrl = getRoute();
 
-    const url = `${currentUrl}?filter=&occasion=${e.target.value}&color=${color}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
+    const url = `${currentUrl}?filter=&occasion=${e.target.value}&color=${color}&size=${size}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
   return (

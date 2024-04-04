@@ -114,6 +114,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
 
       <SizeFilter
@@ -149,6 +150,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
 
       <FabricFilter
@@ -166,6 +168,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
 
       <OccasionFilter
@@ -183,6 +186,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
 
       <PatternFilter
@@ -200,6 +204,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
 
       <CategoryFilter
@@ -217,6 +222,7 @@ export default function FilterOptions({ data, type, setMobileFilter }) {
         featured={featured}
         priceOrder={priceOrder}
         style={style}
+        size={size}
       />
       {type !== "mobile" && (
         <AppliedFilter

@@ -54,6 +54,7 @@ const MiahBreadCrumbs = dynamic(() =>
   import("../../components/shared/breadcrumbs/MiahBreadCrumbs")
 );
 export default function Product({ responseData, product, variants }) {
+  
   // ========== local state ===========
   const [selectedVariation, setSelectedVariation] = useState(
     variants[0] ? variants[0] : []

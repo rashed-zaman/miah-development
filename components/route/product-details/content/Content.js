@@ -45,7 +45,7 @@ export default function Content({ product }) {
               aria-controls="size-chart-content"
               aria-selected="false"
             >
-              Size chart
+              Global Size chart
             </a>
           </li>
           {/* <li className="nav-item" role="presentation">

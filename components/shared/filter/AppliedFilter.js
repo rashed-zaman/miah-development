@@ -47,7 +47,7 @@ export default function AppliedFilter({
       featured ? featured : ""
     }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
       priceOrder ? priceOrder : ""
-    }&styles=${style ? style : ""}`;
+    }&styles=${style ? style : ""}&size=${size}`;
     router.push(url);
   };
 
@@ -59,7 +59,7 @@ export default function AppliedFilter({
       featured ? featured : ""
     }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
       priceOrder ? priceOrder : ""
-    }&styles=${style ? style : ""}`;
+    }&styles=${style ? style : ""}&size=${size}`;
     router.push(url);
   };
 
@@ -71,25 +71,25 @@ export default function AppliedFilter({
       featured ? featured : ""
     }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
       priceOrder ? priceOrder : ""
-    }&styles=${style ? style : ""}`;
+    }&styles=${style ? style : ""}&size=${size}`;
     router.push(url);
   };
   const removePattern = () => {
     setPattern("");
     dispatch(setPatternFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&fabric=&priceRange=${comitedValue}&pattern=&order=&featured=${
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&fabric=${fabric}&priceRange=${comitedValue}&pattern=&order=&featured=${
       featured ? featured : ""
     }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
       priceOrder ? priceOrder : ""
-    }&styles=${style ? style : ""}`;
+    }&styles=${style ? style : ""}&size=${size}`;
     router.push(url);
   };
   const removeSize = () => {
     setSize("");
     dispatch(setSizeFilter(""));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&order=&size=&fabric=&priceRange=${comitedValue}&pattern=${pattern}&featured=${
+    const url = `${currentUrl}?filter=&occasion=${ocassion}&color=${color}&order=&size=&fabric=${fabric}&priceRange=${comitedValue}&pattern=${pattern}&featured=${
       featured ? featured : ""
     }&bestSelling=${bestSelling ? bestSelling : ""}&priceOrder=${
       priceOrder ? priceOrder : ""

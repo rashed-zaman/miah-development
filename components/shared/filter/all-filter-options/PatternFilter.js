@@ -27,7 +27,8 @@ export default function PatternFilter({
   bestSelling,
   featured,
   priceOrder,
-  style
+  style,
+  size
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function PatternFilter({
     setPattern(e.target.value);
     dispatch(setPatternFilter(e.target.value));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${e.target.value}&occasion=${ocassion}&color=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&pattern=${e.target.value}&size=${size}&occasion=${ocassion}&color=${e.target.value}&fabric=${fabric}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
     // console.log(e.target.value);
   };

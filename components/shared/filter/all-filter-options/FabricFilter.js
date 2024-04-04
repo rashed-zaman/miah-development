@@ -26,7 +26,8 @@ export default function FabricFilter({
   bestSelling,
   featured,
   priceOrder,
-  style
+  style,
+  size
 }) {
   // =============== hooks ================
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function FabricFilter({
     setFabric(e.target.value);
     dispatch(setFabricFilter(e.target.value));
     const currentUrl = getRoute();
-    const url = `${currentUrl}?filter=&promoProduct=0&occasion=${ocassion}&color=${color}&fabric=${e.target.value}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
+    const url = `${currentUrl}?filter=&promoProduct=0&occasion=${ocassion}&color=${color}&size=${size}&fabric=${e.target.value}&priceRange=${comitedValue}&order=${category}&featured=${featured?featured: ""}&bestSelling=${bestSelling?bestSelling: ""}&priceOrder=${priceOrder?priceOrder:""}&styles=${style?style:""}`;
     router.push(url);
   };
   return (

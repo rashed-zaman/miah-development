@@ -21,12 +21,12 @@ export default function SizeChart({ responseData }) {
           <IconButton aria-label="delete">
             <StraightenIcon />
           </IconButton>
-          <span className="cursor-pointer"> <u> Size Chart </u> </span>
+          <span className="cursor-pointer"> <u> Global Size Chart </u> </span>
         </div>
       )}
 
       <Dialog onClose={handleDialog} open={open}>
-        <DialogTitle>Size Chart</DialogTitle>
+        <DialogTitle>Global Size Chart</DialogTitle>
         <DialogContent>
           <div dangerouslySetInnerHTML={{ __html: responseData.sizeChart }} />
         </DialogContent>

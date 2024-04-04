@@ -40,17 +40,19 @@ export default function ProductPagination({ products }) {
             router.query.color +
             "&fabric=" +
             router.query.fabric +
-            "&order=" +
-            router.query.order +
             "&priceOrder=" +
             router.query.priceOrder +
             "&bestSelling=" +
             router.query.bestSelling +
             "&featured=" +
             router.query.featured +
-            "&styles=" + router.query.styles
+            "&priceRange=" +
+            router.query.priceRange  +
+            "&styles=" +
+            router.query.styles+
+            "&size=" + router.query.size
         )
-      : router.push(prevRoute[0] + "?page=" + value );
+      : router.push(prevRoute[0] + "?page=" + value);
   };
   const handleChange = (event, value) => {
     setPage(value);
@@ -60,9 +62,7 @@ export default function ProductPagination({ products }) {
 
   // ================== side effect ==========
   useEffect(() => {
-    router.query.page > 1
-      ? setPage(Number(router.query.page))
-      : setPage(1);
+    router.query.page > 1 ? setPage(Number(router.query.page)) : setPage(1);
   }, [router.query]);
 
   return (

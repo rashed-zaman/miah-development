@@ -27,8 +27,6 @@ export default function SchemaOrg({ selectedVariation, product, resData }) {
                 "@type": "Offer",
                 "priceCurrency": "BDT",
                 "price": "${[product?.sales_cost]}",
-                "priceCurrency": "BDT",
-                "price": "${[product?.discount]}",
                 "itemCondition": "https://schema.org/NewCondition",
                 "availability": "https://schema.org/${resData.stockStatus}"
               }
@@ -38,32 +36,32 @@ export default function SchemaOrg({ selectedVariation, product, resData }) {
   return (
     <>
       <Head>
-      <meta
-          name="description"
-          content="Miah-Shop"
-          key="desc"
-        />
-      <meta
-          property="og:title"
-          content={`${product.name} | MIAH`}
-        />
-      <meta
-          property="og:description"
-          content={`${withoutQuotes.replace(/['"]+/g,'')}`}
-        />
-      <meta
-          property="og:url"
-          content={`${ "https://miah.shop/product/" + product.slug}`}
-        />
-      <meta
-          property="og:image"
-          content={`${IMAGE_URL + selectedVariation?.vImage[0]?.img}`}
-        />
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={createSchemaData()}
-         key={`productJSON-${product.id}`}
-        />
+        <meta
+            name="description"
+            content="Miah-Shop"
+            key="desc"
+          />
+        <meta
+            property="og:title"
+            content={`${product.name} | MIAH`}
+          />
+        <meta
+            property="og:description"
+            content={`${withoutQuotes.replace(/['"]+/g,'')}`}
+          />
+        <meta
+            property="og:url"
+            content={`${ "https://miah.shop/product/" + product.slug}`}
+          />
+        <meta
+            property="og:image"
+            content={`${IMAGE_URL + selectedVariation?.vImage[0]?.img}`}
+          />
+          <script
+            type='application/ld+json'
+            dangerouslySetInnerHTML={createSchemaData()}
+          key={`productJSON-${product.id}`}
+          />
       </Head>
     </>
   );
