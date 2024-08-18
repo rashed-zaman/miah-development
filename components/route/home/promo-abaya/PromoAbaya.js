@@ -34,7 +34,8 @@ export default function PromoAbaya() {
             <a>
               <img
                 className="ps-promo__banner"
-                src="https://d25xyv9ldicae3.cloudfront.net/media/home/miah-abaya-mobile-banner.jpg"
+                loading="lazy"
+                src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_abaya_mobile.jpg"
                 alt="Panjabi"
               />
             </a>
@@ -91,7 +92,8 @@ export default function PromoAbaya() {
                 </div>
                 <img
                   className="rps-video__image"
-                  src="https://d25xyv9ldicae3.cloudfront.net/media/home/miah-abaya-desktop-banner.jpg"
+                  loading="lazy"
+                  src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_abaya_desktop.jpg"
                 />
               </div>
               <div className="rps-video__content">

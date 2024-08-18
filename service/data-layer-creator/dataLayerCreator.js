@@ -104,7 +104,11 @@ export const purchaseDataLayer = (
     };
   });
 
+  const {fName, lName, phone, email, zipcode, } = value.billigInfo
+  const {name} = value.billingCity
+
   const revenue = shoppingBag.reduce((a, b) => a + (b.amount || 0), 0);
+  const content_ids = shoppingBag.map(item => item.id)
   const tax = (siteOptions.tax * revenue) / 100;
 
   window.dataLayer?.push({
@@ -118,6 +122,15 @@ export const purchaseDataLayer = (
           shipping: shippingCharge,
         },
         products: prodList,
+        user_data: {
+          first_name: fName,
+          last_name: lName,
+          city: name,
+          postal_code: zipcode,
+          email_address: email,
+          phone_number: phone,
+        },
+        content_ids
       },
     },
   });

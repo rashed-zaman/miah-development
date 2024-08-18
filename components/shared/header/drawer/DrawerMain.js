@@ -202,7 +202,7 @@ const DrawerMain = ({ classes, menu}) => {
           </Grid>
           <br />
           {rootCategoryList}
-          <Box
+          {/* <Box
             sx={{
               background: "#f5f5f5",
               borderRadius: "2px",
@@ -221,9 +221,9 @@ const DrawerMain = ({ classes, menu}) => {
                 </Grid>
               </Grid> 
             </Link>
-          </Box>                          
+          </Box>                           */}
 
-          {/* <Box
+          <Box
             sx={{
               background: "#f5f5f5",
               borderRadius: "2px",
@@ -242,7 +242,7 @@ const DrawerMain = ({ classes, menu}) => {
                 </Grid>
               </Grid> 
             </Link>
-          </Box>                           */}
+          </Box>                          
 
         </Container>
         <Container maxWidth="sm">

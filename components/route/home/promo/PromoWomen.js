@@ -47,7 +47,8 @@ export default function PromoWomen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_desktop_eid.jpg"
+            loading="lazy"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_women_desktop.jpg"
           />
         </Box>
         <Box
@@ -64,7 +65,8 @@ export default function PromoWomen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_women_mobile_eid.jpg"
+            loading="lazy"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_women_mobile.jpg"
             alt="Saree"
           />
         </Box>

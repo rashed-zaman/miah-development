@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }) {
         src="https://www.googletagmanager.com/gtag/js?id=G-J4TDD249F0"
         strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      {/* <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }) {
         
           gtag('config', 'G-J4TDD249F0');
         `}
-      </Script>
+      </Script> */}
 
       {/* ============= no script part of tag manager is added in _document.js file ============== */}
 

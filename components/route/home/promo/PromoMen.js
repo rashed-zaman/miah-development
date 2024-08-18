@@ -49,7 +49,8 @@ export default function PromoMen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_men_mobile_eid.jpg"
+            loading="lazy"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_men_mobile.jpg"
             alt="men dress"
           />
         </Box>
@@ -66,7 +67,8 @@ export default function PromoMen({ promotionDataLaye }) {
         >
           <img
             className="ps-promo__banner"
-            src="https://d25xyv9ldicae3.cloudfront.net/media/home/exclusive_shop_for_men_desktop_eid.jpg"
+            loading="lazy"
+            src="https://d25xyv9ldicae3.cloudfront.net/media/home_16_07_24/miah_summer_men_desktop.jpg"
             alt="men dress"
           />
         </Box>

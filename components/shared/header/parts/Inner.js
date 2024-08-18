@@ -101,20 +101,20 @@ export default function Inner({ menu }) {
                 </li>
               );
             })}
-            <li className="has-mega-menu">
+            {/* <li className="has-mega-menu">
               <Link href={"/eid-collection"}>
                 <a>
                   Eid Collection
                 </a>
               </Link>
-            </li>
-            {/* <li className="has-mega-menu">
+            </li> */}
+            <li className="has-mega-menu">
               <Link href={"/exclusive-trendz-product/saleableProduct"}>
                 <a>
                  Sale
                 </a>
               </Link>
-            </li> */}
+            </li>
         </ul>
       </div>
       <HeaderRight />
