@@ -17,6 +17,7 @@ export default function WishIcon({ product }) {
 
   // ================= methods ========================
   const addToWishList = () => {
+    console.log(product);
     userInfo.token
       ? commonService
           .authGetData(`addWishlist/${product.id}`, userInfo.token)

@@ -61,7 +61,7 @@ export default function CurrentOrder() {
       orderId: id,
       requestType: "order",
     };
-    refundDataLayer(allOrdes);
+    refundDataLayer(id);
     commonService
       .postAuthData("cancelOrder", body, userInfo.token)
       .then((res) => {

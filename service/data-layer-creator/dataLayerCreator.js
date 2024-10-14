@@ -104,7 +104,7 @@ export const purchaseDataLayer = (
     };
   });
 
-  const {fName, lName, phone, email, zipcode, } = value.billigInfo
+  const {fName, lName, phone, email, zipcode, address } = value.billigInfo
   const {name} = value.billingCity
 
   const revenue = shoppingBag.reduce((a, b) => a + (b.amount || 0), 0);
@@ -129,6 +129,7 @@ export const purchaseDataLayer = (
           postal_code: zipcode,
           email_address: email,
           phone_number: phone,
+          address: address
         },
         content_ids
       },
@@ -179,42 +180,21 @@ export const productListDatalayer = (data, type) => {
       },
     },
   });
-  // console.log(prodList);
 };
 
-export const refundDataLayer = (allOrdes) => {
-  const refundDtls = allOrdes.map((item) => {
-    return item.order_details.map(user=>{
-        return {
-          id: user.sku,
-          name: user.product_name,
-          price: user.sales_cost,
-          qty: user.qty,
-        };
-      })
-  });
-  const refundList = allOrdes.map((item) => {
-    return {
-      item_invoice: item.order_id,
-      name: item.customer_name,
-      email: item.email,
-      phone: item.phone,
-      item_total_price: item.grand_total,
-      payment_type: item.payment_by,
-    };
-  });
+export const refundDataLayer = (id) => {
   window.dataLayer?.push({
     event: "refund",
     ecommerce: {
       refund: {
-        products:[{
-          refundList,
-          refundDtls
-        }]
+        actionField: {
+          id: id,
+        },
       },
     },
   });
 };
+
 export const partialrefundDataLayer = (product) => {
   window.dataLayer?.push({
     event: "partialrefund",
@@ -253,3 +233,48 @@ export const removecartDataLayer = (item) => {
     },
   });
 };
+
+
+export const wishListDataLayer = (item) => {
+  window.dataLayer?.push({
+    event: "add_to_cart",
+    ecommerce: {
+      currencyCode: "BDT",
+      add: {
+        products: [
+          {
+            item_id: item.id,
+            item_name: item.name,
+            price: item.unitPrice,
+            item_brand: item.brand,
+            item_category: item.category,
+            item_variant: item.variant,
+            quantity: item.qty,
+          },
+        ],
+      },
+    },
+  });
+};
+
+
+export const searchDataLayer = (srch) => {
+  window.dataLayer?.push({
+    event: "search",
+    ecommerce: {
+      search_term: srch,
+    },
+  });
+};
+
+
+export const loginDataLayer = () => {
+  window.dataLayer?.push({
+    event: "login",
+    ecommerce: {
+      clientType: 'VIP',
+    },
+  });
+};
+
+

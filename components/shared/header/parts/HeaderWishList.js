@@ -17,6 +17,8 @@ export default function HeaderWishList({ userInfo }) {
       .authGetData("wishList", userInfo.token)
       .then((res) => {
         setWishLength(res.data.data.length);
+        console.log(res.data.data);
+        
       })
       .catch((err) => console.log(err));
   };

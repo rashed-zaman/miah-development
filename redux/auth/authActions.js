@@ -13,6 +13,7 @@ import {
   CHANGE_WISH_LIST,
 } from "./authTypes";
 import { repleaceBag, addItemQty, addToBag} from "../shoppingBag/shoppingBagActions";
+import { loginDataLayer } from "../../service/data-layer-creator/dataLayerCreator";
 
 
 export const setUserInfo = (userInfo) => {
@@ -21,6 +22,7 @@ export const setUserInfo = (userInfo) => {
     payload: userInfo,
   };
 };
+
 export const fetchUserInfo = (body, localShoppingBag) => {
   return (dispatch) => {
     dispatch(setAuthLoading(true));
@@ -32,6 +34,7 @@ export const fetchUserInfo = (body, localShoppingBag) => {
           dispatch(setAuthLoading(false));
           dispatch(setUserInfo(res.data.data));
           checkUserSavedCart(res.data.data.shoppingCart, localShoppingBag, dispatch)
+          loginDataLayer()
         })
         .catch((error) => {
           dispatch(setAuthLoading(false));
@@ -83,6 +86,7 @@ export const setRecentView = (item) => {
     payload: item,
   };
 };
+
 export const changeWishLiast = (value) => {
   return {
     type: CHANGE_WISH_LIST,
