@@ -227,7 +227,7 @@ export default function Footer() {
             <div className="col-12 col-md-12 mt-4">
               <p className="ps-footer__copyright text-center">
                 © {new Date().getFullYear()} M/S Miah & Miah Enterprise. All
-                right reserved. <span style={{ color: "white" }}></span>
+                right reserved.. <span style={{ color: "white" }}></span>
               </p>
             </div>
           </div>
