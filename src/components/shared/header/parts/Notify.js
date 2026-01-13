@@ -24,7 +24,7 @@ export default function Notify() {
   return (
     <div className="ps-notify" style={{ display: notify ? "" : "none" }}>
       <div className="container">
-        <div className="row justify-content-center">
+        {/* <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="swiper-container">
               {isLoaded && (
@@ -51,7 +51,7 @@ export default function Notify() {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <a className="ps-notify__close" onClick={hideNotify}>
         <img src="/img/icon/close.svg" alt="" />
