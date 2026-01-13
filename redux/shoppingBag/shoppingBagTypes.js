@@ -1,8 +1,0 @@
-export const ADD_TO_BAG = 'ADD_TO_BAG'
-export const ADD_QTY = 'ADD_QTY'
-export const DEDUCT_QTY = 'DEDUCT_QTY'
-export const REMOVE_FROM_BAG = 'REMOVE_FROM_BAG'
-export const MOBILE_BAG_DIALOG = 'MOBILE_BAG'
-export const REPLEACE_BAG = 'REPLEACE_BAG'
-export const SET_BAG_NULL = 'SET_BAG_NULL'
-export const RESET_SHOPPING_CART = 'RESET_SHOPPING_CART'

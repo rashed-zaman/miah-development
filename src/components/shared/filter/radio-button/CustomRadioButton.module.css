@@ -1,0 +1,39 @@
+.radiobuttonDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .radioInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .customRadio {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 1.5px 1.5px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background-color: var(--color, #d2c5ef);
+  }
+  
+  .radioInput:checked + .customRadio {
+    border: 1px solid var(--color, #d2c5ef);
+    background-color: var(--color, #d2c5ef);
+    outline: 2px solid var(--color, #d2c5ef);
+    outline-offset: 2px;
+  }
+  
