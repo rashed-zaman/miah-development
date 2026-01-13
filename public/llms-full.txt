@@ -1,0 +1,84 @@
+# MIAH Fashion
+
+> MIAH is a Bangladeshi fashion brand combining traditional artistry with modern design, offering Bengali wear such as panjabis, sarees, lungis, and casual clothing for customers in Bangladesh and abroad.
+
+Website: https://miah.shop/
+Update Date: 02 Sep 2025
+Version: 0.3
+
+MIAH offers traditional and modern Bangladeshi fashion with strong cultural roots. The brand preserves Bengali heritage through handcrafted textiles and adapts them with contemporary design. Its main products include panjabis for Eid and prayers, handwoven sarees for weddings and festivals, lungis symbolizing everyday comfort and modern casual wear. MIAH serves customers in Bangladesh and worldwide who seek authentic South Asian clothing with reliable global delivery.
+
+Cultural Context: Products align with Bengali festivals like Pohela Boishakh, religious occasions like Eid and Friday prayers, Puja, weddings and traditional celebrations. The brand emphasizes modesty, craftsmanship and cultural identity.
+
+## Men's Collection
+
+- [Panjabi Collection](https://miah.shop/men/panjabi): Traditional formal wear for Eid, weddings and religious occasions
+- [Turquoise Premium Panjabi](https://miah.shop/men/turquoise-premium-panjabi): High-quality formal panjabi for special events
+- [Garnet Panjabi](https://miah.shop/men/panjabi-garnet): Traditional panjabi in rich garnet color
+- [Lungi Collection](https://miah.shop/men/lungi): Traditional Bengali men's garment representing heritage and comfort
+- [Print & Batik Lungi](https://miah.shop/men/print-batik-lungi): Artistic lungis with traditional patterns
+- [Hand-Painted Lungi](https://miah.shop/men/hand-painted-lungi): Artisan-crafted lungis with unique designs
+- [Block Print Lungi](https://miah.shop/men/block-print-lungi): Traditional block printing technique lungis
+- [Shirts](https://miah.shop/men/shirt): Comfortable formal and casual shirts suitable for work, events, and daily wear
+- [Dress Shirts](https://miah.shop/men/dress-shirts): Smart dress shirts for office, business meetings, events, and formal occasions
+- [Casual Shirts](https://miah.shop/men/casual-shirts): Easy cotton and printed shirts for relaxed and daily wear
+- [T-Shirts](https://miah.shop/men/t-shirt): Modern casual wear including oversized and drop-cut styles
+- [Drop Cut T-Shirts](https://miah.shop/men/drop-cut-t-shirt): Contemporary fit casual t-shirts
+- [Oversized T-Shirts](https://miah.shop/men/over-size-t-shirts): Trendy loose-fit casual wear
+- [Pants](https://miah.shop/men/pants): Comfortable pants for work, casual outings, and everyday wear
+- [Jogger Pants](https://miah.shop/men/jogger-pants): Comfortable athletic-style pants
+- [Chino Pants](https://miah.shop/men/chino-pants): Semi-formal casual pants
+- [Cargo Joggers](https://miah.shop/men/cargo-joggers-pants): Functional pants with multiple pockets
+- [Jeans](https://miah.shop/men/jeans-pants): Durable and stylish jeans for men, perfect for casual, work and everyday wear
+
+## Women's Collection
+
+- [Saree Collection](https://miah.shop/women/saree): Traditional six-yard garments for weddings, festivals, and formal occasions
+- [Jamdani Saree](https://miah.shop/women/jamdani-saree): UNESCO-recognized traditional Bangladeshi textile art
+- [Tant Saree](https://miah.shop/women/tant-saree): Handwoven cotton sarees from West Bengal tradition
+- [Tangail Saree](https://miah.shop/women/tangail-saree): Traditional Tangail district handloom sarees
+- [Hand-Painted Saree](https://miah.shop/women/hand-paint-saree): Artistic sarees with hand-painted motifs
+- [Half Silk Saree](https://miah.shop/women/half-silk-saree): Blend of cotton and silk for comfort and elegance
+- [Salwar Kameez](https://miah.shop/women/salwar-kameez): Three-piece traditional outfit representing modesty and cultural identity
+- [Embroidered Salwar Kameez](https://miah.shop/women/embroidery-salwar-kameez): Handcrafted with traditional embroidery work
+- [Handcrafted Tant Salwar Kameez](https://miah.shop/women/hand-craft-tant-salwar-kameez): Artisan-made cotton salwar kameez
+- [Abaya Collection](https://miah.shop/women/abaya): Modest Islamic attire in traditional and contemporary styles
+- [Premium Abaya](https://miah.shop/women/abaya-premium): High-quality modest wear for special occasions
+- [Luxury Abaya](https://miah.shop/women/abaya-luxury): Designer modest wear with premium materials
+- [Tops](https://miah.shop/women/top): Comfortable and stylish tops for women, suitable for casual and everyday wear
+- [Kurti](https://miah.shop/women/kurti): Comfortable tops for casual and semi-formal wear
+
+
+## Kid's Collection
+
+- [Kids](https://miah.shop/kids): Comfortable and stylish outfits for children and teens, from traditional to modern wear
+
+## Essentials Collection
+
+- [Cut Fabrics](https://miah.shop/others/cut-fabrics): Quality fabrics for custom tailoring and crafting
+- [Gamcha](https://miah.shop/others/gamcha): Traditional Bengali cotton towels for daily use
+
+## Brand Information
+
+- [Company Overview](https://miah.shop/page/company): Brand history, mission, vision and cultural commitment
+
+## Customer Support
+
+- [How to Buy Guide](https://blog.miah.shop/2022/08/29/how-to-order-on-miah/): Step-by-step ordering process
+- [FAQ](https://miah.shop/page/faq): Frequently asked questions about products and services
+- [Terms & Conditions](https://miah.shop/page/termCondition): Legal terms for using MIAH services
+
+## Optional
+
+- [Shipping Policy](https://miah.shop/page/shippingPolicy): Domestic and international delivery information
+- [Return & Exchange](https://miah.shop/page/returnExchange): Product return and exchange procedures
+- [Payment Policy](https://miah.shop/page/paymentPolicy): Accepted payment methods and security
+- [Privacy Policy](https://miah.shop/page/privacyPolicy): Data protection and privacy practices
+- [Blog](https://blog.miah.shop/): Fashion trends, styling tips and cultural insights
+- [Site Map](https://miah.shop/page/siteMap): Complete website navigation structure
+- [Contact Us](https://miah.shop/contact-us): Customer service contact information
+- [Facebook Page](https://www.facebook.com/MiahAndMiah/): Social media presence and community
+- [Instagram](https://www.instagram.com/miahandmiah/): Visual fashion content and styling inspiration
+- [YouTube](https://www.youtube.com/miahandmiah): Fashion videos and brand content
+- [Pinterest](https://www.pinterest.com/miahandmiah/): Style inspiration and product collections
+- [LinkedIn](https://www.linkedin.com/company/miahandmiah/): Professional brand presence and updates
