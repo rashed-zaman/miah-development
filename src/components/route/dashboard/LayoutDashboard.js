@@ -14,7 +14,10 @@ export default function LayoutDashboard({ children }) {
   const [board, setBoard] = useState(true);
 
   // ✅ Only subscribe to the minimal slice
-  const userInfo = useSelector((state) => state.auth.userInfo, (prev, next) => prev.token === next.token);
+  const userInfo = useSelector(
+    (state) => state.auth.userInfo,
+    (prev, next) => prev.token === next.token
+  );
 
   const router = useRouter();
   const pathname = usePathname();
@@ -33,7 +36,10 @@ export default function LayoutDashboard({ children }) {
 
   // ---------------- Memoized Mobile Content ----------------
   const mobileContent = useMemo(() => {
-    if (pathname === "/profile/rewards" || pathname === "/profile/order-history") {
+    if (
+      pathname === "/profile/rewards" ||
+      pathname === "/profile/order-history"
+    ) {
       return <Grid xs={12}>{children}</Grid>;
     }
 
@@ -42,7 +48,13 @@ export default function LayoutDashboard({ children }) {
     ) : (
       <Grid xs={12}>
         <Box
-          sx={{ cursor: "pointer", display: "flex", alignItems: "center", gap: 1, mb: 2 }}
+          sx={{
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            mb: 2,
+          }}
           onClick={handleBack}
         >
           <TurnLeftIcon />
@@ -55,7 +67,10 @@ export default function LayoutDashboard({ children }) {
 
   // ---------------- Memoized Desktop Content ----------------
   const desktopContent = useMemo(() => {
-    if (pathname === "/profile/rewards" || pathname === "/profile/order-history") {
+    if (
+      pathname === "/profile/rewards" ||
+      pathname === "/profile/order-history"
+    ) {
       return <Grid xs={12}>{children}</Grid>;
     }
 
