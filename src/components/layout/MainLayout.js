@@ -22,6 +22,7 @@ import Link from "next/link";
 import SearchPanel from "@/components/shared/searchpanel/SearchPanel";
 import MobileShoppingDialog from "../shared/shopping-bag/MobileShoppingDialog";
 import Popup from "../shared/popup/Popup";
+import MobileAccount from "../shared/menu/MobileAccount";
 
 export default function MainLayout({ children }) {
   const [snackbar, setSnackbar] = useState(false);
@@ -88,6 +89,7 @@ export default function MainLayout({ children }) {
           action={action}
         />
         <SearchPanel />
+        <MobileAccount />
       </CookiesProvider>
     </>
   );

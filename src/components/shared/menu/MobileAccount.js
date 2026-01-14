@@ -5,10 +5,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setMobileUserAccount,
-  setUserInfo,
-} from "../../../redux/auth/authActions";
+
 import PasswordWrapper from "../formUI/passwordFeild/PasswordWrapper";
 import TextField from "../../../components/shared/formUI/textField";
 import {
@@ -28,6 +25,7 @@ import {
 } from "../../core/button/MiahButton";
 import commonService from "../../../service/menu/commonService";
 import Link from "next/link";
+import { setMobileUserAccount, setUserInfo } from "@/store/authSlice";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
@@ -68,7 +66,7 @@ const MobileAccount = () => {
         setBtnLoading(false);
         if (res.data.data.response === "success") {
           dispatch(setUserInfo(res.data.data));
-          router.push("/dashboard/account-information");
+          router.push("/profile/account-information");
           handleClose();
         }
         if (res.data.data.response === "error") {
@@ -118,13 +116,13 @@ const MobileAccount = () => {
             >
               <Form>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <TextField name="email" label="Email" type="text" />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <PasswordWrapper name="password" label="Password" />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <p className="textCenter textRed">{errMsg}</p>
                     {btnLoading ? (
                       <MiahLoadingButton></MiahLoadingButton>
@@ -136,11 +134,11 @@ const MobileAccount = () => {
               </Form>
             </Formik>
             <Link href="/password-recovery">
-              <a>
+           
                 <p onClick={handleClose}>
                   Forget password ?
                 </p>
-              </a>
+             
             </Link>
             <Divider />
             <p>
@@ -149,7 +147,7 @@ const MobileAccount = () => {
             <MiahButton>
               <div className="mb-0 text-white" onClick={handleClose}>
                 <Link href="/createaccount">
-                  <a>Create Account</a>
+                  Create Account
                 </Link>
               </div>
             </MiahButton>
