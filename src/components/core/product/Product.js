@@ -9,8 +9,10 @@ import WishIcon from "./WishIcon";
 import { singleProductDataLayer } from "../../../service/data-layer-creator/dataLayerCreator";
 import { setRecentView } from "@/store/authSlice";
 import Slider from "react-slick";
+import useBreakpoint from "@/hooks/useBreakpoint";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 export default function Product({ product }) {
   const dispatch = useDispatch();
@@ -26,6 +28,9 @@ export default function Product({ product }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+const { isXs } = useBreakpoint();
+  
 
   // Safe ref setters
   const setMainSliderRef = useCallback((sliderInstance) => {
@@ -356,7 +361,7 @@ export default function Product({ product }) {
       </div>
 
       {/* Thumbnail slider */}
-      {slider.length > 1 && (
+      {slider.length > 1 && isXs &&  (
         <div className="thumb-slider-container">
           <Slider
             key={`nav-slider-${product?.id}-${navSliderKey}`}
