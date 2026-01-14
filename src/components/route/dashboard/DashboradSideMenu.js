@@ -50,11 +50,11 @@ export default function DashboradSideMenu({ page, setBoard }) {
   };
 
   const handleListItemClick = (e, index) => {
-    if (index === 0 && page === true) {
+    if (index === 0 ) {
       router.push("/profile/account-information?id=0");
-    } else if (index === 1 && page === true) {
+    } else if (index === 1 ) {
       router.push("/profile/address-book?id=1");
-    } else if (index === 2 && page === true) {
+    } else if (index === 2 ) {
       router.push("/profile/wish-list?id=2");
     }
     setBoard(false);

@@ -1,5 +1,5 @@
 import * as React from "react";
-import{useEffect} from "react";
+import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -14,9 +14,9 @@ import Grid from "@mui/material/Grid";
 import TextField from "../../shared/formUI/textField";
 import commonService from "../../../service/menu/commonService";
 import { MiahSubmitLoadingButton } from "../../core/button/MiahButton";
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
-import ClearIcon from '@mui/icons-material/Clear';
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import ClearIcon from "@mui/icons-material/Clear";
 import { Box } from "@mui/material";
 
 const INITIAL_FORM_STATE = {
@@ -41,15 +41,14 @@ const FORM_VALIDATION = Yup.object().shape({
   // area: Yup.object().required("Requird"),
 });
 
-
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '50%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -60,7 +59,7 @@ export default function EditAddress({
   setOpen,
   handleDialog,
   userInfo,
-  getAllAddress
+  getAllAddress,
 }) {
   // hooks
   // const locations = useSelector((state) => state.checkout.locations);
@@ -118,7 +117,7 @@ export default function EditAddress({
       .then((res) => {
         setIsLoading(false);
         setMsg(res.data.data.msg);
-        getAllAddress()
+        getAllAddress();
         console.log(res.data.data.msg);
         // setOpen(false);
       })
@@ -145,13 +144,13 @@ export default function EditAddress({
   }, [addressToEdit]);
 
   useEffect(() => {
-    if(msg === 'Billing address update successfully'){
-      setTimeout(()=>setOpen(false),500)
+    if (msg === "Billing address update successfully") {
+      setTimeout(() => setOpen(false), 500);
     }
   }, [msg]);
 
   const setEditData = () => {
-    if(locations) {
+    if (locations) {
       if (addressToEdit.type === "billing") {
         const billingDivision = locations.find(
           (item) => item.id === addressToEdit.billing_region_id
@@ -165,10 +164,10 @@ export default function EditAddress({
         setDivision(billingDivision);
         setCity(billingCity);
         setArea(billingArea);
-  
+
         setCities(billingDivision.city);
         setAreas(billingCity.area);
-  
+
         setFirstName(userInfo.first_name);
         setLastName(userInfo.last_name);
         setEmail(userInfo.email);
@@ -188,10 +187,10 @@ export default function EditAddress({
         setDivision(billingDivision);
         setCity(billingCity);
         setArea(billingArea);
-  
+
         setCities(billingDivision.city);
         setAreas(billingCity.area);
-  
+
         setFirstName(addressToEdit.first_name);
         setLastName(addressToEdit.last_name);
         setEmail(addressToEdit.email);
@@ -203,20 +202,20 @@ export default function EditAddress({
   };
   return (
     <>
-    <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-              UPDATE ADDRESS {addressId}
-                <div className="cancelIcon" onClick={handleClose}>
-                  <ClearIcon />
-                </div>
-              </Typography>
-              <Formik
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            UPDATE ADDRESS {addressId}
+            <div className="cancelIcon" onClick={handleClose}>
+              <ClearIcon />
+            </div>
+          </Typography>
+          <Formik
             initialValues={{
               ...INITIAL_FORM_STATE,
             }}
@@ -226,28 +225,28 @@ export default function EditAddress({
           >
             <Form>
               <Grid container spacing={2}>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <TextField
                     name="fName"
                     defaultvalue={firstName}
                     label="First Name"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <TextField
                     name="lName"
                     defaultvalue={lastName}
                     label="Last Name"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <TextField
                     name="mobile"
                     defaultvalue={mobile}
                     label="Mobile Number"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <SelectWrapper
                     optionLabel="name"
                     options={locations}
@@ -257,7 +256,7 @@ export default function EditAddress({
                     name="division"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <SelectWrapper
                     optionLabel="name"
                     options={cities}
@@ -267,7 +266,7 @@ export default function EditAddress({
                     name="city"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <SelectWrapper
                     optionLabel="name"
                     defaultOption={area}
@@ -276,17 +275,17 @@ export default function EditAddress({
                     name="area"
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <TextField name="email" defaultvalue={email} label="Emial" />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid size={{ sm: 6 }}>
                   <TextField
                     name="zipcode"
                     defaultvalue={zipcode}
                     label="Zip Code"
                   />
                 </Grid>
-                <Grid item sm={12}>
+                <Grid size={12}>
                   <TextField
                     name="address"
                     defaultvalue={address}
@@ -295,8 +294,13 @@ export default function EditAddress({
                 </Grid>
               </Grid>
               <br />
-              <Button type="submit" variant="contained" fullWidth isloading={isloading}>
-                update address
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={isloading}
+              >
+                {isloading ? "Updating..." : "Update Address"}
               </Button>
               {/* <MiahSubmitLoadingButton type="submit" isloading={isloading}>
                 update address
@@ -304,8 +308,8 @@ export default function EditAddress({
               <div>{msg}</div>
             </Form>
           </Formik>
-            </Box>
-          </Modal>
+        </Box>
+      </Modal>
     </>
   );
 }

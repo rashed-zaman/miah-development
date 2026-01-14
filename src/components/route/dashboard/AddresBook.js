@@ -168,7 +168,7 @@ export default function AddressBook() {
                 }}
               >
                 <Grid container spacing={2}>
-                  <Grid item sm={12} xs={12}>
+                  <Grid size={12}>
                     <AddnewAddress
                       userInfo={userInfo}
                       getAllAddress={getAllAddress}
@@ -183,7 +183,7 @@ export default function AddressBook() {
             {/* <h3>Default Address</h3> */}
           </div>
           <Grid container spacing={2}>
-            <Grid item sm={6} xs={12}>
+            <Grid  size={{ xs: 12, sm: 6 }}>
               <Box sx={{ padding: "5px 15px", border: '1px solid', minHeight: '236px' }}>
                 <p>
                   <b>Default Billing Address</b>
@@ -208,10 +208,10 @@ export default function AddressBook() {
                 }
               </Box>
             </Grid>
-            <Grid item xs={12} sx={{ display: { xs: "block", sm: "none" } }}>
+            <Grid size={12} sx={{ display: { xs: "block", sm: "none" } }}>
               <Divider />
             </Grid>
-            <Grid item sm={6} xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Box sx={{ padding: "5px 15px", border: '1px solid', minHeight: '236px' }}>
                 <p>
                   <b>Default Shipping Address</b>
@@ -242,7 +242,7 @@ export default function AddressBook() {
           <Grid container spacing={2}>
             {billingAddress.map((billing, pos) => {
               return (
-                <Grid item sm={6} xs={12} key={pos}>
+                <Grid size={{ xs: 12, sm: 6 }} key={pos}>
                   <Box className="parentMarginZero" sx={{ padding: "5px 15px" }}>
                     <p>{userInfo.full_name}</p>
                     <p>{billing.billing_address}</p>
@@ -255,7 +255,7 @@ export default function AddressBook() {
                       <b>Mobile: {userInfo.phone}</b>
                     </p>
                     <Grid container spacing={0}>
-                      <Grid item xs={6}>
+                      <Grid size={{ xs: 6 }}>
                         <Button
                           variant="outlined"
                           size="small"
@@ -282,7 +282,7 @@ export default function AddressBook() {
                           Dlete
                         </Button>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Button
                           onClick={() =>
                             setDefaultAddress(billing.id, "defaultBilling")
@@ -316,7 +316,7 @@ export default function AddressBook() {
             {ShippingAddress &&
               ShippingAddress.map((shipping, pos) => {
                 return (
-                  <Grid item sm={6} xs={12} key={pos}>
+                  <Grid size={{ xs: 12, sm: 6 }} key={pos}>
                     <Box
                       className="parentMarginZero"
                       sx={{ padding: "5px 15px" }}
@@ -334,7 +334,7 @@ export default function AddressBook() {
                         <b>Mobile: {userInfo.phone}</b>
                       </p>
                       <Grid container spacing={0}>
-                        <Grid item xs={6}>
+                        <Grid size={6}>
                           <Button
                             onClick={() => editBilling(shipping, "shipping")}
                             variant="outlined"
@@ -361,7 +361,7 @@ export default function AddressBook() {
                             Dlete
                           </Button>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid size={6}>
                           <Button
                             onClick={() =>
                               setDefaultAddress(shipping.id, "defaultShipping")
