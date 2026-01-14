@@ -131,7 +131,7 @@ export default function RewardCashback() {
       <>
         {/* <h3>Credits</h3> */}
         <Grid container spacing={2}>
-          <Grid item sm={6} xs={12}>
+          <Grid size={{ md: 6, xs: 12 }}>
             <Card>
               <Grid container spacing={2} p={2}>
                 <Grid item sm={6}>
@@ -152,7 +152,7 @@ export default function RewardCashback() {
               </Grid>
             </Card>
           </Grid>
-          <Grid item sm={6} xs={12}>
+          <Grid size={{ md: 6, xs: 12 }}>
             <Card sx={{ padding: 3 }}>
               <h4>Convert Reward Points To Credit</h4>
               <Grid container spacing={1}>
@@ -166,7 +166,7 @@ export default function RewardCashback() {
                     size="small"
                   />
                 </Grid>
-                <Grid item sm={4} xs={12}>
+                <Grid size={{ md: 4, xs: 12 }}>
                   <Button variant="contained" fullWidth onClick={convertPoints}>
                     Convert
                   </Button>
@@ -178,7 +178,7 @@ export default function RewardCashback() {
               </div>
             </Card>
           </Grid>
-          <Grid item sm={12} mb={2}>
+          <Grid size={{ md: 12, xs: 12 }}>
             {/* <Divider /> */}
           </Grid>
         </Grid>

@@ -17,7 +17,7 @@ import Grid from "@mui/material/Grid";
 import Image from "next/image";
 import { IMAGE_URL } from "../../../service/serviceConfig";
 import OrderStausStapper from "./OrderStausStapper";
-import { Link } from "@mui/material";
+import { Container, Link } from "@mui/material";
 
 import {
   partialrefundDataLayer,
@@ -80,32 +80,33 @@ export default function OrderHistory() {
           {order.delivery_status === "Done" && (
             <Accordion sx={{ marginLeft: "8px", marginBottom: "5px" }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Grid container spacing={1}>
-                  <Grid item sm={4} xs={4}>
-                    <Typography>Order# {order.order_id}</Typography>
-                  </Grid>
-                  <Grid
-                    item
-                    sm={4}
-                    sx={{ display: { xs: "none", sm: "block" } }}
-                  >
-                    <Typography>
-                      {moment(order.invoice_date).format("MMMM Do YYYY")}
-                    </Typography>
-                  </Grid>
-                  <Grid item sm={4} xs={8}>
-                    <Typography
-                      sx={{
-                        background: "#000",
-                        color: "#fff",
-                        textAlign: "center",
-                        marginRight: "5px",
-                      }}
+                <Container>
+                  <Grid container spacing={1}>
+                    <Grid size={{ md: 4, xs: 4 }}>
+                      <Typography>Order# {order.order_id}</Typography>
+                    </Grid>
+                    <Grid
+                      size={{ md: 4 }}
+                      sx={{ display: { xs: "none", sm: "block" } }}
                     >
-                      {order.delivery_status}
-                    </Typography>
+                      <Typography>
+                        {moment(order.invoice_date).format("MMMM Do YYYY")}
+                      </Typography>
+                    </Grid>
+                    <Grid size={{ md: 4, xs: 4 }}>
+                      <Typography
+                        sx={{
+                          background: "#000",
+                          color: "#fff",
+                          textAlign: "center",
+                          marginRight: "5px",
+                        }}
+                      >
+                        {order.delivery_status}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                </Grid>
+                </Container>
               </AccordionSummary>
 
               <AccordionDetails sx={{ padding: "0px" }}>
@@ -118,28 +119,28 @@ export default function OrderHistory() {
                     pr={1}
                     pb={1}
                   >
-                    <Grid item sm={2} xs={6}>
+                    <Grid size={{ md: 2, xs: 6 }}>
                       <p className="mb-0">
                         <b>Ordered Placed</b>
                       </p>
                       {moment(order.invoice_date).format("MMMM Do YYYY")}
                     </Grid>
 
-                    <Grid item sm={2} xs={6}>
+                    <Grid size={{ md: 2, xs: 6 }}>
                       <p className="mb-0">
                         <b>Total</b>
                       </p>
                       Tk {order.grand_total}
                     </Grid>
 
-                    <Grid item sm={2} xs={6}>
+                    <Grid size={{ md: 2, xs: 6 }}>
                       <p className="mb-0">
                         <b>Shipped To</b>
                       </p>
                       {order.customer_name}
                     </Grid>
 
-                    <Grid item sm={3} xs={6}>
+                    <Grid size={{ md: 3, xs: 6 }}>
                       <Link
                         target="_blank"
                         href={`/order/order-details?orderid=${order.order_id}`}
@@ -163,18 +164,18 @@ export default function OrderHistory() {
                       </Link>
                     </Grid>
 
-                    <Grid item sm={2}>
+                    <Grid size={{ md: 2 }}>
                       <p className="mb-0">Invoice</p>
                       <h5 className="m-0">#{order.order_id}</h5>
                     </Grid>
                   </Grid>
 
                   <Grid container spacing={1} pl={2} pr={2} pb={2}>
-                    <Grid item sm={12} mt={2}>
+                    <Grid size={12} mt={2}>
                       <OrderStausStapper status={order.delivery_status} />
                     </Grid>
 
-                    <Grid item sm={12}>
+                    <Grid size={{ md: 12 }}>
                       <p>
                         Estimate Delivery Date :
                         {moment(order.invoice_date)
@@ -187,25 +188,25 @@ export default function OrderHistory() {
                       </p>
                     </Grid>
 
-                    <Grid item sm={12}>
+                    <Grid size={12}>
                       {order.order_details.map((product, index) => (
                         <Grid container spacing={1} key={index}>
-                          <Grid item sm={2} xs={12}>
+                          <Grid  size={{ md: 2, xs: 12 }}>
                             <Image
                               src={`${IMAGE_URL}m_thumb/${product.p_img}`}
                               alt={product.product_name}
-                              width={300}
-                              height={300}
+                              width={100}
+                              height={100}
                             />
                           </Grid>
 
-                          <Grid item sm={5} xs={12}>
-                            <Box sx={{ padding: "2px 10px" }}>
-                              <p>{product.product_name}</p>
-                              <p>SKU: {product.sku}</p>
-                              <p>QTY: {product.qty}</p>
-                              <p>Unit Price: Tk {product.sales_cost}</p>
-                              <p>
+                          <Grid size={{ md: 5, xs: 12 }}>
+                            <Box>
+                              <p className="my-0">{product.product_name}</p>
+                              <p className="my-0">SKU: {product.sku}</p>
+                              <p className="my-0">QTY: {product.qty}</p>
+                              <p className="my-0">Unit Price: Tk {product.sales_cost}</p>
+                              <p className="my-0">
                                 <b>Total: {product.sub_total}</b>
                               </p>
                             </Box>

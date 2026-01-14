@@ -6,7 +6,7 @@ import commonService from "../../../service/menu/commonService";
 import moment from "moment";
 
 import Accordion from "@mui/material/Accordion";
-import { Card, Box } from "@mui/material";
+import { Card, Box, Container } from "@mui/material";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
@@ -42,18 +42,19 @@ export default function CancleOrder() {
       {allOrdes.map((order, pos) => (
         <Accordion key={pos} sx={{ marginLeft: "8px", marginBottom: "5px" }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Container>
             <Grid container spacing={1}>
-              <Grid item sm={4} xs={6}>
+              <Grid  size={{ md: 4, xs: 6 }}>
                 <Typography>order# {order.order_id}</Typography>
               </Grid>
 
-              <Grid item sm={4} sx={{ display: { xs: "none", sm: "block" } }}>
+              <Grid  size={{ md: 4 }} sx={{ display: { xs: "none", sm: "block" } }}>
                 <Typography>
                   {moment(order.invoice_date).format("MMMM Do YYYY")}
                 </Typography>
               </Grid>
 
-              <Grid item sm={4} xs={6}>
+              <Grid  size={{ md: 4, xs: 6 }}>
                 <Typography
                   sx={{
                     background: "#000",
@@ -66,6 +67,7 @@ export default function CancleOrder() {
                 </Typography>
               </Grid>
             </Grid>
+          </Container>
           </AccordionSummary>
 
           <AccordionDetails>
@@ -76,28 +78,28 @@ export default function CancleOrder() {
                 sx={{ background: "rgba(0,0,0,0.05)" }}
                 pl={2}
               >
-                <Grid item sm={2} xs={12}>
+                <Grid  size={{ md: 2, xs: 12 }}>
                   <p className="marginBottomZero">
                     <b>Ordered Placed</b>
                   </p>
                   {moment(order.invoice_date).format("MMMM Do YYYY")}
                 </Grid>
 
-                <Grid item sm={2} xs={6}>
+                <Grid  size={{ md: 2, xs: 6 }}>
                   <p className="marginBottomZero">
                     <b>Total</b>
                   </p>
                   Tk {order.grand_total}
                 </Grid>
 
-                <Grid item sm={2} xs={6}>
+                <Grid size={{sm:2, xs:6}}>
                   <p className="marginBottomZero">
                     <b>Shipped To</b>
                   </p>
                   {order.customer_name}
                 </Grid>
 
-                <Grid item sm={2} xs={6}>
+                <Grid  size={{sm:2, xs:6}}>
                   {order.delivery_status === "Processing Order" &&
                   order.type !== "Cancel" &&
                   order.cancel_request !== "order" ? (
@@ -124,39 +126,39 @@ export default function CancleOrder() {
                   ) : null}
                 </Grid>
 
-                <Grid item sm={2}>
+                <Grid  size={{sm:2}}>
                   <p className="marginBottomZero">Print Invoice</p>
                   <p className="mrY">#{order.order_id}</p>
                 </Grid>
               </Grid>
 
               <Grid container spacing={1} pl={2} pr={2} pb={2}>
-                <Grid item sm={12} xs={12} mt={1}>
+                <Grid  mt={1} size={{sm:12}}>
                   {order.order_details.map((product, pos) => (
                     <Grid container spacing={1} key={pos} mb={2}>
-                      <Grid item sm={2} xs={12}>
+                      <Grid  size={{ md: 2, xs: 12 }}>
                         <Image
                           src={`${IMAGE_URL}m_thumb/${product.p_img}`}
                           alt={product.product_name}
-                          width={300}
-                          height={300}
+                          width={100}
+                          height={100}
                         />
                       </Grid>
 
-                      <Grid item sm={5} xs={12}>
+                      <Grid  size={{ md: 5, xs: 12 }}>
                         <Box sx={{ padding: "2px 10px" }}>
-                          <p>{product.product_name}</p>
-                          <p>sku: {product.sku}</p>
-                          <p>QTY: {product.qty}</p>
-                          <p>Unit Price: Tk {product.sales_cost}</p>
+                          <p className="my-0">{product.product_name}</p>
+                          <p className="my-0">sku: {product.sku}</p>
+                          <p className="my-0">QTY: {product.qty}</p>
+                          <p className="my-0">Unit Price: Tk {product.sales_cost}</p>
                           {product.size && <p>Size: {product.size}</p>}
-                          <p>
+                          <p className="my-0">
                             <b>Total: {product.sub_total}</b>
                           </p>
                         </Box>
                       </Grid>
 
-                      <Grid item sm={5} xs={12}>
+                      <Grid size={{ md: 5, xs: 12 }}>
                         {product.cancel_request === "0" &&
                           order.delivery_status === "Processing Order" &&
                           order.type !== "Cancel" &&

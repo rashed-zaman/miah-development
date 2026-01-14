@@ -99,7 +99,7 @@ console.log(userInfo, orderId);
                   We have received your order and will contact you as soon as
                   your package is shipped. You can find your purchase
                   information by accessing your{" "}
-                  <Link href="/dashboard/account-information?id=0">
+                  <Link href="/profile/account-information?id=0">
                     <u>Account</u>
                   </Link>
                   .

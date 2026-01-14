@@ -47,7 +47,7 @@ export default function HeaderUserInfo() {
       <Box sx={{ width: "100%", border: "1px solid rgba(0,0,0,.12)" }}>
         <List component="nav" aria-label="main mailbox folders" className="pt-0">
           <Grid container spacing={2} p={2}>
-            <Grid item sm={6} xs={6}>
+            <Grid size={{sm: 6, xs: 6}}>
               <h4 style={{ textTransform: 'uppercase' }}>Hi {userInfo.first_name}</h4>
               {userInfo.userLevel == 1 ?
                 <img
@@ -73,14 +73,14 @@ export default function HeaderUserInfo() {
                 />
               }
             </Grid>
-            <Grid item sm={4} sx={{ textAlign: 'right' }} xs={4}>
+            <Grid  sx={{ textAlign: 'right' }}  size={{sm: 4, xs: 4}}>
               <p>
                 <small>Points to spend</small>
               </p>
               {/* <h3>{data.reward_point}</h3>        */}
               <h3>{data.reward_point}</h3>
             </Grid>
-            <Grid item sm={12}>
+            <Grid size={12}>
             {userInfo.userLevel == 1 ?
                 <BorderLinearProgress variant="determinate" value={Math.round(((userInfo.currentPoint) * 100) / 5000)} />: userInfo.userLevel == 2 ? <BorderLinearProgress variant="determinate" value={Math.round(((userInfo.currentPoint) * 100) / 10000)} />: userInfo.userLevel == 3 ? <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 20000)} /> : userInfo.userLevel == 4 ? <BorderLinearProgress variant="determinate" value={Math.round((((userInfo.currentPoint)) * 100) / 40000)} /> : null
               }

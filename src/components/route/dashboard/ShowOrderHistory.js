@@ -20,13 +20,13 @@ export default function ShowOrderHistory() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
             >
-              <Grid item sm={4} xs={6}>
+              <Grid size={{ md: 4, xs: 6 }}>
                 <Typography variant='h5' sx={{fontSize:{sm:'1.5rem',xs:'1rem'}}}>Order Deliveried</Typography>
               </Grid>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: "50px 10px", boxShadow:'none'}}>
               <Grid container spacing={1}>
-                <Grid>
+                <Grid size={{ md: 12}}>
                   <OrderHistory />
                 </Grid>
               </Grid>
@@ -37,13 +37,13 @@ export default function ShowOrderHistory() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
             >
-              <Grid item sm={4} xs={6}>
+              <Grid size={{ md: 4, xs: 6 }}>
                 <Typography variant='h5' sx={{fontSize:{sm:'1.5rem',xs:'1rem'}}}>Order Canceled</Typography>
               </Grid>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: "50px 10px",boxShadow:'none',}}>
               <Grid container spacing={1}>
-                <Grid sx={{ width: '100%'}}>
+                <Grid sx={{ width: '100%'}} size={{ md: 12}}>
                   <CancleOrder />
                 </Grid>
               </Grid>
