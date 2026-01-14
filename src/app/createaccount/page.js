@@ -155,12 +155,12 @@ export default function CreateAccountPage() {
         >
           <Form>
             <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} md={6}>
+              <Grid  size={{ xs: 12, md: 6 }}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <h3 className="ps-ps-form__title"> Create Account</h3>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <Select
                       name="title"
                       label="Title"
@@ -168,7 +168,7 @@ export default function CreateAccountPage() {
                       options={title}
                     />
                   </Grid>
-                  <Grid item xs={12} md={4}>
+                  <Grid  size={{ xs: 12, md: 4 }}>
                     <Autocomplete
                       name="country"
                       label="Country"
@@ -176,28 +176,28 @@ export default function CreateAccountPage() {
                       options={countries}
                     />
                   </Grid>
-                  <Grid item xs={12} md={8}>
+                  <Grid size={{ xs: 12, md: 8 }}>
                     <TextField name="phone" label="Mobile Number" />
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid size={{ xs: 12, md: 6 }}>
                     <TextField name="firstName" label="First Name" />
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid size={{ xs: 12, md: 6 }}>
                     <TextField name="lastName" label="Last Name" />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <TextField name="email" label="Email" type="email" />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <PasswordWrapper name="password" label="Password" />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <PasswordWrapper
                       name="confirmPassword"
                       label="Confirm Password"
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                     <p className="textCenter text-danger">{errMsg}</p>
                     {loading ? (
                       <Button variant="contained" fullWidth>
