@@ -25,6 +25,7 @@ export default function Product({ product }) {
   const [navSliderKey, setNavSliderKey] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Safe ref setters
   const setMainSliderRef = useCallback((sliderInstance) => {
@@ -47,7 +48,10 @@ export default function Product({ product }) {
   const handleMainAfterChange = useCallback((current) => {
     setActiveIndex(current);
     // Sync nav slider if available
-    if (navSliderRef.current && typeof navSliderRef.current.slickGoTo === 'function') {
+    if (
+      navSliderRef.current &&
+      typeof navSliderRef.current.slickGoTo === "function"
+    ) {
       requestAnimationFrame(() => {
         navSliderRef.current.slickGoTo(current);
       });
@@ -56,7 +60,10 @@ export default function Product({ product }) {
   }, []);
 
   const handleNavBeforeChange = useCallback((current, next) => {
-    if (mainSliderRef.current && typeof mainSliderRef.current.slickGoTo === 'function') {
+    if (
+      mainSliderRef.current &&
+      typeof mainSliderRef.current.slickGoTo === "function"
+    ) {
       mainSliderRef.current.slickGoTo(next);
     }
   }, []);
@@ -129,10 +136,10 @@ export default function Product({ product }) {
     setLoadingState(variant.map(() => false));
     setNavLoadingState(variant.map(() => false));
     setIsInitialized(false);
-    
+
     // Force slider reinitialization
-    setSliderKey(prev => prev + 1);
-    setNavSliderKey(prev => prev + 1);
+    setSliderKey((prev) => prev + 1);
+    setNavSliderKey((prev) => prev + 1);
   };
 
   const handleImageLoad = (index, type = "main") => {
@@ -168,7 +175,10 @@ export default function Product({ product }) {
   };
 
   const handleThumbClick = (index) => {
-    if (mainSliderRef.current && typeof mainSliderRef.current.slickGoTo === 'function') {
+    if (
+      mainSliderRef.current &&
+      typeof mainSliderRef.current.slickGoTo === "function"
+    ) {
       mainSliderRef.current.slickGoTo(index);
     }
   };
@@ -198,8 +208,8 @@ export default function Product({ product }) {
 
       // Force slider reinitialization
       const timer = setTimeout(() => {
-        setSliderKey(prev => prev + 1);
-        setNavSliderKey(prev => prev + 1);
+        setSliderKey((prev) => prev + 1);
+        setNavSliderKey((prev) => prev + 1);
       }, 50);
 
       // Preload first image
@@ -219,10 +229,16 @@ export default function Product({ product }) {
   useEffect(() => {
     if (isInitialized && slider.length > 0) {
       const syncTimer = setTimeout(() => {
-        if (mainSliderRef.current && typeof mainSliderRef.current.slickGoTo === 'function') {
+        if (
+          mainSliderRef.current &&
+          typeof mainSliderRef.current.slickGoTo === "function"
+        ) {
           mainSliderRef.current.slickGoTo(activeIndex);
         }
-        if (navSliderRef.current && typeof navSliderRef.current.slickGoTo === 'function') {
+        if (
+          navSliderRef.current &&
+          typeof navSliderRef.current.slickGoTo === "function"
+        ) {
           navSliderRef.current.slickGoTo(activeIndex);
         }
       }, 100);
@@ -255,10 +271,15 @@ export default function Product({ product }) {
 
   return (
     <div className="ps-product ps-product--standard">
-      <div className="ps-product__thumbnail" onClick={recentViewProduct}>
+      <div
+        className="ps-product__thumbnail"
+        onClick={recentViewProduct}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <Link href={`/product/${product.slug}`}>
           <div
-            className={`main-slider-container ${isDragging ? "dragging" : ""}`}
+            className={`main-slider-container ${isDragging ? "dragging" : ""} ${isHovered ? "hovered" : ""}`}
           >
             {slider.length > 0 ? (
               <Slider
@@ -359,7 +380,7 @@ export default function Product({ product }) {
                       position: "relative",
                       width: "100%",
                       paddingTop: "100%",
-                      border: isActive ? "2px solid #000" : "1px solid #e0e0e0",
+                      border: isActive ? "1px solid #000" : "1px solid #e0e0e0",
                       background: "none",
                       cursor: "pointer",
                       borderRadius: "4px",
@@ -467,7 +488,7 @@ export default function Product({ product }) {
         </div>
       </div>
 
-      <style jsx>{`
+     <style jsx>{`
         .ps-product__thumbnail {
           position: relative;
           overflow: hidden;
@@ -584,7 +605,7 @@ export default function Product({ product }) {
           opacity: 0.95;
         }
 
-        /* Arrow styles */
+        /* Arrow styles - DEFAULT HIDDEN */
         :global(.main-slider-container .slick-prev),
         :global(.main-slider-container .slick-next) {
           z-index: 100;
@@ -600,6 +621,30 @@ export default function Product({ product }) {
           pointer-events: none;
           transition: opacity 0.25s ease, box-shadow 0.25s ease,
             transform 0.25s ease;
+        }
+
+        /* SHOW ARROWS ON DESKTOP HOVER - Using class-based approach */
+        @media (hover: hover) and (pointer: fine) {
+          :global(.main-slider-container.hovered .slick-prev),
+          :global(.main-slider-container.hovered .slick-next) {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+          }
+        }
+
+        /* HIDE ARROWS ON MOBILE */
+        @media (hover: none) and (pointer: coarse) {
+          :global(.main-slider-container .slick-prev),
+          :global(.main-slider-container .slick-next) {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          :global(.main-slider-container .slick-prev),
+          :global(.main-slider-container .slick-next) {
+            display: none !important;
+          }
         }
 
         :global(.main-slider-container .slick-prev:hover),
@@ -667,25 +712,6 @@ export default function Product({ product }) {
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-          :global(.main-slider-container .slick-prev),
-          :global(.main-slider-container .slick-next) {
-            width: 32px;
-            height: 32px;
-          }
-
-          :global(.main-slider-container .slick-prev:before),
-          :global(.main-slider-container .slick-next:before) {
-            font-size: 18px;
-          }
-
-          :global(.main-slider-container .slick-prev) {
-            left: 8px;
-          }
-
-          :global(.main-slider-container .slick-next) {
-            right: 8px;
-          }
-
           :global(.main-slider-container .slick-list) {
             -webkit-overflow-scrolling: touch;
           }
@@ -697,22 +723,6 @@ export default function Product({ product }) {
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
           }
-        }
-
-        .main-slider-container:hover :global(.slick-prev),
-        .main-slider-container:hover :global(.slick-next),
-        .main-slider-container.dragging :global(.slick-prev),
-        .main-slider-container.dragging :global(.slick-next) {
-          opacity: 1;
-          pointer-events: auto;
-        }
-
-        /* Hover effect */
-        :global(.main-slider-container .slick-prev:hover),
-        :global(.main-slider-container .slick-next:hover) {
-          background: #fff;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-          transform: translateY(-50%) scale(1.05);
         }
 
         :global(.thumb-slider-container .slick-slide > div) {
